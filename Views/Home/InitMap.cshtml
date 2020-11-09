@@ -1,0 +1,278 @@
+﻿
+<script src="~/Scripts/VectorMapData.js"></script>
+<script src="~/Scripts/flagdata.js"></script>
+<script>
+    var SetDataMap = function (iso, _value) {
+        if (mapdata[iso] ===undefined || madiaban[iso]== null) {
+            mapdata[iso] = _value;
+        }
+        else {
+            mapdata[iso] = _value;
+        }
+        
+    }
+
+    var arr = JSON.parse('@Html.Raw(Json.Encode(ViewBag.lhs_time))')
+    
+
+
+    for (var i = 0; i < arr.length; i++) {
+        var madiaban = arr[i].madiaban;
+        var soluong = arr[i].soluong;
+        var diaban = arr[i].diaban;
+        SetDataMap(madiaban, soluong);
+    }
+</script>
+
+<script>
+
+
+
+
+
+    var markers = [
+                          { latLng: [16.23, 82.9], name: "Hoàng Sa-Việt Nam" },
+                          { latLng: [16.73, 82.5], name: "Hoàng Sa-Việt Nam" },
+                          { latLng: [15.53, 82.7], name: "Hoàng Sa-Việt Nam" },
+                          { latLng: [16.33, 82.8], name: "Hoàng Sa-Việt Nam" },
+                          { latLng: [12.43, 82.49], name: "Trường Sa-Việt Nam" },
+                          { latLng: [12.53, 82.19], name: "Trường Sa-Việt Nam" },
+                          { latLng: [12.73, 82.39], name: "Trường Sa-Việt Nam" },
+                          { latLng: [12.83, 82.9], name: "Trường Sa-Việt Nam" }
+    ];
+
+
+        $(function () {
+            var $ = jQuery;
+
+            $('#Vietnam').click(function () {
+                $("path.jvectormap-region[data-code='VN']").css("stroke", "red");
+                $('#map1').vectorMap('set', 'focus', { region: 'VN', animate: true });
+                $("path.jvectormap-region[data-code='VN']").css("stroke-width", "2");
+                $("path.jvectormap-region[data-code='VN']").attr("fill", "yellow");
+
+            });
+            $('#Conggo').click(function () {
+                $("path.jvectormap-region[data-code='RU']").css("stroke", "red");
+                $('#map1').vectorMap('set', 'focus', { region: 'RU', animate: true });
+                $("path.jvectormap-region[data-code='RU']").css("stroke-width", "2");
+                $("path.jvectormap-region[data-code='RU']").attr("fill", "yellow");
+            });
+            $('#focus-coords').click(function () {
+                $('#map1').vectorMap('set', 'focus', { scale: 10, lat: 35, lng: 33, animate: true });
+            });
+            $('#focus-init').click(function () {
+                $('#map1').vectorMap('set', 'focus', { scale: 1, x: 0.5, y: 0.5, animate: true });
+            });
+
+            var map = "world_mill_en"
+            var scalemap = 2
+            $(function () {
+                new jvm.Map({
+                    map: map,
+                    container: $('#map1'),
+                    zoomMax: 12,
+                    focusOn: {
+                        x: 0.5,
+                        y: 0.5,
+                        scale: 2,
+                        animate: true
+                    },
+                    backgroundColor: "#86c0f7",
+                    regionLabelStyle: {
+                        initial: {
+                            fill: '#44f265'
+                        },
+                        hover: {
+                            fill: '#44f265'
+                        },
+                        selected : {
+                            fill: '#44f265'
+                        }
+                    },
+                    regionsSelectable: true,
+                    labels: {
+                        markers: {
+                            render: function (index) {
+                               
+                                return markers[index].name;
+                            }
+                        }
+                    },
+                    selectedMarkers: markers.map((marker, index) => {
+                        var name = marker.name;
+
+                        if (name === "Hoàng Sa-Việt Nam" || name === "Trường Sa-Việt Nam") {
+                            return index;
+                        }
+                    }),
+                    markers: markers,
+                    markerStyle: {
+                        initial: { fill: "#5c5cff" },
+                        selected: { fill: "#ff5050" }
+                    },
+                    markerLabelStyle: {
+                        initial: {
+                            fontFamily: "Roboto",
+                            fontWeight: 400,
+                            fontSize: 13
+                        }
+                    },
+                    series: {
+                        regions: [{
+                            values: mapdata,
+                            scale: ['#f4eece', '#f6d835'],
+                            normalizeFunction: 'polynomial'
+                        }]
+                    },
+                    onRegionClick : function( e, code){
+                        if ($("path.jvectormap-region[data-code='" + code + "']").attr("fill")=='yellow') {
+                            $("path.jvectormap-region[data-code='" + code + "']").css("stroke", "black");
+                            $("path.jvectormap-region[data-code='" + code + "']").css("stroke-width", "0.3");
+                            $('#map1').vectorMap('set', 'focus', { scale: 1, x: 0.5, y: 0.5, animate: true });
+                        }
+                        else {
+                            $("path.jvectormap-region[data-code='" + code + "']").css("stroke", "red");
+                            $('#map1').vectorMap('set', 'focus', { region: '' + code, animate: true });
+                            $("path.jvectormap-region[data-code='" + code + "']").css("stroke-width", "2");
+                            $("path.jvectormap-region[data-code='" + code + "']").attr("fill", "yellow");
+                        }
+                    },
+
+
+                    onRegionTipShow: function (event, label, code) {
+
+                        if (mapdata[code] === null|| mapdata[code]=== undefined) {
+                            if (flagdata[code] === undefined || flagdata[code] === null) {
+
+                                label.html(label.html() + "<br/>Số lượng LHS : 0" );
+                            }
+                            else {
+                                label.html("<img src='../" + flagdata[code].image + "'> " + label.html() + '<br> Số lượng LHS :' + 0);
+                            }
+                        }
+                        else {
+                            if (flagdata[code] === undefined || flagdata[code] === null) {
+
+                                label.html(label.html() + "<br/>Số lượng lhs : " + mapdata[code]);
+                            }
+                            else {
+                                label.html("<img src='../" + flagdata[code].image + "'> " + label.html() + '<br> Số lượng LHS :' + mapdata[code]);
+                            }
+                        }
+
+                    },
+
+                    labels: {
+                        regions: {
+                            render: function (code) {
+                                $("path.jvectormap-region[data-code='" + code + "']").css("stroke", "black");
+                                $("path.jvectormap-region[data-code='" + code + "']").css("stroke-width", "0.3");
+
+                                if (mapdata[code] === null || mapdata[code] === undefined||mapdata[code]==0) {
+                                    return '';
+                                }
+                                else
+                                {
+                                    if (flagdata[code] === undefined || flagdata[code] === null) {
+
+                                        return 'Số lượng LHS : ' + mapdata[code];
+                                    }
+                                    else {
+
+
+                                        return flagdata[code].name + 'Số lượng LHS : ' + mapdata[code];
+                                    }
+                                }
+
+
+
+
+                            }
+                        }
+                    },
+                    onViewportChange: function (e, scale, transX, transY) {
+
+                        scalemap = scale
+                        console.log('scale :'+scalemap)
+                        }
+                });
+            });
+            //------------
+            
+
+            setInterval(function () {
+                var elements = document.getElementsByClassName('jvectormap-element')
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+
+                    element.style.fontSize = scalemap*1.2+"px";
+                }
+
+
+
+            }, 1000)
+
+            //set flag cho cac nuoc
+
+        })
+
+
+</script>
+
+<style>
+    path.jvectormap-region {
+    stroke: black;
+    stroke-width: 1;
+}
+
+
+    path{
+        shape-rendering : crispEdges;
+    }
+</style>
+
+<div>
+   Tìm kiếm :
+    <input id="input_searchmap" list="iso_map" name="f" minlenght="2" style="height:2.1em" value=""/>
+    <datalist id="iso_map" style="height:2.1em;overflow:hidden" class="datalist_iso">
+
+    </datalist>
+    <input type="button" class="btn btn-primary" id="btnsearchRegion" value="Tìm kiếm"/>
+    <button id="Vietnam"><img src="~/Content/img/countryflag/vn_16.png" title="Việt Nam"/></button>
+    <button id="Conggo"><img src="~/Content/img/countryflag/ru_16.png" title="Nga"/></button>
+    <button id="focus-init" class="fa fa-chrome" title="Trờ về mặc định"></button>
+ </div>
+
+    <div id="map1" style="height:600px"></div>
+    <div style="height:20px"></div>
+
+<script>
+    for (var i = 0; i < arr.length; i++) {       
+        var node = "<option value='" + arr[i].madiaban + "' label='" + arr[i].diaban + "'>";
+        $("datalist").append(node);
+    }
+
+    var CheckMadiaban = function (e) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].madiaban == e) {
+                return true;
+            }            
+            
+        }
+        return false;
+    }
+
+    $("#btnsearchRegion").click(function () {
+        var region = $("#input_searchmap").val()
+        if (CheckMadiaban(region)) {
+            $("path.jvectormap-region[data-code='" + region + "']").css("stroke", "red");
+            $('#map1').vectorMap('set', 'focus', { region: '' + region, animate: true });
+            $("path.jvectormap-region[data-code='" + region + "']").attr("fill", "yellow");
+        }
+        else {
+            alert("Không tìm thấy quốc gia "+region)
+        }
+
+    })
+</script>

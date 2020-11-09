@@ -1,0 +1,275 @@
+﻿@model QLDHS.Models.Entity.InforLHS
+@{
+    ViewBag.Title = "DetailLHS - " + Model.Hoten;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/Detail_Style.css" />
+<link rel="stylesheet" href="~/Content/font-awesome.css" />
+<script src="~/Scripts/ValidateScript.js"></script>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-4 col-xl-4">
+            <div class="card-box text-center" style="position: sticky;top: 0; z-index:3">
+                <img id="avatar" src="~/@Model.Image" class="avatar-xl img-thumbnail" alt="profile-image">
+
+                <h4 class="mb-0">@Model.Hoten</h4>
+                <p class="text-muted">@Model.MaLHS</p>
+                <form>
+                    <input id="fileInput" type="file" style="display:none;" accept="image/*" />
+                    <button id="upfilebtn" onclick="document.getElementById('fileInput').click()" type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Thêm ảnh</button>
+                </form>
+                <div class="text-left mt-3">
+                    <p class="text-muted font-13 mb-2">
+                        <strong>Cơ sở đào tạo :</strong><span class="ml-2"> @Model.CSDaoTao</span>
+</p>
+                    <p class="text-muted mb-2 font-13"><strong>Bậc đào tạo :</strong> <span class="ml-2">@Model.CSDaoTao</span></p>
+
+                    <p class="text-muted mb-2 font-13">
+                        <strong>Kinh phí đào tạo :</strong><span class="ml-2">
+                             @Model.SinhHoatPhi
+                        </span>
+                    </p>
+                    <p class="text-muted mb-2 font-13"><strong>Đia chỉ liên lạc :</strong> <span class="ml-2 ">@Model.DiaChiLienLac</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Đoàn trưởng :</strong> <span class="ml-2 ">@Model.CanBo</span></p>
+                    
+                </div>
+
+                <ul class="social-list list-inline mt-3 mb-0">
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-purple text-purple"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="fa fa-google"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="fa fa-github"></i></a>
+                    </li>
+                </ul>
+            </div> <!-- end card-box -->
+
+            <div class="card-box">
+                <h4 class="header-title">Học tập</h4>
+                
+
+                <div class="pt-1">
+                    <h6 class="text-uppercase mt-0">Kì thứ 1 <span class="float-right">90%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 2 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 3 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 4 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 5 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 6 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 7 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 8 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 9 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 10 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 11 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 12 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 13 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 pt-1">
+                    <h6 class="text-uppercase">Kì thứ 14 <span class="float-right">67%</span></h6>
+                    <div class="progress progress-sm m-0">
+                        <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
+                            <span class="sr-only">Hoàn thành</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+            </div> <!-- end card-box-->
+
+        </div> <!-- end col-->
+
+        <div class="col-lg-8 col-xl-8">
+
+                <div class="tab-content">
+
+                    <div class="tab-pane show active" id="about-me">
+
+                        <h5 class="mb-4 text-uppercase">
+                            <i class="mdi mdi-briefcase mr-1"></i>
+                            Qúa trình học tập và công tác
+                        </h5>
+
+                        <ul class="list-unstyled timeline-sm">
+                            <li class="timeline-sm-item">
+                                <span class="timeline-sm-date">@Model.NgayNhapNgu - 20</span>
+                                <h5 class="mt-0 mb-1">Nhập ngũ</h5>
+                                <p>Ngày lưu học sinh thi đầu vào tại học viện</p>
+
+                            </li>
+                            <li class="timeline-sm-item">
+                                <span class="timeline-sm-date">@Model.NgayVaoDoan</span>
+                                <h5 class="mt-0 mb-1">Vào đoàn</h5>
+                                <p>Ngày lưu học sinh thi đầu vào tại học viện</p>
+                            </li>
+                            <li class="timeline-sm-item">
+                                <span class="timeline-sm-date">@Model.NgayVaoDang</span>
+                                <h5 class="mt-0 mb-1">Vào Đảng</h5>
+                                <p>Ngày lưu học sinh thi đầu vào tại học viện</p>                                
+                            </li>
+                        </ul>
+
+                        <h5 class="mb-3 mt-4 text-uppercase">
+                            <i class="mdi mdi-cards-variant mr-1"></i>
+                            Kết quả nổi bật
+                        </h5>
+                        <p>Qúa trình học tập công tác như thế nào </p>
+                        <p><strong>Mã lưu học sinh :</strong> </p>
+
+                    </div>
+                    <!-- end timeline content-->
+
+                </div> <!-- end tab-content -->
+            </div> <!-- end card-box-->
+
+        </div> <!-- end col -->
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $(".nav-link").click(function () {
+            $('#about-me-button,#setting-button').toggleClass("active");
+            $('#settings , #about-me').toggleClass("show");
+            $('#settings , #about-me').toggleClass("active");
+        });
+        
+        if ($("#avatar").attr("src") == "/") {
+            $("#avatar").attr("src","../Content/img/img_lhs/Avatar-Female.jpg")
+        }
+        //thêm các giá trị trong form chỉnh sửa
+        var gioitinh = '@Model.GioiTinh';
+        $('#GioiTinh option[value=' + gioitinh + ']').attr('selected', 'selected');
+        var mien = '@Model.Mien';
+        $('#Mien option[value=' + mien + ']').attr('selected', 'selected');
+        @*var madoituong = '@Model';
+        $('#MaDoiTuong option[value=' + mien + ']').attr('selected', 'selected');*@
+
+    });
+
+
+    
+</script>
+<script>
+    $("#fileInput").change(function(){
+        var formData = new FormData();
+        formData.append('AvatarImg', $('#fileInput')[0].files[0]);
+        var id = "@Model.MaLHS";
+        formData.append('id',id)
+        $.ajax({
+            url: 'UploadAvatar',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                document.getElementById('avatar').src = window.URL.createObjectURL($('#fileInput')[0].files[0])
+
+                alert(data);
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+    })
+</script>

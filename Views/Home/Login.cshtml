@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đăng nhập hệ thống du học sinh</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../../Content/img/logo.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/js/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../../Content/img/duhocsinh.jpg');">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" id="myform" method="post" action="@Url.Action("Login", "Home")">
+                    <span class="login100-form-logo">
+                        <i><img src="~/Content/img/logo.png" style="width:128px;height:128px"/></i>
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        ĐĂNG NHẬP
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Nhập tên đăng nhập">
+                        <input class="input100" type="text" name="username" placeholder="Tên đăng nhập">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Nhập mật khẩu">
+                        <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="savepass">
+                        <label class="label-checkbox100" for="ckb1">
+                            Lưu mật khẩu
+                        </label>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button id="submitdata" class="login100-form-btn">
+                            Đăng nhập
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/js/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/js/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/main.js"></script>
+    <script>
+        $("#submitdata").click(function (e) {
+            alert("nhan vao day")
+                var username = $("[name='username']").val();
+                var pass = $("[name='pass']").val();
+                var savepass = $("[name='savepass']").val();
+                var dataToPost = {
+                    username: usename,
+                    pass: pass,
+                    savepass: savepass
+                };
+                var dataToPost = $("#myform").serialize()
+                $.ajax(
+                {
+                    type: "POST",
+                    data: dataToPost,
+                    url: "Home/Login"
+                })
+            })
+
+    </script>
+</body>
+</html>

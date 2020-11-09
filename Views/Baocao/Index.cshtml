@@ -1,0 +1,355 @@
+﻿
+<link rel="stylesheet" href="~/Content/font-awesome.css" />
+
+@{
+    ViewBag.Title = "Báo cáo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .social-card-header {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 96px;
+    }
+
+        .social-card-header i {
+            font-size: 32px;
+            color: #FFF;
+        }
+
+    .bg-facebook {
+        background-color: #3b5998;
+    }
+
+    .text-facebook {
+        color: #3b5998;
+    }
+
+    .bg-google-plus {
+        background-color: #dd4b39;
+    }
+
+    .text-google-plus {
+        color: #dd4b39;
+    }
+
+    .bg-twitter {
+        background-color: #1da1f2;
+    }
+
+    .text-twitter {
+        color: #1da1f2;
+    }
+
+    .bg-pinterest {
+        background-color: #bd081c;
+    }
+
+    .text-pinterest {
+        color: #bd081c;
+    }
+
+    .share:hover {
+        text-decoration: none;
+        opacity: 0.8;
+    }
+</style>
+<h3 class="pb-3 mb-4 font-italic border-bottom">
+    Xuất báo cáo
+</h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="/baocao/Baocao_Excel_2">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Excel.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="#">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Word.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="#">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Excel.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="#">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Word.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="#">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Excel.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Loại tài liệu</strong>
+                <h6 class="mb-0">
+                    <a class="text-dark" href="#">Tiêu đề tài liệu</a>
+                </h6>
+                <div class="mb-1 text-muted small">Thời gian</div>
+                <p class="card-text mb-auto">Nội dung chính.</p>
+                <a class="btn btn-outline-primary btn-sm" role="button" href="#">Tải về</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Image" src="~/Content/img/Word.jpg" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+</div>
+
+
+<h1>Chọn các thông tin xuất báo cáo</h1>
+<h3>Các thông tin đã chọn :</h3>
+<form>
+    <span class="autocomplete-select"></span>
+    <button onclick="resetAutocomplete()">Làm mới</button>
+    <span class="disabled-options-select"></span>
+</form>
+<button onclick="SelectToReport()" >Xuất</button>
+
+
+<script src="~/Scripts/bundle.min.js"></script>
+<script src="~/Scripts/DataFilterReport.js"></script>
+<script>
+
+        var datavalues = ["ht"];
+      var autocomplete = new SelectPure(".autocomplete-select", {
+        options: ReportFilterData,
+        value: ["ht"],
+        multiple: true,
+        autocomplete: true,
+        icon: "fa fa-times",
+        onChange: value => { console.log(value); datavalues = value },        
+        classNames: {
+          select: "select-pure__select",
+          dropdownShown: "select-pure__select--opened",
+          multiselect: "select-pure__select--multiple",
+          label: "select-pure__label",
+          placeholder: "select-pure__placeholder",
+          dropdown: "select-pure__options",
+          option: "select-pure__option",
+          autocompleteInput: "select-pure__autocomplete",
+          selectedLabel: "select-pure__selected-label",
+          selectedOption: "select-pure__option--selected",
+          placeholderHidden: "select-pure__placeholder--hidden",
+          optionHidden: "select-pure__option--hidden",
+        }
+      });
+      var resetAutocomplete = function() {
+        autocomplete.reset();
+      };
+</script>
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+    }
+
+    .select-wrapper {
+        margin: auto;
+        max-width: 600px;
+        width: calc(100% - 40px);
+    }
+
+    .select-pure__select {
+        align-items: center;
+        background: #f9f9f8;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        box-sizing: border-box;
+        color: #363b3e;
+        cursor: pointer;
+        display: flex;
+        font-size: 16px;
+        font-weight: 500;
+        justify-content: left;
+        min-height: 44px;
+        padding: 5px 10px;
+        position: relative;
+        transition: 0.2s;
+        width: 100%;
+    }
+
+    .select-pure__options {
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        box-sizing: border-box;
+        color: #363b3e;
+        display: none;
+        left: 0;
+        max-height: 221px;
+        overflow-y: scroll;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        z-index: 5;
+    }
+
+    .select-pure__select--opened .select-pure__options {
+        display: block;
+    }
+
+    .select-pure__option {
+        background: #5abaf8;
+        border-bottom: 1px solid #e4e4e4;
+        box-sizing: border-box;
+        height: 44px;
+        line-height: 25px;
+        padding: 10px;
+    }
+
+        .select-pure__option :hover {
+            background: #7ea3ef;
+        }
+
+    .select-pure__option--disabled {
+        color: #e4e4e4;
+    }
+
+    .select-pure__option--selected {
+        color: #e4e4e4;
+        cursor: initial;
+        pointer-events: none;
+    }
+
+    .select-pure__option--hidden {
+        display: none;
+    }
+
+    .select-pure__selected-label {
+        align-items: 'center';
+        background: #5e6264;
+        border-radius: 4px;
+        color: #fff;
+        cursor: initial;
+        display: inline-flex;
+        justify-content: 'center';
+        margin: 5px 10px 5px 0;
+        padding: 3px 7px;
+    }
+
+        .select-pure__selected-label:last-of-type {
+            margin-right: 0;
+        }
+
+        .select-pure__selected-label i {
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 7px;
+        }
+
+        .select-pure__selected-label img {
+            cursor: pointer;
+            display: inline-block;
+            height: 18px;
+            margin-left: 7px;
+            width: 14px;
+        }
+
+        .select-pure__selected-label i:hover {
+            color: #e4e4e4;
+        }
+
+    .select-pure__autocomplete {
+        background: #f9f9f8;
+        border-bottom: 1px solid #e4e4e4;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        box-sizing: border-box;
+        font-size: 16px;
+        outline: none;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .select-pure__placeholder--hidden {
+        display: none;
+    }
+</style>
+
+<script>
+
+
+    var SelectToReport = function () {
+        var list = [];
+        for (var i = 0; i < datavalues.length; i++) {
+            list.push(datavalues[i]);
+        }
+
+        $.ajax({
+            url: '@Url.Action("Baocao_MultiAttribute", "Baocao")',
+            data: { ReportAttribute: list },
+            dataType: "json",
+            type: 'POST',
+            traditional: true,
+            success: function (data) {
+                alert("success");
+            },
+            error: function () {
+                alert("fail");
+            }
+        });
+    }
+
+</script>
+

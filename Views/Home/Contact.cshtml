@@ -1,0 +1,140 @@
+﻿
+
+    <link href="~/Content/js/chartJs/dist/css/jquerytiptop.css" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/js/chartJs/dist/css/jquery.simple-bar-graph.min.css" />
+    <style>
+        body {
+            font-family: 'Times New Roman';
+            background-color: #f7f7f7;
+            
+        }
+
+        .container_chart {
+            margin: 150px auto;
+            width:100%;
+            max-width: 100%;
+        }
+        .simple-bar-graph__caption{
+            font-size:6pt;
+        }
+    </style>
+
+<section id="featured" class="content-section">
+    <div class="section-heading">
+        <h1>BIỂU<br><em>ĐỒ</em></h1>
+        <p>
+            Biểu đồ thống kê số học sinh
+
+        </p>
+    </div>
+    <div class="section-content">
+        <div class="owl-carousel owl-theme">
+            <div class="container_chart">
+
+                <hr />
+                <button class="btn btn-success" s data-action="update">Update Chart</button>
+                <div id="example-two">Loading...</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Content/js/chartJs/dist/js/jquery.simple-bar-graph.min.js"></script>
+    <script>
+  var randomData = function() {
+        return [{
+            key: "Việt Nam",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Việt Nam",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Lào",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Campuchia",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Philipine",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Đông ti mo",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Nga",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Bỉ",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Nhật Bản",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Hàn Quốc",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Trung Quốc",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Nam Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Úc",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+            key: "Công gô",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Công gô",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }, {
+                key: "Phi",
+            value: Math.floor(100 * Math.random() + 20)
+        }]
+    }
+    $("#example-two").simpleBarGraph({
+        data: randomData(),
+        rowsCount: 10,
+        height: "400px",
+        columnsWidth: "30px",
+        rowCaptionsWidth: "35px",
+        barsColor: "#3D9970"
+    })
+    $("[data-action=update]").click(function () {
+        $("#example-two").simpleBarGraph({
+            data: randomData(),
+            rowsCount: 10,
+            height: "400px",
+            columnsWidth : "30px",
+            rowCaptionsWidth: "35px",
+            barsColor: "#3D9970"
+        })
+    })
+    </script>
+

@@ -1,2 +1,2 @@
-# QuanLyLHS
+# LuuHocSinh
 Quản lý lưu học sinh

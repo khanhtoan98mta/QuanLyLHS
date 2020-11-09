@@ -1,0 +1,184 @@
+﻿
+
+@{
+    ViewBag.Title = "AddNewLHS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm mới lưu học sinh</h2>
+<link rel="stylesheet" href="~/Content/Detail_Style.css" />
+<link rel="stylesheet" href="~/Content/font-awesome.css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-xl-4" >
+            <div class="card-box text-center" style="position: sticky;top: 0;">
+                <img id="avatar" src="../Content/img/img_lhs/Avatar-Female.jpg" class="avatar-xl img-thumbnail" alt="profile-image">
+                <p class="text-muted">@ViewBag.malhs</p>
+                <form>
+                    <input id="fileInput" type="file" style="display:none;" accept="image/*" />
+                    <button id="upfilebtn" onclick="document.getElementById('fileInput').click()" type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Thêm ảnh</button>
+                </form>
+                
+
+                <ul class="social-list list-inline mt-3 mb-0">
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-purple text-purple"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="fa fa-google"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="fa fa-github"></i></a>
+                    </li>
+                </ul>
+            </div> <!-- end card-box -->
+
+        </div> <!-- end col-->
+
+        <div class="col-lg-8 col-xl-8">
+            <div class="card-box">                
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="settings">
+                        <form action="./AddNewLHS" enctype="multipart/form-data" method="post">
+                            <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
+                            <input name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display:none"/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Họ và tên</label>
+                                        <input type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Ngày sinh</label>
+                                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" required>
+                                    </div>
+                                </div>
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Giới tính</label>
+                                        <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính" required>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Dân tộc</label>
+                                        <input type="text" class="form-control" id="DanToc" name="DanToc" placeholder="Dân tộc" required>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Tôn giáo</label>
+                                        <input type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Miền</label>
+                                        <select type="text" class="form-control" id="Mien" name="Mien" placeholder="Miền">
+                                            <option value="Bắc">Bắc</option>
+                                            <option value="Trung">Trung</option>
+                                            <option value="Nam">Nam</option>
+                                            </select>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Thông tin liên lạc</label>
+                                        <input type="text" class="form-control" id="ThongTinLienLac" name="ThongTinLienLac" placeholder="Thông tin liên lạc">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Đối tượng</label>
+                                        <select type="text" class="form-control" id="MaDoiTuong" name="MaDoiTuong" placeholder="Miền" required>
+                                            @foreach (var item in @ViewBag.Doituong)
+                                            {
+                                                <option value="@item.MaDoiTuong">@item.DoiTuong1</option>
+                                            }
+                                            
+                                        </select>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="userbio">Quê quán</label>
+                                        <textarea class="form-control" id="QueQuan" name="QueQuan" rows="2" placeholder="Quê quán"></textarea>
+                                    </div>
+                                </div>
+                            </div> <!-- end row -->
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Tạo</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end settings content-->
+                </div> <!-- end tab-content -->
+            </div> <!-- end card-box-->
+        </div> <!-- end col -->
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".nav-link").click(function () {
+            $('#about-me-button,#setting-button').toggleClass("active");
+            $('#settings , #about-me').toggleClass("show");
+            $('#settings , #about-me').toggleClass("active");
+        });
+
+        if ($("#avatar").attr("src") == "/" || $("#avatar").attr("src") == "") {
+            $("#avatar").attr("src","../Content/img/img_lhs/Avatar-Female.jpg")
+        }
+    });
+
+
+
+</script>
+<script>
+    $("#fileInput").change(function(){
+        alert("thay doi");
+        var formData = new FormData();
+        formData.append('AvatarImg', $('#fileInput')[0].files[0]);
+        alert("thay doi");
+        var id = " MaLHS";
+        alert("thay doi");
+        formData.append('id',id)
+        alert("thay doi");
+        $.ajax({
+            url: 'UploadAvatar',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                document.getElementById('avatar').src = window.URL.createObjectURL($('#fileInput')[0].files[0])
+
+                alert(data);
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+    })
+</script>
