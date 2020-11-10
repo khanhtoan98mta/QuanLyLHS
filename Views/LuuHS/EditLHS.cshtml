@@ -9,6 +9,9 @@
 
 <h3> Chỉnh sửa thông tin lưu học sinh</h3>
 @{
+    string thongtinbo = Model.ThongTinGiaDinh.Split('/')[0];
+    string thongtinme = Model.ThongTinGiaDinh.Split('/')[1];
+
     string ngaysinhdate = null;
     string ngayvaodoan = null;
     string ngayvaodang = null;
@@ -97,12 +100,12 @@
                 <ul class="nav nav-pills navtab-bg">
                     <li class="nav-item">
                         <button data-toggle="tab" aria-expanded="false" class="nav-link ml-0 active" id="setting-button">
-                            <i class="fa fa-edit"></i> Chỉnh sửa thông tin cơ bản
+                            <i class="fa fa-edit"></i> Chỉnh sửa thông tin đào tạo
                         </button>
                     </li>
                     <li class="nav-item">
                         <button data-toggle="tab" aria-expanded="true" class="nav-link" id="about-me-button">
-                            <i class="fa fa-id-badge"></i> Chỉnh sửa thông tin đào tạo
+                            <i class="fa fa-id-badge"></i> Chỉnh sửa thông tin cơ bản
                         </button>
                     </li>
 
@@ -110,7 +113,7 @@
 
                 <div class="tab-content">
 
-                    <div class="tab-pane show active" id="about-me">
+                    <div class="tab-pane" id="settings">
 
                         <form action="./EditLHSTTCoban" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
@@ -143,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Dân tộc</label>
-                                        <input value="@Model.DanToc" type="text" class="form-control" id="DanToc" name="DanToc" placeholder="Dân tộc" readonly>
+                                        <input value="@Model.DanToc" type="text" class="form-control" id="DanToc" name="DanToc" placeholder="Dân tộc">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -300,13 +303,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Bố:</label>
-                                        <input value="@Model.ThanhPhanGiaDinh" type="text" class="form-control" id="Thongtinbo" name="Thongtinbo" placeholder="Thông tin bố">
+                                        <input value="@thongtinbo" type="text" class="form-control" id="Thongtinbo" name="Thongtinbo" placeholder="Thông tin bố">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Mẹ:</label>
-                                        <input value="@Model.ThanhPhanGiaDinh" type="text" class="form-control" id="Thongtinme" name="Thongtinme" placeholder="Thông tin mẹ">
+                                        <input value="@thongtinme" type="text" class="form-control" id="Thongtinme" name="Thongtinme" placeholder="Thông tin mẹ">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -322,7 +325,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Đoàn trưởng(Lưu đoàn trưởng)</label>
-                                        <input type="text" class="form-control" id="Doantruong" name="Doantruong" placeholder="Đoàn trưởng">
+                                        <input type="text" class="form-control" id="Doantruong" name="Doantruong" placeholder="" value="">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -332,7 +335,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Lĩnh vực thế mạnh</label>
-                                        <textarea class="form-control" id="Linhvucthemanh" name="Linhvucthemanh" rows="2" placeholder="Lĩnh vực thế mạnh"></textarea>
+                                        <textarea class="form-control" id="Linhvucthemanh" name="Linhvucthemanh" rows="2" placeholder="Lĩnh vực thế mạnh">@Model.NghienCuuNoiBat</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -345,7 +348,7 @@
                     </div>
                     <!-- end timeline content-->
 
-                    <div class="tab-pane" id="settings">
+                    <div class="tab-pane show active" id="about-me">
 
                         <form action="./EditLHSTTDaotao" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin đào tạo</h5>

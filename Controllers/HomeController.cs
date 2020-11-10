@@ -25,10 +25,7 @@ namespace QLDHS.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            Reporter report = new Reporter();
-            string inputfile = HttpContext.Server.MapPath("~/Content/Reports/Template/Template_1.docx");
-            report.Baocao_Template1(inputfile);
+        {            
 
             return View();
         }

@@ -22,7 +22,7 @@ namespace F_Report
             {
                 this.textElement.Value = value;
 
-                // If needed set preserve space on Text element.
+               
                 if (value.StartsWith(" ") || value.EndsWith(" "))
                 {
                     XAttribute space = this.textElement.Attribute(FlatConstants.TextSpaceAttributeName);
