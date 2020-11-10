@@ -38,10 +38,11 @@ namespace QLDHS.Models.Function
 
         //báo cáo Word
         //báo cáo 1 : theo template 1
-        public void Baocao_Template1(string inputFile)
+        public void Baocao_Template1(string inputFile,HttpResponseBase Response)
         {
             
             string outputFile = HttpContext.Current.Server.MapPath("~/Content/Reports/Baocao_1.docx");
+
 
             // Copy Word document.
             File.Copy(inputFile, outputFile, true);
@@ -55,7 +56,8 @@ namespace QLDHS.Models.Function
                 flatDocument.FindAndReplace("[NAME]", "NGUYỄN VĂN NAM");
                 flatDocument.FindAndReplace("[EMAIL]", "namnguyen.lion@gmail.com");
                 flatDocument.FindAndReplace("[PHONE]", "(000)-111-222");
-                // Save document on Dispose.
+
+                
             }
         }
 

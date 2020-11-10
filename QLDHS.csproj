@@ -201,6 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\animsition.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -366,12 +368,14 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\Detail_Aricle_Style.css" />
     <Content Include="Content\Detail_Style.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\hamburgers.min.css" />
     <Content Include="Content\img\countryflag\ad_16.png" />
     <Content Include="Content\img\countryflag\ae_16.png" />
     <Content Include="Content\img\countryflag\af_16.png" />
@@ -628,7 +632,13 @@
     <Content Include="Content\img\Word.jpg" />
     <Content Include="Content\jquery-jvectormap.css" />
     <Content Include="Content\jquerysctiptop.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\material-design-iconic-font.min.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\util.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\analytics.js" />
+    <Content Include="Scripts\animsition.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bundle.min.js" />
@@ -640,6 +650,7 @@
     <Content Include="Scripts\cldr\unresolved.js" />
     <Content Include="Scripts\core.css" />
     <Content Include="Scripts\core.js" />
+    <Content Include="Scripts\countdowntime.js" />
     <Content Include="Scripts\DataFilterReport.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -717,10 +728,12 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-jvectormap-world-mill-en.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -785,6 +798,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js.js" />
     <Content Include="Scripts\jVectorMaps\world-ISO-A2\jquery-jvectormap-world-mill-en-US.js" />
     <Content Include="Scripts\jVectorMaps\world-ISO-A2\jquery-jvectormap-world-mill-en-US.min.js" />
     <Content Include="Scripts\jVectorMaps\world-ISO-A3\jquery-jvectormap-world-mill-de-DE.js" />
@@ -793,11 +807,14 @@
     <Content Include="Scripts\jVectorMaps\world-ISO-A3\jquery-jvectormap-world-mill-en-US.min.js" />
     <Content Include="Scripts\jVectorMaps\world-timezone\jquery-jvectormap-world-timezones.js" />
     <Content Include="Scripts\jVectorMaps\world-timezone\jquery-jvectormap-world-timezones.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -914,6 +931,7 @@
     <Content Include="Views\LuuHS\AddNewLHS.cshtml" />
     <Content Include="Views\LuuHS\EditLHS.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Scripts\js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

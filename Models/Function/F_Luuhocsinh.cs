@@ -101,11 +101,11 @@ namespace QLDHS.Models.Function
                     lhs.NgayVaoDoan = info.NgayVaoDoan;
                     lhs.NgayVaoDang = info.Ngayvaodang;
                     lhs.NgayChuyenDangCT = info.Ngaychuyendangchinhthuc;
-                    lhs.NghienCuuNoiBat = info.Linhvucthemanh;
+                    lhs.NghienCuuNoiBat = info.Linhvucthemanh;                    
                 }
-
+                db.SaveChanges();
                 ThanNhan thannhan;
-                if (db.ThanNhans.SingleOrDefault(x=>x.LHSID==lhs.LHSID) != null)
+                if (db.ThanNhans.SingleOrDefault(x => x.LHSID == lhs.LHSID) != null)
                 {
                     thannhan = db.ThanNhans.SingleOrDefault(x => x.LHSID == lhs.LHSID);
                     thannhan.NoiOHienNay = info.NoiOHienNay;
@@ -113,24 +113,28 @@ namespace QLDHS.Models.Function
                     thannhan.CanBo = info.Conemcanbo;
                     thannhan.ThanhPhanGiaDinh = info.Thanhphangiadinh;
                     thannhan.ThongTinGiaDinh = info.Thongtinbo + "/" + info.Thongtinme;
-                    
+                    db.SaveChanges();
                 }
                 else
                 {
 
-                    thannhan = new ThanNhan();                  
-                    thannhan.NoiOHienNay = info.NoiOHienNay;
-                    thannhan.DiaChiLienLac = info.Diachilienlacgiadinh;
-                    thannhan.CanBo = info.Conemcanbo;
-                    thannhan.ThanhPhanGiaDinh = info.Thanhphangiadinh;
-                    thannhan.ThongTinGiaDinh = info.Thongtinbo + "/" + info.Thongtinme;
-                    thannhan.LHSID = lhs.LHSID;
+                    thannhan = new ThanNhan {
+                    NoiOHienNay = info.NoiOHienNay,
+                    DiaChiLienLac = info.Diachilienlacgiadinh,
+                    CanBo = info.Conemcanbo,
+                    ThanhPhanGiaDinh = info.Thanhphangiadinh,
+                    ThongTinGiaDinh = info.Thongtinbo + "/" + info.Thongtinme,
+                    LHSID = lhs.LHSID,
+                    MaThanNhan = lhs.LHSID,
+                    QuanHe = "Bố Mẹ"
+                    };
                     db.ThanNhans.Add(thannhan);
+                    db.SaveChanges();
 
                 }
 
                 
-                db.SaveChanges();
+               
                 return true;
             }
             catch (Exception)

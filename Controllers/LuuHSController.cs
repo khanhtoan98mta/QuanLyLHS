@@ -40,6 +40,7 @@ namespace QLDHS.Controllers
 
 
 
+
             return View(detaillhs);
         }
 

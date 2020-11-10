@@ -19,6 +19,9 @@ namespace QLDHS.Controllers
         // GET: Baocao
         public ActionResult Index()
         {
+            Reporter report = new Reporter();
+            string inputfile = HttpContext.Server.MapPath("~/Content/Reports/Template/Template_1.docx");
+            report.Baocao_Template1(inputfile, Response);
             return View();
         }
 
@@ -59,6 +62,27 @@ namespace QLDHS.Controllers
                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                         "ThongkeLHSCountry.xlsx");
                 }
+            }
+
+        }
+
+        public void Baocao_Word_1()
+        {
+            
+            string outputfile = HttpContext.Server.MapPath("~/Content/Reports/Baocao_1.docx");
+            using (FileStream fileStream = System.IO.File.OpenRead(outputfile))
+            {
+                MemoryStream memStream = new MemoryStream();
+                memStream.SetLength(fileStream.Length);
+                fileStream.Read(memStream.GetBuffer(), 0, (int)fileStream.Length);
+
+                Response.Clear();
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                Response.AddHeader("Content-Disposition", "attachment; filename=myfile.docx");
+                Response.BinaryWrite(memStream.ToArray());
+                Response.Flush();
+                Response.Close();
+                Response.End();
             }
 
         }
@@ -104,6 +128,9 @@ namespace QLDHS.Controllers
             }
 
         }
+        
+
+
         public static string jsonData = @"{  
         'Hoten' : 'Họ tên',
         'MaLHS' : 'Mã LHS',
@@ -175,6 +202,9 @@ namespace QLDHS.Controllers
         'ThanhPhanGiaDinh' : 'THÀNH PHẦN GIA ĐÌNH'
         }";
         dynamic data = JObject.Parse(jsonData);
+
+
+
         [HttpPost]
         public  ActionResult Baocao_MultiAttribute(List<string> ReportAttribute)
         {
@@ -488,5 +518,7 @@ namespace QLDHS.Controllers
                 }
             }           
         }
+
+        
     }
 }
