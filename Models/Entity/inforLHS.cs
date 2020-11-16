@@ -32,7 +32,9 @@ namespace QLDHS.Models.Entity
         public int? MaDVBM { get; set; }
         public int? MaDVBQP { get; set; }
         public string CSDaoTao { get; set; }
+        public int? MaCSDT { get; set; }
         public string DiaBan { get; set; }
+        public int? IDDiaBan { get; set; }
         public int? MaKetQua { get; set; }
         public double? Ki1 { get; set; }
         public double? Ki2 { get; set; }
@@ -85,7 +87,9 @@ namespace QLDHS.Models.Entity
         public string BacDaoTao { get; set; }
         public int? TinhTrangTotNghiep { get; set; }
         public int? MaKhoa { get; set; }
-        public DateTime? NamNhanQuanHam { get; set; } 
+        public DateTime? NamNhanQuanHam { get; set; }
+        public int? MaBacDaoTao { get; set; }
+
 
 
 

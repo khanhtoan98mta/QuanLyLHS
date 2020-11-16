@@ -58,9 +58,6 @@ namespace QLDHS.Models.Entity
         [Column(TypeName = "date")]
         public DateTime? NgayVaoDang { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? NgayChuyenDangCT { get; set; }
-
         [StringLength(100)]
         public string DanToc { get; set; }
 
@@ -99,6 +96,9 @@ namespace QLDHS.Models.Entity
         public int? MaDVBQP { get; set; }
 
         public int? MaDVBM { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? NgayChuyenDangCT { get; set; }
 
         public virtual DienKinhPhiDaoTao DienKinhPhiDaoTao { get; set; }
 

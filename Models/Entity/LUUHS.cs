@@ -79,6 +79,11 @@ namespace QLDHS.Models.Entity
                 .IsUnicode(false);
 
             modelBuilder.Entity<LuuHocSinh>()
+                .HasMany(e => e.KetQuaHocTaps)
+                .WithRequired(e => e.LuuHocSinh)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<LuuHocSinh>()
                 .HasMany(e => e.LHS_KhenThuong)
                 .WithRequired(e => e.LuuHocSinh)
                 .WillCascadeOnDelete(false);

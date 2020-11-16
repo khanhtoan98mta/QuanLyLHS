@@ -151,68 +151,158 @@ namespace QLDHS.Models.Function
         public bool EditLHSTTDaotao(Thongtindaotao info)
         {
 
-            try
-            {
+           
                 LUUHS db = new LUUHS();
                 LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.MaLHS == info.MaLHS);
+                LuanVanTotNghiep lvtn;
+                KetQuaHocTap kqht;
+                QuyetDinhDiHoc qd;
+                LHS_DaoTao lhs_daotao;
+            try
+            {
                 if (lhs != null)
                 {
-                    
-                    var lhs_daotao = db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                    lhs_daotao.MaCSDaoTao = info.CSDaoTao;
+                    if (db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID) == null)
+                    {
+                        lhs_daotao = new LHS_DaoTao
+                        {
+                            ID = lhs.LHSID,
+                            LHSID = lhs.LHSID,
+                            MaCSDaoTao = info.CSDaoTao,
+                            MaBacDaoTao = info.MaBacDaoTao,
+                            MaCNDaoTao1 = info.CNDT1,
+                            MaCNDaoTao2 = info.CNDT2,
+                            ThoiGianBatDau = info.ThoiGianBatDauHoc,                            
+                            ThoiGianKetThuc = info.ThoiGianKetThucHoc,
+                            ThoiGianDaoTao = "5 Năm",
+                            TinhTrangTotNghiep = info.TinhTrangTotNghiep,
+                        };
+                        db.LHS_DaoTao.Add(lhs_daotao);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        lhs_daotao = db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID);
+                        lhs_daotao.MaCSDaoTao = info.CSDaoTao;
+                        lhs.MaDKP = info.MaDienKinhPhi;
+                        lhs_daotao.MaBacDaoTao = info.MaBacDaoTao;
+                        lhs_daotao.MaCNDaoTao1 = info.CNDT1;
+                        lhs_daotao.MaCNDaoTao2 = info.CNDT2;
 
-                    lhs.MaDKP = info.DienKinhPhi;
-                    lhs_daotao.MaBacDaoTao = info.BacDaoTao;
-                    lhs_daotao.MaCNDaoTao1 = info.CNDT1;
-                    lhs_daotao.MaCNDaoTao2 = info.CNDT2;
-                    //nganhdaotao
-                    //nganhdaotao
-                    lhs_daotao.ThoiGianBatDau = info.ThoiGianBatDauHoc;
-                    lhs_daotao.ThoiGianKetThuc = info.ThoiGianKetThucHoc;
-                    lhs_daotao.TinhTrangTotNghiep = info.TinhTrangTotNghiep;
+                        lhs_daotao.ThoiGianBatDau = info.ThoiGianBatDauHoc;
+                        lhs_daotao.ThoiGianKetThuc = info.ThoiGianKetThucHoc;
+                        lhs_daotao.TinhTrangTotNghiep = info.TinhTrangTotNghiep;
+                        db.SaveChanges();
+                    }
+                    
+
                     //them moi luan van tot nghiep
-                    LuanVanTotNghiep lvtn = db.LuanVanTotNghieps.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                    lvtn.LHSID = lhs.LHSID;
-                    lvtn.TenLuanVan = info.TenLuanVan;
-                    lvtn.KetQuaBaoVe = info.KetQuaBaoVe;                    
-                    db.LuanVanTotNghieps.AddOrUpdate(lvtn);
+                    if (db.LuanVanTotNghieps.SingleOrDefault(x => x.LHSID == lhs.LHSID)==null)
+                    {
+                        lvtn = new LuanVanTotNghiep();
+                        lvtn.MaLuanVan = lhs.LHSID;
+                        lvtn.LHSID = lhs.LHSID;
+                        lvtn.TenLuanVan = info.TenLuanVan;
+                        lvtn.KetQuaBaoVe = info.KetQuaBaoVe;
+                        db.LuanVanTotNghieps.Add(lvtn);
+                        db.SaveChanges();
+
+                    }
+                    else
+                    {
+                        lvtn = db.LuanVanTotNghieps.SingleOrDefault(x => x.LHSID == lhs.LHSID);
+                        lvtn.MaLuanVan = lhs.LHSID;
+                        lvtn.LHSID = lhs.LHSID;
+                        lvtn.TenLuanVan = info.TenLuanVan;
+                        lvtn.KetQuaBaoVe = info.KetQuaBaoVe;
+                        db.SaveChanges();
+
+                    }
+
+
                     //them ket qua hoc tap
-                    KetQuaHocTap kqht = db.KetQuaHocTaps.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                    kqht.Ki1 = info.Ki1;
-                    kqht.Ki2 = info.Ki2;
-                    kqht.Ki3 = info.Ki3;
-                    kqht.Ki4 = info.Ki4;
-                    kqht.Ki5 = info.Ki5;
-                    kqht.Ki6 = info.Ki6;
-                    kqht.Ki7 = info.Ki7;
-                    kqht.Ki8 = info.Ki8;
-                    kqht.Ki9 = info.Ki9;
-                    kqht.Ki10 = info.Ki10;
-                    kqht.Ki11 = info.Ki11;
-                    kqht.Ki12 = info.Ki12;
-                    kqht.Ki13 = info.Ki13;
-                    kqht.Ki14 = info.Ki14;
-                    kqht.DiemTrungBinh = info.DiemTrungBinh;
-                    kqht.MoTaKetQua = info.MoTaKetQua;
-                    kqht.LuuNoMon = info.LuuNoMon;
-                    kqht.PhanLoaiTotNghiep = info.PhanLoaiTotNghiep;
-                    db.KetQuaHocTaps.AddOrUpdate(kqht);
+                    if (db.KetQuaHocTaps.SingleOrDefault(x =>x.LHSID==lhs.LHSID)==null)
+                    {
+                        kqht = new KetQuaHocTap();
+                        kqht.MaKetQua = lhs.LHSID;
+                        kqht.Ki1 = info.Ki1;
+                        kqht.Ki2 = info.Ki2;
+                        kqht.Ki3 = info.Ki3;
+                        kqht.Ki4 = info.Ki4;
+                        kqht.Ki5 = info.Ki5;
+                        kqht.Ki6 = info.Ki6;
+                        kqht.Ki7 = info.Ki7;
+                        kqht.Ki8 = info.Ki8;
+                        kqht.Ki9 = info.Ki9;
+                        kqht.Ki10 = info.Ki10;
+                        kqht.Ki11 = info.Ki11;
+                        kqht.Ki12 = info.Ki12;
+                        kqht.Ki13 = info.Ki13;
+                        kqht.Ki14 = info.Ki14;
+                        kqht.DiemTrungBinh = info.DiemTrungBinh;
+                        kqht.MoTaKetQua = info.MoTaKetQua;
+                        kqht.LuuNoMon = info.LuuNoMon;
+                        kqht.PhanLoaiTotNghiep = info.PhanLoaiTotNghiep;
+                        db.KetQuaHocTaps.Add(kqht);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        kqht = db.KetQuaHocTaps.SingleOrDefault(x => x.LHSID == lhs.LHSID);
+                        kqht.Ki1 = info.Ki1;
+                        kqht.Ki2 = info.Ki2;
+                        kqht.Ki3 = info.Ki3;
+                        kqht.Ki4 = info.Ki4;
+                        kqht.Ki5 = info.Ki5;
+                        kqht.Ki6 = info.Ki6;
+                        kqht.Ki7 = info.Ki7;
+                        kqht.Ki8 = info.Ki8;
+                        kqht.Ki9 = info.Ki9;
+                        kqht.Ki10 = info.Ki10;
+                        kqht.Ki11 = info.Ki11;
+                        kqht.Ki12 = info.Ki12;
+                        kqht.Ki13 = info.Ki13;
+                        kqht.Ki14 = info.Ki14;
+                        kqht.DiemTrungBinh = info.DiemTrungBinh;
+                        kqht.MoTaKetQua = info.MoTaKetQua;
+                        kqht.LuuNoMon = info.LuuNoMon;
+                        kqht.PhanLoaiTotNghiep = info.PhanLoaiTotNghiep;
+                        db.SaveChanges();
+                    }
+
+
+
                     //quan ham
                     //nam nhan quan ham
                     //khenthuong
                     //kiluat
                     //vepheptieuchuan
                     //vepheptutuc
+
                     lhs.HocPhi = info.HocPhi;
                     lhs.SinhHoatPhi = info.SinhHoatPhi;
                     lhs.BHYT = info.BHYT;
                     lhs.ChiPhiKhac = info.ChiPhiKhac;
 
-                    QuyetDinhDiHoc qd = db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                    qd.QuyetDinhDiHoc1 = info.QuyetDinhDuHoc;
-                    db.QuyetDinhDiHocs.AddOrUpdate(qd);
 
-                    db.SaveChanges();
+                    if (db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID)!= null)
+                    {
+                        qd = db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID);
+                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDuHoc;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        qd = new QuyetDinhDiHoc();
+
+                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDuHoc;
+                        qd.MaQuyetDinh = lhs.LHSID;
+                        qd.LHSID = lhs.LHSID;
+                        db.QuyetDinhDiHocs.Add(qd);
+
+                        db.SaveChanges();
+                    }
+                    
 
                 }
 

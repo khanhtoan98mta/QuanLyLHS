@@ -1,0 +1,43 @@
+﻿
+
+<script src="~/Scripts/Chart.min.js"></script>
+<section id="home" class="content-section">
+    <div class="section-content">
+        <h2 style="text-decoration-color:yellow">Phân bố lưu học sinh </h2>
+        <br />
+
+        <canvas id="kqht-chart" width="800" height="450"></canvas>
+        <select>
+            <option value="1" label="Hiện tại"></option>
+            <option value="0" label="Hiện tại"></option>
+            <option value="-1" label="Hiện tại"></option>
+
+        </select>
+
+        <hr />
+    </div>
+</section>
+<script>
+    new Chart(document.getElementById("kqht-chart"), {
+        type: 'pie',
+        data: {
+            labels: ["Địa bàn 1", "Địa bàn 1", "Địa bàn 2", "Địa bàn 3", "Địa bàn khác"],
+            datasets: [
+              {
+                  label: "Số lượng (người)",
+                  display: true,
+                  backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                  data: [2478, 5267, 734, 784, 433]
+              }
+            ]
+        },
+        options: {
+
+            title: {
+                display: true,
+                text: 'Kết quả học tập của lưu học sinh'
+            }
+        }
+
+    });
+</script>

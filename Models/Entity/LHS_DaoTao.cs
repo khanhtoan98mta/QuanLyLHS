@@ -8,6 +8,7 @@ namespace QLDHS.Models.Entity
 
     public partial class LHS_DaoTao
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         public int LHSID { get; set; }

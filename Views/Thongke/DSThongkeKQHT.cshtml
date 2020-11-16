@@ -1,11 +1,15 @@
-﻿
+﻿@* dữ liệu gồm 3 thành phần data : hiện tại , tốt nghiệp, cả 2 *@
 <script src="~/Scripts/Chart.min.js"></script>
 
 <section id="home" class="content-section">
     <div class="section-content">
         <h2 style="text-decoration-color:yellow">THỐNG KÊ KẾT QUẢ HỌC TẬP LƯU HỌC SINH </h2>
         <br />
-        
+        <select class="float-right" onchange="Change_dataChart(this)">
+            <option value="1" label="Hiện tại"></option>
+            <option value="2" label="Đã tốt nghiệp"></option>
+            <option value="3" label="Tất cả"></option>
+        </select>
         <canvas id="kqht-chart" width="800" height="450"></canvas>
 
 
@@ -13,7 +17,7 @@
     </div>
 </section>
 <script>
-    new Chart(document.getElementById("kqht-chart"), {
+    var chart_thongke = new Chart(document.getElementById("kqht-chart"), {
         type: 'pie',
         data: {
             labels: ["Giỏi", "Khá", "Trung bình", "Yếu", "Kém"],
@@ -35,4 +39,31 @@
         }
         
     });
+
+
+    function removeData(chart) {
+        chart.data.labels.pop();
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.pop();
+        });
+        chart.update();
+    }
+
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+
+    function Change_dataChart(chart) {
+        removeData(chart)
+        addData(chart, "Thêm thông tin", [123, 1231, 123, 1, 123])
+    }
+
+    setTimeout(function () {
+        Change_dataChart(chart_thongke)
+    },1000)
+
 </script>
