@@ -377,9 +377,14 @@
                                     <div class="form-group">
                                         <label for="firstname">Địa bàn</label>
                                         <select type="text" class="form-control" id="Diaban" name="Diaban" >
+                                            <option label="Thế giới" value="-1"></option>
                                             @foreach (var item in ViewBag.Diaban)
                                             {
-                                                <option label="@item.DiaBan" value="@item.IDDiaBan"></option>
+                                                if (true)
+                                                {
+                                                    <option label="@item.DiaBan" value="@item.IDDiaBan"></option>
+                                                }
+
                                             }
                                          </select>
                                     </div>
@@ -444,6 +449,7 @@
                                                 <option label="@item.ChuyenNganhDaoTao1" value="@item.MaChuyenNganh" data-filter="@item.MaNganh"></option>
                                             }
 
+
                                         </select>
                                     </div>
                                 </div> <!-- end col -->
@@ -456,7 +462,7 @@
                                         <select type="text" class="form-control" id="NganhDT2" name="NganhDT2">
                                             @foreach (var item in ViewBag.NganhDT)
                                             {
-                                                <option label="@item.NganhDaoTao1" value="@item.MaNganh" ></option>
+                                              <option label="@item.NganhDaoTao1" value="@item.MaNganh" ></option>
                                             }
                                             <option value="" data-filter-emptyvalue disabled>No Options</option>
                                         </select>
@@ -852,7 +858,7 @@
     }
     $('#Bomon option[value=' + bomon + ']').attr('selected', 'selected');
     //CSDaoTao
-    var maCSDaoTao = '@Model.CSDaoTao';
+    var maCSDaoTao = '@Model.MaCSDaoTao';
     if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
         maCSDaoTao = '0';
     }
@@ -942,5 +948,9 @@
         filterCombobox($("#CNDT1"), nganhdt, true);
     })
         
+    $('#NganhDT2').change(function(){
+        var nganhdt = $("#NganhDT2 :selected").val();
+        filterCombobox($("#CNDT2"), nganhdt, true);
+    })
     
 </script>
