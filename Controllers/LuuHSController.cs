@@ -30,15 +30,21 @@ namespace QLDHS.Controllers
         public ActionResult EditLHS(string MALHS)
         {
            
-            LUUHS lhs = new LUUHS();
+            LUUHS db = new LUUHS();
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             var detaillhs = f_lhs.Detai_LHS_Ma(MALHS);
 
-            ViewBag.Doituong = lhs.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
-            ViewBag.BoMon = lhs.DonVis.Where(x => x.CapDonVi == 1).ToList();
-            ViewBag.Khoa = lhs.DonVis.Where(x => x.CapDonVi == 2).ToList();
+            ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
+            ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
+            ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
+            ViewBag.malhs = MALHS;
 
-
+            ViewBag.CSDaotao = db.CoSoDaoTaos;
+            ViewBag.Diaban = db.DiaBanDaoTaos;
+            ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
+            ViewBag.BacDaoTao = db.BacDaoTaos;
+            ViewBag.NganhDT = db.NganhDaoTaos;
+            ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
 
 
             return View(detaillhs);
@@ -50,14 +56,16 @@ namespace QLDHS.Controllers
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditThongtincoban(infolhs);
 
-            return View();
+            return (RedirectToAction("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
+
         }
 
         [HttpPost]
-        public ActionResult EditLHSTTDaotao(Thongtincoban infolhs)
+        public ActionResult EditLHSTTDaotao(Thongtindaotao infolhs)
         {
-
-            return View();
+            F_Luuhocsinh f_lhs = new F_Luuhocsinh();
+            f_lhs.EditLHSTTDaotao(infolhs);
+            return (RedirectToAction("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
         }
         
         public ActionResult DetailLHS(string MALHS)

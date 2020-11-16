@@ -24,10 +24,11 @@ namespace QLDHS.Models.Entity
         public string DonVi1 { get; set; }
 
         public int? MaDonViCapTren { get; set; }
-        public int? CapDonVi { get; set; }
 
         [StringLength(100)]
         public string MoTa { get; set; }
+
+        public int? CapDonVi { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LuuHocSinh> LuuHocSinhs { get; set; }

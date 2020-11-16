@@ -10,8 +10,8 @@ namespace QLDHS.Models.Entity
         public string MaLHS { get; set; }
         public string Diaban { get; set; }
         public int CSDaoTao { get; set; }
-        public int DienKinhPhi { get; set; }
-        public int BacDaoTao { get; set; }
+        public int MaDienKinhPhi { get; set; }
+        public int MaBacDaoTao { get; set; }
         public int NganhDT1 { get; set; }
         public int? CNDT1 { get; set; }
         public int NganhDT2 { get; set; }

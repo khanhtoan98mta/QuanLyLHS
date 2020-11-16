@@ -9,8 +9,27 @@
 
 <h3> Chỉnh sửa thông tin lưu học sinh</h3>
 @{
-    string thongtinbo = Model.ThongTinGiaDinh.Split('/')[0];
-    string thongtinme = Model.ThongTinGiaDinh.Split('/')[1];
+    string thongtinbo=null;
+    string thongtinme=null;
+    if (Model.ThongTinGiaDinh!=null)
+    {
+        thongtinbo = Model.ThongTinGiaDinh.Split('/')[0];
+        thongtinme = Model.ThongTinGiaDinh.Split('/')[1];
+    }
+    string thoigianbatdauhoc = null;
+    string thoigianketthuchoc = null;
+    if (Model.ThoiGianBatDauHoc!=null)
+    {
+        string ngaysinhStr = Model.ThoiGianBatDauHoc.ToString();
+        DateTime date = (Convert.ToDateTime(ngaysinhStr));
+        thoigianbatdauhoc = date.Year + "-" + date.Month + "-" + date.Day;
+    }
+    if (Model.ThoiGianKetThucHoc != null)
+    {
+        string ngaysinhStr = Model.ThoiGianKetThucHoc.ToString();
+        DateTime date = (Convert.ToDateTime(ngaysinhStr));
+        thoigianketthuchoc = date.Year + "-" + date.Month + "-" + date.Day;
+    }
 
     string ngaysinhdate = null;
     string ngayvaodoan = null;
@@ -117,18 +136,18 @@
 
                         <form action="./EditLHSTTCoban" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
-                            <input type="text" name="MaLHS" id="MaLHS" value="@Model.MaLHS" style="display:none" >
+                            <input type="text" name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display: none" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Họ và tên</label>
-                                        <input value="@Model.Hoten" type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên" required>
+                                        <input value="@Model.Hoten" type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày sinh</label>
-                                        <input value="@ngaysinhdate" type="date" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" required>
+                                        <input value="@ngaysinhdate" type="date" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" >
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -137,7 +156,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Giới tính</label>
-                                        <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính" required>
+                                        <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính" >
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
@@ -155,13 +174,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Tôn giáo</label>
-                                        <input value="@Model.TonGiao" type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo" required>
+                                        <input value="@Model.TonGiao" type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Miền</label>
-                                        <select type="text" class="form-control" id="Mien" name="Mien" placeholder="Miền" required>
+                                        <select type="text" class="form-control" id="Mien" name="Mien" placeholder="Miền" >
                                             <option value="Bắc">Bắc</option>
                                             <option value="Trung">Trung</option>
                                             <option value="Nam">Nam</option>
@@ -180,7 +199,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Đối tượng</label>
-                                        <select type="text" class="form-control" id="MaDoiTuong" name="MaDoiTuong" placeholder="Đối tượng" required>
+                                        <select type="text" class="form-control" id="MaDoiTuong" name="MaDoiTuong" placeholder="Đối tượng" >
                                             @foreach (var item in @ViewBag.Doituong)
                                             {
                                                 <option value="@item.MaDoiTuong">@item.DoiTuong1</option>
@@ -195,7 +214,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Quê quán</label>
-                                        <textarea class="form-control" id="QueQuan" name="QueQuan" rows="2" placeholder="Quê quán" required>@Model.QueQuan</textarea>
+                                        <textarea class="form-control" id="QueQuan" name="QueQuan" rows="2" placeholder="Quê quán" >@Model.QueQuan</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -352,18 +371,28 @@
 
                         <form action="./EditLHSTTDaotao" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin đào tạo</h5>
-                            <input name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display:none" />
+                            <input type="text" name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display: none">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Địa bàn</label>
-                                        <input value="@Model.DiaBan" type="text" class="form-control" id="Diaban" name="Diaban" >
+                                        <select type="text" class="form-control" id="Diaban" name="Diaban" >
+                                            @foreach (var item in ViewBag.Diaban)
+                                            {
+                                                <option label="@item.DiaBan" value="@item.IDDiaBan"></option>
+                                            }
+                                         </select>
                                     </div>
                                 </div>                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Cơ sở đào tạo</label>
-                                        <input value="@Model.CSDaoTao" type="text" class="form-control" id="CSDaoTao" name="CSDaoTao" >
+                                        <select type="text" class="form-control" id="CSDaoTao" name="CSDaoTao" >
+                                            @foreach (var item in ViewBag.CSDaotao)
+                                            {
+                                                <option label="@item.CSDaoTao" value="@item.MaCSDaoTao"></option>
+                                            }
+                                            </select>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -372,13 +401,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Diện kinh phí đào tạo</label>
-                                        <input value="@Model.DienKinhPhi" type="text" class="form-control" id="DienKinhPhi" name="DienKinhPhi" >
+                                        <select type="text" class="form-control" id="MaDienKinhPhi" name="MaDienKinhPhi" >
+                                            @foreach (var item in ViewBag.DienKinhPhi)
+                                            {
+                                                <option label="@item.DienKinhPhi" value="@item.MaDKP"></option>
+                                            }
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Bậc đào tạo</label>
-                                        <input value="@Model.BacDaoTao" type="text" class="form-control" id="BacDaoTao" name="BacDaoTao" >
+                                        <select  type="text" class="form-control" id="MaBacDaoTao" name="MaBacDaoTao" >
+                                            @foreach (var item in ViewBag.BacDaoTao)
+                                            {
+                                                <option label="@item.BacDaoTao1" value="@item.MaBacDaoTao"></option>
+                                            }
+                                            </select>
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -387,13 +426,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Ngành đào tạo 1</label>
-                                        <input value="@Model.NganhDT1" type="text" class="form-control" id="NganhDT1" name="NganhDT1" >
+                                        <select type="text" class="form-control" id="NganhDT1" name="NganhDT1" >
+                                            @foreach (var item in ViewBag.NganhDT)
+                                            {
+                                                <option label="@item.NganhDaoTao1" value="@item.MaNganh"></option>
+                                            }
+                                            
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Chuyên ngành đào tạo 1</label>
-                                        <input value="@Model.CNDT1" type="text" class="form-control" id="CNDT1" name="CNDT1" >
+                                        <select type="text" class="form-control" id="CNDT1" name="CNDT1">
+                                            @foreach (var item in ViewBag.ChuyenNganhDaoTao)
+                                            {
+                                                <option label="@item.ChuyenNganhDaoTao1" value="@item.MaChuyenNganh"></option>
+                                            }
+
+                                        </select>
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -402,28 +453,40 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Ngành đào tạo 2</label>
-                                        <input value="@Model.NganhDT2" type="text" class="form-control" id="NganhDT2" name="NganhDT2" >
+                                        <select type="text" class="form-control" id="NganhDT2" name="NganhDT2">
+                                            @foreach (var item in ViewBag.NganhDT)
+                                            {
+                                                <option label="@item.NganhDaoTao1" value="@item.MaNganh" ></option>
+                                            }
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Chuyên ngành đào tạo 2</label>
-                                        <input value="@Model.CNDT2" type="text" class="form-control" id="CNDT2" name="CNDT2">
+                                        <select type="text" class="form-control" id="CNDT2" name="CNDT2">
+                                            @foreach (var item in ViewBag.ChuyenNganhDaoTao)
+                                            {
+                                                <option label="@item.ChuyenNganhDaoTao1" value="@item.MaChuyenNganh" data-filter="@item.MaNganh"></option>
+                                            }
+
+                                        </select>
                                     </div>
-                                </div> <!-- end col -->
-                            </div> <!-- end row -->
+                                </div>
+                            </div> <!-- end col -->
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Năm đi học</label>
-                                        <input value="@Model.ThoiGianBatDauHoc" type="date" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
+                                        <input value="@thoigianbatdauhoc" type="date" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Năm tốt nghiệp</label>
-                                        <input value="@Model.ThoiGianKetThucHoc" type="text" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
+                                        <input value="@thoigianketthuchoc" type="date" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -433,29 +496,50 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Tình trạng tốt nghiệp</label>
-                                        <input value="@Model.TinhTrangTotNghiep" type="text" class="form-control" id="TinhTrangTotNghiep" name="TinhTrangTotNghiep" >
-
+                                        <select value="@Model.TinhTrangTotNghiep" type="text" class="form-control" id="TinhTrangTotNghiep" name="TinhTrangTotNghiep" >
+                                            <option value="0" label="Chưa tốt nghiệp"></option>
+                                            <option value="1" label="Đã tốt nghiệp"></option>
+                                            <option value="2" label="Không tốt nghiệp"></option>
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Tên đồ án tốt nghiệp, LVTS, LATS</label>
-                                        <input value="@Model.TenLuanVan" type="text" class="form-control" id="TenLuanVan" name="TenLuanVan"  >
+                                        <input value="@Model.TenLuanVan" type="text" class="form-control" id="TenLuanVan" name="TenLuanVan" >
                                     </div>
                                 </div> <!-- end col -->
                             </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Điểm trung bình</label>
+                                        <input step="0.1" value="@Model.DiemTrungBinh" type="number" class="form-control" id="DiemTrungBinh" name="DiemTrungBinh" placeholder="Điểm trung bình">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Kết quả bảo vệ đồ án</label>
+                                        <input value="@Model.KetQuaBaoVe" type="text" class="form-control" id="KetQuaBaoVe" name="KetQuaBaoVe">
+
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 1</label>
-                                        <input value="@Model.Ki1" type="text" class="form-control" id="Ki1" name="Ki1" >
+                                        <input value="@Model.Ki1" type="number" class="form-control" id="Ki1" name="Ki1" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 2</label>
-                                        <input type="text" value="@Model.Ki2" class="form-control" id="Ki2" name="Ki2">
+                                        <input type="number" value="@Model.Ki2" class="form-control" id="Ki2" name="Ki2">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -465,13 +549,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 3</label>
-                                        <input value="@Model.Ki3" type="date" class="form-control" id="Ki3" name="Ki3" >
+                                        <input value="@Model.Ki3" type="number" class="form-control" id="Ki3" name="Ki3" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 4</label>
-                                        <input value="@Model.Ki4" type="date" class="form-control" id="Ki4" name="Ki4">
+                                        <input value="@Model.Ki4" type="number" class="form-control" id="Ki4" name="Ki4">
                                     </div>
                                 </div> <!-- end col -->
                             </div>
@@ -480,13 +564,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 5</label>
-                                        <input value="@Model.Ki5" type="date" class="form-control" id="Ki5" name="Ki5">
+                                        <input value="@Model.Ki5" type="number" class="form-control" id="Ki5" name="Ki5">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 6</label>
-                                        <input type="text" class="form-control" id="Ki6" name="Ki6" placeholder="Không/Có" value="@Model.Ki6">
+                                        <input type="number" class="form-control" id="Ki6" name="Ki6" placeholder="Không/Có" value="@Model.Ki6">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -496,13 +580,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 7</label>
-                                        <input value="@Model.Ki7" type="text" class="form-control" id="Ki7" name="Ki7" >
+                                        <input value="@Model.Ki7" type="number" class="form-control" id="Ki7" name="Ki7" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 8</label>
-                                        <input value="@Model.Ki8" type="text" class="form-control" id="Ki8" name="Ki8" >
+                                        <input value="@Model.Ki8" type="number" class="form-control" id="Ki8" name="Ki8" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -512,13 +596,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 9</label>
-                                        <input value="@Model.Ki9" type="text" class="form-control" id="Ki9" name="Ki9" >
+                                        <input value="@Model.Ki9" type="number" class="form-control" id="Ki9" name="Ki9" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 10</label>
-                                        <input value="@Model.Ki10" type="text" class="form-control" id="Ki10" name="Ki10" >
+                                        <input value="@Model.Ki10" type="number" class="form-control" id="Ki10" name="Ki10" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -528,13 +612,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 11</label>
-                                        <input value="@Model.Ki11" type="text" class="form-control" id="Ki11" name="Ki11" >
+                                        <input value="@Model.Ki11" type="number" class="form-control" id="Ki11" name="Ki11" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 12</label>
-                                        <input value="@Model.Ki12" type="text" class="form-control" id="Ki12" name="Ki12" >
+                                        <input value="@Model.Ki12" type="number" class="form-control" id="Ki12" name="Ki12" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -544,13 +628,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Kết quả học tập kỳ 13</label>
-                                        <input value="@Model.Ki13" type="text" class="form-control" id="Ki13" name="Ki13" >
+                                        <input value="@Model.Ki13" type="number" class="form-control" id="Ki13" name="Ki13" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 14</label>
-                                        <input value="@Model.Ki14" type="text" class="form-control" id="Ki14" name="Ki14">
+                                        <input value="@Model.Ki14" type="number" class="form-control" id="Ki14" name="Ki14">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -560,7 +644,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Mô tả kết quả học tập</label>
-                                        <textarea class="form-control" id="MoTaKetQua" name="MoTaKetQua" rows="2" placeholder="Mô tả kết quả học tập">@Model.MoTaKetQua</textarea>
+                                        <textarea class="form-control" id="MoTaKetQua" name="MoTaKetQua" rows="3" placeholder="Mô tả kết quả học tập">@Model.MoTaKetQua</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -569,32 +653,26 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Thông tin nợ môn</label>
-                                        <textarea class="form-control" id="LuuNoMon" name="LuuNoMon" rows="2" placeholder="Thông tin nợ môn">@Model.LuuNoMon</textarea>
+                                        <textarea class="form-control" id="LuuNoMon" name="LuuNoMon" rows="3" placeholder="Thông tin nợ môn">@Model.LuuNoMon</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="firstname">Điểm trung bình</label>
-                                        <input value="@Model.DiemTrungBinh" type="text" class="form-control" id="DiemTrungBinh" name="DiemTrungBinh" placeholder="Điểm trung bình tất cả các kì học">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="lastname">Kết quả bảo vệ đồ án</label>
-                                        <input value="@Model.KetQuaBaoVe" type="text" class="form-control" id="KetQuaBaoVe" name="KetQuaBaoVe" >
-
-                                    </div>
-                                </div> <!-- end col -->
-                            </div>
-                            
-                            <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Phân loại tốt nghiệp</label>
-                                        <textarea class="form-control" id="PhanLoaiTotNghiep" name="PhanLoaiTotNghiep" rows="2" placeholder="Lĩnh vực thế mạnh">@Model.PhanLoaiTotNghiep</textarea>
+                                        <select class="form-control" id="PhanLoaiTotNghiep" name="PhanLoaiTotNghiep" placeholder="Loại tốt nghiệp">
+                                            <option value="1" label="Xuất sắc*"></option>
+                                            <option value="2" label="Xuất sắc"></option>
+                                            <option value="3" label="Giỏi"></option>
+                                            <option value="4" label="Khá"></option>
+                                            <option value="5" label="Trung bình"></option>
+                                            <option value="6" label="Khác"></option>
+                                            <option value="0" label="Chưa tốt nghiệp"></option>
+
+
+                                        </select>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -619,7 +697,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Khen thưởng</label>
-                                        <textarea class="form-control" id="KhenThuong" name="KhenThuong" rows="2" placeholder="Khen thưởng">@Model.KhenThuong</textarea>
+                                        <textarea class="form-control" id="KhenThuong" name="KhenThuong" rows="2" placeholder="Khen thưởng" disabled>@Model.KhenThuong</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -627,7 +705,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Kỉ luật</label>
-                                        <textarea class="form-control" id="KiLuat" name="KiLuat" rows="2" placeholder="Kỉ luật">@Model.KiLuat</textarea>
+                                        <textarea class="form-control" id="KiLuat" name="KiLuat" rows="2" placeholder="Kỉ luật" disabled>@Model.KiLuat</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -652,13 +730,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Học phí</label>
-                                        <input value="@Model.HocPhi" type="text" class="form-control" id="HocPhi" name="HocPhi">
+                                        <input value="@Model.HocPhi" type="number" class="form-control" id="HocPhi" name="HocPhi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Sinh hoạt phí</label>
-                                        <input value="@Model.SinhHoatPhi" type="text" class="form-control" id="SinhHoatPhi" name="SinhHoatPhi" >
+                                        <input value="@Model.SinhHoatPhi" type="number" class="form-control" id="SinhHoatPhi" name="SinhHoatPhi" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -668,13 +746,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Bảo hiểm y tế</label>
-                                        <input value="@Model.BHYT" type="text" class="form-control" id="BHYT" name="BHYT">
+                                        <input value="@Model.BHYT" type="number" class="form-control" id="BHYT" name="BHYT">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Chi phí khác</label>
-                                        <input value="@Model.ChiPhiKhac" type="text" class="form-control" id="ChiPhiKhac" name="ChiPhiKhac" >
+                                        <input value="@Model.ChiPhiKhac" type="number" class="form-control" id="ChiPhiKhac" name="ChiPhiKhac" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -718,23 +796,15 @@
         if ($("#avatar").attr("src") == "/") {
             $("#avatar").attr("src","../Content/img/img_lhs/Avatar-Female.jpg")
         }
-        //thêm các giá trị trong form chỉnh sửa
-        var gioitinh = '@Model.GioiTinh';
-        $('#GioiTinh option[value=' + gioitinh + ']').attr('selected', 'selected');
-        var mien = '@Model.Mien';
-        $('#Mien option[value=' + mien + ']').attr('selected', 'selected');
-        //Khoa
-        var khoa = '@Model.MaKhoa';
-        $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
-        //bomon
-        var bomon = '@Model.MaDVBM';
-        $('#Bomon option[value=' + bomon + ']').attr('selected', 'selected');
+        
     });
-
-
+    
 
 </script>
 <script>
+
+
+
     $("#fileInput").change(function(){
         var formData = new FormData();
         formData.append('AvatarImg', $('#fileInput')[0].files[0]);
@@ -756,4 +826,121 @@
             }
         });
     })
+</script>
+
+<script>
+
+    //thêm các giá trị trong form chỉnh sửa: trong thẻ select
+    var gioitinh = '@Model.GioiTinh';
+    $('#GioiTinh option[value=' + gioitinh + ']').attr('selected', 'selected');
+    //mien
+    var mien = '@Model.Mien';
+    $('#Mien option[value=' + mien + ']').attr('selected', 'selected');
+
+
+
+    //Khoa
+    var khoa = '@Model.MaKhoa';
+    if (khoa == undefined || khoa == null||khoa=='') {
+        khoa = '0';
+    }
+    $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
+    //bomon
+    var bomon = '@Model.MaDVBM';
+    if (bomon == undefined || bomon == null||bomon=='') {
+        bomon = '0';
+    }
+    $('#Bomon option[value=' + bomon + ']').attr('selected', 'selected');
+    //CSDaoTao
+    var maCSDaoTao = '@Model.CSDaoTao';
+    if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
+        maCSDaoTao = '0';
+    }
+    $('#CSDaoTao option[value=' + maCSDaoTao + ']').attr('selected', 'selected');
+    //MaDienKinhPhi
+    var maDienKinhPhi = '@Model.MaDKP';
+    if (maDienKinhPhi == undefined || maDienKinhPhi == null||maDienKinhPhi=='') {
+        maDienKinhPhi = '0';
+    }
+    $('#MaDienKinhPhi option[value=' + maDienKinhPhi + ']').attr('selected', 'selected');
+    //MaBacDaoTao
+    var maBacDaoTao = '@Model.MaBacDaoTao';
+    if (maBacDaoTao == undefined || maBacDaoTao == null||maBacDaoTao=='') {
+        maBacDaoTao = '0';
+    }
+    $('#MaBacDaoTao option[value=' + maBacDaoTao + ']').attr('selected', 'selected');
+
+
+
+
+    //CNDT1
+    var cNDT1 = @Model.MaCNDaotao1;
+    if (cNDT1 == undefined || cNDT1 == null||cNDT1=='') {
+        cNDT1 = '0';
+    }
+    $('#CNDT1 option[value=' + cNDT1 + ']').attr('selected', 'selected');
+    //CNDT2
+    var cNDT2 = '@Model.MaCNDaotao2';
+    if (cNDT2 == undefined || cNDT2 == null||cNDT2=='') {
+        cNDT2 = '0';
+    }
+    $('#CNDT2 option[value=' + cNDT2 + ']').attr('selected', 'selected');
+    //TinhTrangTotNghiep
+    var tinhTrangTotNghiep = '@Model.TinhTrangTotNghiep';
+    if (tinhTrangTotNghiep == undefined || tinhTrangTotNghiep == null||tinhTrangTotNghiep=='') {
+        tinhTrangTotNghiep = '0';
+    }
+    $('#TinhTrangTotNghiep option[value=' + tinhTrangTotNghiep + ']').attr('selected', 'selected');
+    //PhanLoaiTotNghiep
+    var PhanLoaiTotNghiep = '@Model.PhanLoaiTotNghiep';
+    if (PhanLoaiTotNghiep == undefined || PhanLoaiTotNghiep == null||PhanLoaiTotNghiep=='') {
+        PhanLoaiTotNghiep = '0';
+    }
+    $('#PhanLoaiTotNghiep option[value=' + PhanLoaiTotNghiep + ']').attr('selected', 'selected');
+
+</script>
+
+<script>
+    function filterCombobox(selectObject, filterValue, autoSelect) {
+
+        var fullData = selectObject.data("filterdata-values");
+        var emptyValue = selectObject.data("filterdata-emptyvalue");
+
+        // lần đầu tiên
+        if (!fullData) {
+            fullData = selectObject.find("option[data-filter]").detach();
+            selectObject.data("filterdata-values", fullData);
+            emptyValue = selectObject.find("option[data-filter-emptyvalue]").detach();
+            selectObject.data("filterdata-emptyvalue", emptyValue);
+            selectObject.addClass("filtered");
+        }
+        else {
+            // Remove elements from DOM
+            selectObject.find("option[data-filter]").remove();
+            selectObject.find("option[data-filter-emptyvalue]").remove();
+        }
+
+        // Get filtered elements.
+        var toEnable = fullData.filter("option[data-filter][data-filter='" + filterValue + "']");
+
+        // Attach elements to DOM
+        selectObject.append(toEnable);
+
+        // If toEnable is empty, show empty option.
+        if (toEnable.length == 0) {
+            selectObject.append(emptyValue);
+        }
+
+        // Select First Occurrence
+        if (autoSelect) {
+            var obj = selectObject.find("option[selected]");
+            selectObject.val(obj.length == 0 ? toEnable.val() : obj.val());
+        }
+    }
+    $('#NganhDT1').change(function(){
+        var nganhdt = $("#NganhDT1 :selected").val();
+        filterCombobox($("#CNDT1"), nganhdt, true);
+    })
+        
+    
 </script>

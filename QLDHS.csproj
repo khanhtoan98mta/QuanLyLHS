@@ -932,6 +932,8 @@
     <Content Include="Views\LuuHS\EditLHS.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Scripts\js" />
+    <Content Include="Views\Thongke\LuuHS_Diaban.cshtml" />
+    <Content Include="Views\Thongke\LHS_Totnghiep_Year.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,7 @@ namespace QLDHS.Models.Entity
     public partial class KetQuaHocTap
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaKetQua { get; set; }
 
         public double? Ki1 { get; set; }
@@ -51,7 +52,7 @@ namespace QLDHS.Models.Entity
         [StringLength(500)]
         public string LuuNoMon { get; set; }
 
-        public int? LHSID { get; set; }
+        public int LHSID { get; set; }
 
         public virtual LuuHocSinh LuuHocSinh { get; set; }
     }
