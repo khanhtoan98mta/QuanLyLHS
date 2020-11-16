@@ -441,7 +441,7 @@
                                         <select type="text" class="form-control" id="CNDT1" name="CNDT1">
                                             @foreach (var item in ViewBag.ChuyenNganhDaoTao)
                                             {
-                                                <option label="@item.ChuyenNganhDaoTao1" value="@item.MaChuyenNganh"></option>
+                                                <option label="@item.ChuyenNganhDaoTao1" value="@item.MaChuyenNganh" data-filter="@item.MaNganh"></option>
                                             }
 
                                         </select>
@@ -458,7 +458,7 @@
                                             {
                                                 <option label="@item.NganhDaoTao1" value="@item.MaNganh" ></option>
                                             }
-
+                                            <option value="" data-filter-emptyvalue disabled>No Options</option>
                                         </select>
                                     </div>
                                 </div>

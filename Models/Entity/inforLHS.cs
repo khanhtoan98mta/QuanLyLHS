@@ -89,7 +89,7 @@ namespace QLDHS.Models.Entity
         public int? MaKhoa { get; set; }
         public DateTime? NamNhanQuanHam { get; set; }
         public int? MaBacDaoTao { get; set; }
-
+        public int? MaCSDaoTao { get; set; }
 
 
 
