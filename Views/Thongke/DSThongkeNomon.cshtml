@@ -1,26 +1,33 @@
 ﻿<script src="~/Scripts/Chart.min.js"></script>
-
 <section id="home" class="content-section">
     <div class="section-content">
         <h2 style="text-decoration-color:yellow">THỐNG KÊ LƯU HỌC SINH NỢ MÔN </h2>
         <br />
-
         <canvas id="Thongkenomon" width="800" height="450"></canvas>
-
-
 
     </div>
 </section>
+<script>
+    var nam = @Html.Raw(Json.Encode(ViewBag.nam));
+    var xs = @Html.Raw(Json.Encode(ViewBag.xs));
+    var xs_ = @Html.Raw(Json.Encode(ViewBag.xs_));
+    var gioi = @Html.Raw(Json.Encode(ViewBag.gioi));
+    var kha = @Html.Raw(Json.Encode(ViewBag.kha));
+    var tb = @Html.Raw(Json.Encode(ViewBag.tb));
+    var khac = @Html.Raw(Json.Encode(ViewBag.khac));
+
+
+</script>
 <script>
     var ctx = document.getElementById("Thongkenomon");
     var barChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["2017", "2018", "2019","2020"],
+            labels: nam,
             datasets: [{
-                backgroundColor: '#00ff00',
-                label: 'Xuất sắc',
-                data: [12, 19, 3,10]
+                backgroundColor: '#a8a3d0',
+                label: 'Xuất sắc*',
+                data: [1,2,3,4,5]
             }]
         }
     });
@@ -34,10 +41,16 @@
         chart.update();
     }
 
+
+
     // inserting the new dataset after 3 seconds
     setTimeout(function () {
-        addData(barChart, 'Gioi', '#ff0000', [160, 14, 8, 10]);
-        addData(barChart, 'Khá', '#ff0030', [160, 14, 8, 10]);
-        addData(barChart, 'Trung bình', '#ff0600', [160, 14, 8, 10]);
+        addData(barChart, 'Xuất sắc', '#bb85bb', xs);
+        addData(barChart, 'Giỏi', '#58bcd6', gioi);
+        addData(barChart, 'Khá', '#fcbb75', kha);
+        addData(barChart, 'Trung bình', '#c49377', tb);
+        addData(barChart, 'Khác', '#9bb06a', khac);
+
     }, 1000);
+
 </script>
