@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "DSThangQuanHam_Year";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script>
+  $(document).ready(function() {
+
+  // Cấu hình các nhãn phân trang
+    $('#alllhs').dataTable({
+      "language": {
+      "sProcessing":   "Đang xử lý...",
+      "sLengthMenu":   "Xem _MENU_ mục",
+      "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+      "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+      "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+      "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+      "sInfoPostFix":  "",
+      "sSearch":       "Tìm:",
+      "sUrl":          "",
+      "oPaginate": {
+          "sFirst":    "Đầu",
+          "sPrevious": "Trước",
+          "sNext":     "Tiếp",
+          "sLast":     "Cuối"
+          }
+      },
+      "processing": true, // tiền xử lý trước
+      "aLengthMenu": [[10, 15, 20, 50], [10, 15, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
+      "order": [[ 0, 'asc' ]] //sắp xếp giảm dần theo cột thứ 1
+  } );
+
+    $("#alllhs").css("font-size", 16);
+    table.columns.adjust().draw();
+  });
+
+  function GetDate(date) {
+      GetDate(date);
+      
+  }
+</script>
+
+<div class="section-heading">
+    <h1>Danh sách<br /> lưu học sinh thăng quân hàm</h1>
+</div>
+<div class="section-content">
+    <table id="alllhs" class="table table-bordered" style="width :100%">
+        <thead>
+            <tr>
+                
+                <th scope="col">MaLHS</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Ngày nhận</th>
+                <th scope="col">Quân hàm hiện tại</th>
+                <th scope="col">Cơ sở đào tạo</th>
+                <th scope="col">Địa bàn</th>
+                <th scope="col">Công cụ</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var all_luuhs = ViewBag.alllhs as IEnumerable<QLDHS.Models.Entity.ThongKeNienHanQH>;
+            }
+            @foreach (var item in all_luuhs)
+            {
+
+                string ngaynhan = null;
+                if (item.NgayNhan != null)
+                {
+                    string ngaynhanStr = item.NgayNhan.ToString();
+                    DateTime date = (Convert.ToDateTime(ngaynhanStr));
+                    ngaynhan = date.Day + "-" + date.Month + "-" + date.Year;
+                }
+                <tr>
+                    
+
+                    <th scope="row">@item.MaLHS</th>
+                    <td scope="row">@item.HoTen</td>
+                    <td scope="row">@ngaynhan</td>
+                    <td scope="row">@item.QuanHam</td>
+                    <td scope="row">@item.CSDaoTao</td>
+                    <td scope="row">@item.DiaBan</td>
+                    <td scope="row">
+                        <a href="~/LuuHS/DetailLHS?MALHS=@item.MaLHS"><div type="button" class="btn btn-primary" title="Xem chi tiết"><i class="fa fa-eye"></i></div></a>
+                        <a href="~/LuuHS/EditLHS?MALHS=@item.MaLHS"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit"></i></div></a>
+                        <a href="#"><div type="button" class="btn btn-danger" title="Xóa sinh viên"><i class="fa fa-trash-o"></i></div></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+

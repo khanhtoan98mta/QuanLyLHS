@@ -62,10 +62,19 @@
             }
             @foreach (var item in all_luuhs)
             {
+                string ngaysinhdate = null;
+                if (item.NgaySinh != null)
+                {
+                    string ngaysinhStr = item.NgaySinh.ToString();
+                    DateTime date = (Convert.ToDateTime(ngaysinhStr));
+                    ngaysinhdate = date.Day + "-" + date.Month + "-" + date.Year;
+                }
+
+
                 <tr>
                     <th scope="row">@item.MaLHS</th>
                     <td scope="row">@item.Hoten</td>
-                    <td scope="row">@item.NgaySinh</td>
+                    <td scope="row">@ngaysinhdate</td>
                     <td scope="row">@item.GioiTinh</td>
                     <td scope="row">@item.QuanHam</td>
                     <td scope="row">
