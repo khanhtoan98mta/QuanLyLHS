@@ -186,6 +186,7 @@
     <Compile Include="Models\Entity\Role.cs" />
     <Compile Include="Models\Entity\ThanNhan.cs" />
     <Compile Include="Models\Entity\ThongKeNienHanQH.cs" />
+    <Compile Include="Models\Entity\ThongKe_TotNghiep_Year.cs" />
     <Compile Include="Models\Entity\Thongtincoban.cs" />
     <Compile Include="Models\Entity\Thongtindaotao.cs" />
     <Compile Include="Models\Entity\UserName.cs" />
@@ -935,6 +936,7 @@
     <Content Include="Scripts\js" />
     <Content Include="Views\Thongke\LuuHS_Diaban.cshtml" />
     <Content Include="Views\Thongke\DSThangQuanHam_Year.cshtml" />
+    <Content Include="Views\Thongke\ThongKe_LHS_TotNghiep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

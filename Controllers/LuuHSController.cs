@@ -33,7 +33,6 @@ namespace QLDHS.Controllers
             LUUHS db = new LUUHS();
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             var detaillhs = f_lhs.Detai_LHS_Ma(MALHS);
-
             ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
             ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
             ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
@@ -148,6 +147,7 @@ namespace QLDHS.Controllers
 
             
         }
+
 
 
 
