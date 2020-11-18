@@ -1,10 +1,9 @@
-﻿<script src="~/Scripts/Chart.min.js"></script>
+﻿﻿<script src="~/Scripts/Chart.min.js"></script>
 <section id="home" class="content-section">
     <div class="section-content">
         <h2 style="text-decoration-color:yellow">THỐNG KÊ LƯU HỌC SINH NỢ MÔN </h2>
         <br />
         <canvas id="Thongkenomon" width="800" height="450"></canvas>
-
     </div>
 </section>
 <script>

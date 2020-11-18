@@ -378,11 +378,11 @@
                                         <label for="firstname">Địa bàn</label>
                                         <select type="text" class="form-control" id="Diaban" name="Diaban" >
                                             <option label="Thế giới" value="-1"></option>
-                                            @foreach (var item in ViewBag.Diaban)
+                                            @foreach (var item in ViewBag.diaban)
                                             {
-                                                if (true)
+                                                if (@item.soluong > 0)
                                                 {
-                                                    <option label="@item.DiaBan" value="@item.IDDiaBan"></option>
+                                                    <option label="@item.diaban" value="@item.madiaban"></option>
                                                 }
 
                                             }
@@ -875,7 +875,18 @@
         maBacDaoTao = '0';
     }
     $('#MaBacDaoTao option[value=' + maBacDaoTao + ']').attr('selected', 'selected');
-
+    //NganhDT1
+    var NganhDT1 = '@Model.MN1';
+    if (NganhDT1 == undefined || NganhDT1 == null||NganhDT1=='') {
+        NganhDT1 = '0';
+    }
+    $('#NganhDT1 option[value=' + NganhDT1 + ']').attr('selected', 'selected');
+    //NganhDT2
+    var NganhDT2 = '@Model.MN2';
+    if (NganhDT2 == undefined || NganhDT2 == null||NganhDT2=='') {
+        NganhDT2 = '0';
+    }
+    $('#NganhDT2 option[value=' + NganhDT2 + ']').attr('selected', 'selected');
 
 
 

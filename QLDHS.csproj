@@ -185,6 +185,7 @@
     <Compile Include="Models\Entity\QuyetDinhDiHoc.cs" />
     <Compile Include="Models\Entity\Role.cs" />
     <Compile Include="Models\Entity\ThanNhan.cs" />
+    <Compile Include="Models\Entity\ThongKeNienHanQH.cs" />
     <Compile Include="Models\Entity\ThongKe_TotNghiep_Year.cs" />
     <Compile Include="Models\Entity\Thongtincoban.cs" />
     <Compile Include="Models\Entity\Thongtindaotao.cs" />
@@ -934,12 +935,15 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Scripts\js" />
     <Content Include="Views\Thongke\LuuHS_Diaban.cshtml" />
-    <Content Include="Views\Thongke\LHS_Totnghiep_Year.cshtml" />
+    <Content Include="Views\Thongke\DSThangQuanHam_Year.cshtml" />
     <Content Include="Views\Thongke\ThongKe_LHS_TotNghiep.cshtml" />
+    <Content Include="Views\LuuHS\EditQuanHam.cshtml" />
+    <Content Include="Views\LuuHS\EditKhenThuongVaKiLuat.cshtml" />
+    <Content Include="Views\LuuHS\EditVephep.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\js\vendor\" />
+    <Folder Include="Properties\App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -26,23 +26,21 @@ namespace QLDHS.Controllers
     {
         public ActionResult Index()
         {            
-
             return View();
         }
 
         public ActionResult InitMap()
         {
             
-
             try
             {
+                
                 F_Luuhocsinh f_lhs = new F_Luuhocsinh();
-                var lhs_time = f_lhs.Thongke_LHS_time(2019);
+                var lhs_time = f_lhs.Thongke_LHS_time(DateTime.UtcNow.Year);
                 for (int i = 0; i < lhs_time.Count; i++)
                 {
                     lhs_time[i].madiaban = lhs_time[i].madiaban.Trim();
                 }
-
                 ViewBag.lhs_time = lhs_time;
             }
             catch (Exception)

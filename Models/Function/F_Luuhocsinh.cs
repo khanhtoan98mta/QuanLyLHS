@@ -171,7 +171,7 @@ namespace QLDHS.Models.Function
                             MaCSDaoTao = info.CSDaoTao,
                             MaBacDaoTao = info.MaBacDaoTao,
                             MaCNDaoTao1 = info.CNDT1,
-                            MaCNDaoTao2 = info.CNDT2,
+                            MaCNDaoTao2 = info.CNDT2,                            
                             ThoiGianBatDau = info.ThoiGianBatDauHoc,                            
                             ThoiGianKetThuc = info.ThoiGianKetThucHoc,
                             ThoiGianDaoTao = "5 Năm",

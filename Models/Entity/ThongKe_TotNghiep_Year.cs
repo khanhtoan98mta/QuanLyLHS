@@ -17,7 +17,7 @@ namespace QLDHS.Models.Entity
 
         public ThongKe_TotNghiep_Year()
         {
-            
+
         }
         public ThongKe_TotNghiep_Year(int nam, int xuatsac_, int xuatsac, int gioi, int kha, int trungBinh, int khac)
         {

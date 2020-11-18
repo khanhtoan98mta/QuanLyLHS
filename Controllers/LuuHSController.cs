@@ -33,21 +33,36 @@ namespace QLDHS.Controllers
             LUUHS db = new LUUHS();
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             var detaillhs = f_lhs.Detai_LHS_Ma(MALHS);
-
             ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
             ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
             ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
             ViewBag.malhs = MALHS;
-
             ViewBag.CSDaotao = db.CoSoDaoTaos;
-            ViewBag.Diaban = db.DiaBanDaoTaos;
             ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
             ViewBag.BacDaoTao = db.BacDaoTaos;
             ViewBag.NganhDT = db.NganhDaoTaos;
-            ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
-
+            ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;           
+            var lhs_time = f_lhs.Thongke_LHS_time(DateTime.UtcNow.Year);
+            for (int i = 0; i < lhs_time.Count; i++)
+            {
+                lhs_time[i].madiaban = lhs_time[i].madiaban.Trim();
+            }
+            ViewBag.diaban = lhs_time;
 
             return View(detaillhs);
+        }
+        public ActionResult EditQuanHam()
+        {
+            return View();
+        }
+        public ActionResult EditKhenThuongVaKiLuat()
+        {
+            return View();
+        }
+
+        public ActionResult EditVephep()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -145,6 +160,7 @@ namespace QLDHS.Controllers
 
             
         }
+
 
 
 
