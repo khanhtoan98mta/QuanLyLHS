@@ -51,6 +51,19 @@ namespace QLDHS.Controllers
 
             return View(detaillhs);
         }
+        public ActionResult EditQuanHam()
+        {
+            return View();
+        }
+        public ActionResult EditKhenThuongVaKiLuat()
+        {
+            return View();
+        }
+
+        public ActionResult EditVephep()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult EditLHSTTCoban(Thongtincoban infolhs)
