@@ -14,7 +14,7 @@ namespace QLDHS.Models.Entity
         public string QuanHam { get; set; }
         public string CSDaoTao { get; set; }
         public string DiaBan { get; set; }
-
+        public string KiHieu { get; set; }
         public ThongKeNienHanQH()
         {
 

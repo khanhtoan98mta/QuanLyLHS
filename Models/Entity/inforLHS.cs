@@ -90,6 +90,7 @@ namespace QLDHS.Models.Entity
         public DateTime? NamNhanQuanHam { get; set; }
         public int? MaBacDaoTao { get; set; }
         public int? MaCSDaoTao { get; set; }
+        public string ThoiGianHoc { get; set; }
 
 
 

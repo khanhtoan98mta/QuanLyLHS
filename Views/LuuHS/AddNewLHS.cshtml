@@ -157,14 +157,10 @@
 </script>
 <script>
     $("#fileInput").change(function(){
-        alert("thay doi");
         var formData = new FormData();
         formData.append('AvatarImg', $('#fileInput')[0].files[0]);
-        alert("thay doi");
         var id = " MaLHS";
-        alert("thay doi");
         formData.append('id',id)
-        alert("thay doi");
         $.ajax({
             url: 'UploadAvatar',
             type: 'POST',

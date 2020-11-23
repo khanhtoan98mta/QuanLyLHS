@@ -51,8 +51,12 @@ namespace QLDHS.Controllers
 
             return View(detaillhs);
         }
-        public ActionResult EditQuanHam()
+        public ActionResult EditQuanHam(string MaLHS)
         {
+            LUUHS db = new LUUHS();
+            LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.MaLHS == MaLHS);
+            ViewBag.QuanHamLHS = db.LHS_QuanHam.Where(x => x.LHSID == lhs.LHSID);
+            ViewBag.QuanHam = db.QuanHams;
             return View();
         }
         public ActionResult EditKhenThuongVaKiLuat()
@@ -71,7 +75,7 @@ namespace QLDHS.Controllers
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditThongtincoban(infolhs);
 
-            return (RedirectToAction("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
+            return (Redirect("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
 
         }
 
@@ -80,7 +84,7 @@ namespace QLDHS.Controllers
         {
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditLHSTTDaotao(infolhs);
-            return (RedirectToAction("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
+            return (Redirect("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
         }
         
         public ActionResult DetailLHS(string MALHS)

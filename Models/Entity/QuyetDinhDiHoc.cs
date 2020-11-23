@@ -17,6 +17,9 @@ namespace QLDHS.Models.Entity
 
         public int? LHSID { get; set; }
 
+        public DateTime? ThoiGianDi { get; set; }
+
+        public DateTime? ThoiGianVe { get; set; }
         public virtual LuuHocSinh LuuHocSinh { get; set; }
     }
 }
