@@ -36,7 +36,7 @@ namespace QLDHS.Controllers
             ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
             ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
             ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
-            ViewBag.malhs = detaillhs.MaLHS; 
+            ViewBag.LHSID = LHSID; 
             ViewBag.CSDaotao = db.CoSoDaoTaos;
             ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
             ViewBag.BacDaoTao = db.BacDaoTaos;
