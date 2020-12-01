@@ -15,6 +15,12 @@ namespace QLDHS.Models.Entity
         [Column("QuyetDinhDiHoc")]
         public string QuyetDinhDiHoc1 { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? ThoiGianDi { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? ThoiGianVe { get; set; }
+
         public int? LHSID { get; set; }
 
         public virtual LuuHocSinh LuuHocSinh { get; set; }

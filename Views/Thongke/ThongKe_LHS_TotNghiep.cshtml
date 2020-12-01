@@ -1,12 +1,39 @@
 ﻿<script src="~/Scripts/Chart.min.js"></script>
 <section id="home" class="content-section">
+    
+
     <div class="section-content">
+
         <h2 style="text-decoration-color:yellow">THỐNG KÊ KẾT QUẢ TỐT NGHIỆP </h2>
         <br />
         <canvas id="Thongkenomon" width="800" height="450"></canvas>
 
+            <a class="btn btn-outline-primary btn-sm" role="button" href="/thongke/ThongKePLTN" id="nhqh">WORD</a>
+
+
     </div>
 </section>
+<script>
+
+
+
+    var maxF = function () {
+        var max1 = Math.max(...xs);
+        if (Math.max(...xs_) > max1) {
+            max1 = Math.max(...xs_)
+        }
+        if (Math.max(...gioi) > max1) {
+            max1 = Math.max(...gioi)
+        } if (Math.max(...kha) > max1) {
+            max1 = Math.max(...kha)
+        } if (Math.max(...tb) > max1) {
+            max1 = Math.max(...tb)
+        } if (Math.max(...khac) > max1) {
+            max1 = Math.max(...khac)
+        }
+        return max1;
+    }
+</script>
 <script>
     var nam = @Html.Raw(Json.Encode(ViewBag.nam));
     var xs = @Html.Raw(Json.Encode(ViewBag.xs));
@@ -29,6 +56,16 @@
                 label: 'Xuất sắc*',
                 data: xs_
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        max: maxF()+5 ,
+                        min: 0
+                    }
+                }]
+            }
         }
     });
 
@@ -53,4 +90,26 @@
 
     }, 1000);
 
+</script>
+
+<script>
+
+    
+    
+    var maxF = function () {
+        var max1 = Math.max(...xs);
+        if (Math.max(...xs_) > max1) {
+            max1 = Math.max(...xs_)
+        }
+        if (Math.max(...gioi) > max1) {
+            max1 = Math.max(...gioi)
+        } if (Math.max(...kha) > max1) {
+            max1 = Math.max(...kha)
+        } if (Math.max(...tb) > max1) {
+            max1 = Math.max(...tb)
+        } if (Math.max(...khac) > max1) {
+            max1 = Math.max(...khac)
+        }
+        return max1;
+    }
 </script>

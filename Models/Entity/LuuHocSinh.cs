@@ -13,6 +13,7 @@ namespace QLDHS.Models.Entity
         public LuuHocSinh()
         {
             KetQuaHocTaps = new HashSet<KetQuaHocTap>();
+            LHS_DaoTao = new HashSet<LHS_DaoTao>();
             LHS_KhenThuong = new HashSet<LHS_KhenThuong>();
             LHS_KyLuat = new HashSet<LHS_KyLuat>();
             LHS_QuanHam = new HashSet<LHS_QuanHam>();
@@ -58,6 +59,9 @@ namespace QLDHS.Models.Entity
         [Column(TypeName = "date")]
         public DateTime? NgayVaoDang { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? NgayChuyenDangCT { get; set; }
+
         [StringLength(100)]
         public string DanToc { get; set; }
 
@@ -95,21 +99,17 @@ namespace QLDHS.Models.Entity
 
         public int? MaDVBQP { get; set; }
 
-        public int? MaDVBM { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? NgayChuyenDangCT { get; set; }
-
         public virtual DienKinhPhiDaoTao DienKinhPhiDaoTao { get; set; }
 
         public virtual DoiTuong DoiTuong { get; set; }
 
         public virtual DonVi DonVi { get; set; }
 
-        public virtual DonVi DonVi1 { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQuaHocTap> KetQuaHocTaps { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LHS_DaoTao> LHS_DaoTao { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LHS_KhenThuong> LHS_KhenThuong { get; set; }

@@ -161,6 +161,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\BacDaoTao.cs" />
+    <Compile Include="Models\Entity\BoMonDaoTao.cs" />
     <Compile Include="Models\Entity\ChuyenNganhDaoTao.cs" />
     <Compile Include="Models\Entity\CoSoDaoTao.cs" />
     <Compile Include="Models\Entity\DiaBanDaoTao.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\Entity\inforLHS.cs" />
     <Compile Include="Models\Entity\KetQuaHocTap.cs" />
     <Compile Include="Models\Entity\KhenThuong.cs" />
+    <Compile Include="Models\Entity\KhoaDaoTao.cs" />
     <Compile Include="Models\Entity\KyLuat.cs" />
     <Compile Include="Models\Entity\LHS_DaoTao.cs" />
     <Compile Include="Models\Entity\LHS_KhenThuong.cs" />

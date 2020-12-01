@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Quản lí lưu học sinh - Thống kê";
+    ViewBag.Title = "Chỉnh sửa quân hàm quân nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -109,50 +109,14 @@
 
     $(document).ready(function () {
         var index = 1;
-        var actions = $("table td:last-child").html();
+        var actions = $("tbody tr:last-child").html();
         // Append table with add row form on add new button click
         $(".add-new").click(function () {
-            $(this).attr("disabled", "disabled");
-            var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
-                `<td>${index}</td>` +
-                '<td><select class="form-control"><option value="Hạ sĩ" >Hạ sĩ</option><option value="Trung sĩ" >Trung sĩ</option></select></td>' +
-                '<td><input type="date" class="form-control" name="phone" id="phone"></td>' +
-                '<td>' + actions + '</td>' +
-            '</tr>';
-            $("table").append(row);
-            $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-        // Add row on add button click
-        $(document).on("click", ".add", function () {
-            var empty = false;
-            var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function () {
-                if (!$(this).val()) {
-                    $(this).addClass("error");
-                    empty = true;
-                } else {
-                    $(this).removeClass("error");
-                }
-            });
-            $(this).parents("tr").find(".error").first().focus();
-            if (!empty) {
-                input.each(function () {
-                    $(this).parent("td").html($(this).val());
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").removeAttr("disabled");
-            }
-        });
-        // Edit row on edit button click
-        $(document).on("click", ".edit", function () {
-            $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").attr("disabled", "disabled");
-        });
+            
+            
+            $("table").append(actions);
+        });        
+
         // Delete row on delete button click
         $(document).on("click", ".delete", function () {
             $(this).parents("tr").remove();
@@ -174,30 +138,62 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Quân Hàm</th>
-                        <th>Năm nhận</th>
-                        <th>Công cụ</th>
-                    </tr>
-                </thead>
+            <form action="" method="post" enctype="multipart/form-data">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Quân Hàm</th>
+                            <th>Năm nhận</th>
+                            <th>Công cụ</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Hạ sĩ</td>
-                        <td>2/2017</td>
-                        <td>
-                            <a class="add" title="Thêm"><i class="fa fa-plus-circle"></i></a>
-                            <a class="edit" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                            <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
-                        </td>
-                    </tr>
+                    <tbody>
+                        @foreach (var item in ViewBag.QuanHamLHS)
+                        {
+                            string NgayNhan = null;
+                            if (@item.NgayNhan != null)
+                            {
+                                string NgayNhanStr = @item.NgayNhan.ToString();
+                                DateTime date = (Convert.ToDateTime(NgayNhanStr));
+                                NgayNhan = date.Year + "-" + date.Month + "-" + date.Day;
+                            }
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <select class="form-control" name="MaQuanHam" id="MaQuanHam">
+                                        <option value="0" label="Chưa nhập" ></option>
+                                        @foreach (var qh in ViewBag.QuanHam)
+                                        {
+                                            if (@item.MaQuanHam == @qh.MaQuanHam)
+                                            {
+                                                <option value="@qh.MaQuanHam" label="@qh.TenQuanHam" selected></option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@qh.MaQuanHam" label="@qh.TenQuanHam" ></option>
+                                            }
+
+                                        }
+                                    </select>
+                                </td>
+                                <td><input class="form-control" value="@NgayNhan" type="date" name="NgayNhan" /></td>
+                                <td>                                                                     
+                                    <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
+                                </td>
+                            </tr>
+                        }
+                          
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Lưu</button>
+                
+            </form>
             </div>
+<script>
+
+</script>
 

@@ -13,7 +13,6 @@ namespace QLDHS.Models.Entity
         public DonVi()
         {
             LuuHocSinhs = new HashSet<LuuHocSinh>();
-            LuuHocSinhs1 = new HashSet<LuuHocSinh>();
         }
 
         [Key]
@@ -32,8 +31,5 @@ namespace QLDHS.Models.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LuuHocSinh> LuuHocSinhs { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LuuHocSinh> LuuHocSinhs1 { get; set; }
     }
 }

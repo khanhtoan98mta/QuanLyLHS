@@ -7,6 +7,7 @@ namespace QLDHS.Models.Entity
 {
     public class Thongtincoban
     {
+        public int LHSID { get; set; }
         public string MaLHS { get; set; }
         public string HoTen { get; set; }
         public DateTime? NgaySinh { get; set; }

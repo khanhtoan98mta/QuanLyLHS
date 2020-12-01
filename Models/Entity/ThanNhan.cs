@@ -10,7 +10,6 @@ namespace QLDHS.Models.Entity
     public partial class ThanNhan
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaThanNhan { get; set; }
 
         [StringLength(100)]

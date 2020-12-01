@@ -814,7 +814,7 @@
     $("#fileInput").change(function(){
         var formData = new FormData();
         formData.append('AvatarImg', $('#fileInput')[0].files[0]);
-        var id = "@Model.MaLHS";
+        var id = "@Model.LHSID";
         formData.append('id',id)
         $.ajax({
             url: 'UploadAvatar',

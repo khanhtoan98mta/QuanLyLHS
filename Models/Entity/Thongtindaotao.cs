@@ -7,6 +7,7 @@ namespace QLDHS.Models.Entity
 {
     public class Thongtindaotao
     {
+        public int LHSID { get; set; }
         public string MaLHS { get; set; }
         public string Diaban { get; set; }
         public int CSDaoTao { get; set; }

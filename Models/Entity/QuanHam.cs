@@ -21,7 +21,12 @@ namespace QLDHS.Models.Entity
         [StringLength(50)]
         public string TenQuanHam { get; set; }
 
-        public int? NienHan { get; set; }
+        public double? NienHan { get; set; }
+
+        [StringLength(5)]
+        public string KiHieu { get; set; }
+
+        public int? MaDoiTuong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LHS_QuanHam> LHS_QuanHam { get; set; }
