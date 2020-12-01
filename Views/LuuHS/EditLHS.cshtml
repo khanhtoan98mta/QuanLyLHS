@@ -75,8 +75,6 @@
         DateTime date4 = (Convert.ToDateTime(ngaydangctStr));
         ngaychuyendangct = date4.Year + "-" + date4.Month + "-" + date4.Day;
     }
-
-
 }
 
 <div class="container">
@@ -136,7 +134,7 @@
 
                         <form action="./EditLHSTTCoban" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
-                            <input type="text" name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display: none" >
+                            <input type="text" name="LHISD" id="LHSID" value="@ViewBag.LHSID" style="display: none" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -371,7 +369,7 @@
 
                         <form action="./EditLHSTTDaotao" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin đào tạo</h5>
-                            <input type="text" name="MaLHS" id="MaLHS" value="@ViewBag.malhs" style="display: none">
+                            <input type="text" name="LHSID" id="LHSID" value="@ViewBag.LHSID" style="display: none">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
