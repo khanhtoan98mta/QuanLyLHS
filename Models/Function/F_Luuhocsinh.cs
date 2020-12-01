@@ -34,24 +34,9 @@ namespace QLDHS.Models.Function
             return allInfoLHS;
         }
 
-        public InforLHS Detai_LHS_Ma(string malhs)
-        {           
-            foreach (var item in allInfoLHS)
-            {
-                if (item.MaLHS == null)
-                {
-                    continue;
-                }
-                if (item.MaLHS.TrimEnd() == malhs)
-                {
-                    return item;
-                }
-            }
-
-
-            return null;
-
-
+        public InforLHS Detai_LHS_Ma(int LHSID)
+        {
+            return allInfoLHS.Single(x => x.LHSID == LHSID);
 
         }
 
@@ -64,11 +49,11 @@ namespace QLDHS.Models.Function
             
         }
 
-        public bool ChangeImageLHS(string id,string image)
+        public bool ChangeImageLHS(int id,string image)
         {
             using (var db = new LUUHS())
             {
-                var result = db.LuuHocSinhs.SingleOrDefault(b => b.MaLHS == id);
+                var result = db.LuuHocSinhs.Single(b => b.LHSID == id);
                 if (result != null)
                 {
                     result.Image = image;
@@ -81,7 +66,8 @@ namespace QLDHS.Models.Function
         public bool EditThongtincoban(Thongtincoban info)
         {
             LUUHS db = new LUUHS();
-            LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.MaLHS == info.MaLHS);
+            LuuHocSinh lhs = new LuuHocSinh();
+            lhs = db.LuuHocSinhs.Single(x => x.LHSID == info.LHSID);
             try
             {
                 if (lhs != null)
@@ -95,7 +81,7 @@ namespace QLDHS.Models.Function
                     lhs.ThongTinLienLac = info.ThongTinLienLac;
                     lhs.MaDoiTuong = info.MaDoiTuong;
                     lhs.QueQuan = info.QueQuan;
-                    lhs.MaDVBM = info.BoMon;
+                   
                     lhs.SoHieuSiQuan = info.SoHieuSiQuan;
                     lhs.NgayNhapNgu = info.NgayNhapNgu;
                     lhs.NgayVaoDoan = info.NgayVaoDoan;
@@ -153,7 +139,7 @@ namespace QLDHS.Models.Function
 
            
                 LUUHS db = new LUUHS();
-                LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.MaLHS == info.MaLHS);
+                LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.LHSID == info.LHSID);
                 LuanVanTotNghiep lvtn;
                 KetQuaHocTap kqht;
                 QuyetDinhDiHoc qd;

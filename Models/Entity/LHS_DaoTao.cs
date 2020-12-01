@@ -8,10 +8,13 @@ namespace QLDHS.Models.Entity
 
     public partial class LHS_DaoTao
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         public int LHSID { get; set; }
+
+        public int? MaBMDaoTao { get; set; }
+
+        public int? MaKhoaDaoTao { get; set; }
 
         public int MaCSDaoTao { get; set; }
 
@@ -31,5 +34,19 @@ namespace QLDHS.Models.Entity
         public string ThoiGianDaoTao { get; set; }
 
         public int? TinhTrangTotNghiep { get; set; }
+
+        public virtual BacDaoTao BacDaoTao { get; set; }
+
+        public virtual BoMonDaoTao BoMonDaoTao { get; set; }
+
+        public virtual ChuyenNganhDaoTao ChuyenNganhDaoTao { get; set; }
+
+        public virtual ChuyenNganhDaoTao ChuyenNganhDaoTao1 { get; set; }
+
+        public virtual CoSoDaoTao CoSoDaoTao { get; set; }
+
+        public virtual KhoaDaoTao KhoaDaoTao { get; set; }
+
+        public virtual LuuHocSinh LuuHocSinh { get; set; }
     }
 }

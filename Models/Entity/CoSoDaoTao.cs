@@ -9,6 +9,13 @@ namespace QLDHS.Models.Entity
     [Table("CoSoDaoTao")]
     public partial class CoSoDaoTao
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CoSoDaoTao()
+        {
+            KhoaDaoTaos = new HashSet<KhoaDaoTao>();
+            LHS_DaoTao = new HashSet<LHS_DaoTao>();
+        }
+
         [Key]
         public int MaCSDaoTao { get; set; }
 
@@ -18,5 +25,11 @@ namespace QLDHS.Models.Entity
         public int? IDDiaBan { get; set; }
 
         public virtual DiaBanDaoTao DiaBanDaoTao { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KhoaDaoTao> KhoaDaoTaos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LHS_DaoTao> LHS_DaoTao { get; set; }
     }
 }

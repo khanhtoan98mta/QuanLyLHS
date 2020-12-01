@@ -27,16 +27,16 @@ namespace QLDHS.Controllers
             return View();
         }
 
-        public ActionResult EditLHS(string MALHS)
+        public ActionResult EditLHS(int LHSID)
         {
            
             LUUHS db = new LUUHS();
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
-            var detaillhs = f_lhs.Detai_LHS_Ma(MALHS);
+            var detaillhs = f_lhs.Detai_LHS_Ma(LHSID);
             ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
             ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
             ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
-            ViewBag.malhs = MALHS;
+            ViewBag.malhs = detaillhs.MaLHS; 
             ViewBag.CSDaotao = db.CoSoDaoTaos;
             ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
             ViewBag.BacDaoTao = db.BacDaoTaos;
@@ -51,10 +51,10 @@ namespace QLDHS.Controllers
 
             return View(detaillhs);
         }
-        public ActionResult EditQuanHam(string MaLHS)
+        public ActionResult EditQuanHam(int LHSID)
         {
             LUUHS db = new LUUHS();
-            LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.MaLHS == MaLHS);
+            LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.LHSID == LHSID);
             ViewBag.QuanHamLHS = db.LHS_QuanHam.Where(x => x.LHSID == lhs.LHSID);
             ViewBag.QuanHam = db.QuanHams;
             return View();
@@ -75,7 +75,7 @@ namespace QLDHS.Controllers
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditThongtincoban(infolhs);
 
-            return (Redirect("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
+            return (Redirect("/luuhs/EditLHS?LHSID=" + infolhs.LHSID));
 
         }
 
@@ -84,14 +84,14 @@ namespace QLDHS.Controllers
         {
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditLHSTTDaotao(infolhs);
-            return (Redirect("/luuhs/EditLHS?MaLHS=" + infolhs.MaLHS));
+            return (Redirect("/luuhs/EditLHS?LHSID=" + infolhs.LHSID));
         }
         
-        public ActionResult DetailLHS(string MALHS)
+        public ActionResult DetailLHS(int LHSID)
         {
             LUUHS lhs = new LUUHS();
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
-            var detaillhs = f_lhs.Detai_LHS_Ma(MALHS);
+            var detaillhs = f_lhs.Detai_LHS_Ma(LHSID);
 
             ViewBag.Doituong = lhs.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
             return View(detaillhs);
@@ -132,7 +132,7 @@ namespace QLDHS.Controllers
         {
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.AddNewLHS(luuhocsinh);
-            return (RedirectToAction("/luuhs/EditLHS?MaLHS="+luuhocsinh.MaLHS));
+            return (RedirectToAction("/luuhs/EditLHS?LHSID="+luuhocsinh.LHSID));
         }
 
 
@@ -153,7 +153,7 @@ namespace QLDHS.Controllers
                 string targetPath = Path.Combine(targetFolder, id+ fileExtend);
                 AvatarImg.SaveAs(targetPath);
                 F_Luuhocsinh f_lhs = new F_Luuhocsinh();
-                f_lhs.ChangeImageLHS(id, "Content/img/img_lhs/"+id+ fileExtend);
+                f_lhs.ChangeImageLHS(Convert.ToInt32(id), "Content/img/img_lhs/"+id.ToString()+ fileExtend);
                 return "Upload thành công";
             }
             catch (Exception)

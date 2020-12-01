@@ -92,9 +92,9 @@ namespace QLDHS.Models.Entity
         public int? MaCSDaoTao { get; set; }
         public string ThoiGianHoc { get; set; }
 
-
-
-
+        public string VePhepTC { get; set; }
+        public string VePhepTT { get; set; }
+        public string KiHieu { get; set; }
 
     }
 }
