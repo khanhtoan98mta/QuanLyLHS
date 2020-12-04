@@ -26,9 +26,6 @@ namespace QLDHS.Models.Entity
         public virtual DbSet<KhoaDaoTao> KhoaDaoTaos { get; set; }
         public virtual DbSet<KyLuat> KyLuats { get; set; }
         public virtual DbSet<LHS_DaoTao> LHS_DaoTao { get; set; }
-        public virtual DbSet<LHS_KhenThuong> LHS_KhenThuong { get; set; }
-        public virtual DbSet<LHS_KyLuat> LHS_KyLuat { get; set; }
-        public virtual DbSet<LHS_QuanHam> LHS_QuanHam { get; set; }
         public virtual DbSet<LHS_VePhep> LHS_VePhep { get; set; }
         public virtual DbSet<LuanVanTotNghiep> LuanVanTotNghieps { get; set; }
         public virtual DbSet<LuuHocSinh> LuuHocSinhs { get; set; }
@@ -37,7 +34,6 @@ namespace QLDHS.Models.Entity
         public virtual DbSet<QuaTrinhCongTac> QuaTrinhCongTacs { get; set; }
         public virtual DbSet<QuyetDinhDiHoc> QuyetDinhDiHocs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanNhan> ThanNhans { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<VePhep> VePheps { get; set; }
@@ -63,11 +59,6 @@ namespace QLDHS.Models.Entity
                 .WithOptional(e => e.ChuyenNganhDaoTao1)
                 .HasForeignKey(e => e.MaCNDaoTao2);
 
-            modelBuilder.Entity<CoSoDaoTao>()
-                .HasMany(e => e.LHS_DaoTao)
-                .WithRequired(e => e.CoSoDaoTao)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<DiaBanDaoTao>()
                 .Property(e => e.MaDiaBan)
                 .IsUnicode(false);
@@ -77,20 +68,10 @@ namespace QLDHS.Models.Entity
                 .WithOptional(e => e.DonVi)
                 .HasForeignKey(e => e.MaDVBQP);
 
-            modelBuilder.Entity<KhenThuong>()
-                .HasMany(e => e.LHS_KhenThuong)
-                .WithRequired(e => e.KhenThuong)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<KhoaDaoTao>()
                 .HasMany(e => e.LHS_DaoTao)
                 .WithOptional(e => e.KhoaDaoTao)
                 .HasForeignKey(e => e.MaKhoaDaoTao);
-
-            modelBuilder.Entity<KyLuat>()
-                .HasMany(e => e.LHS_KyLuat)
-                .WithRequired(e => e.KyLuat)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LuuHocSinh>()
                 .Property(e => e.MaLHS)
@@ -103,21 +84,6 @@ namespace QLDHS.Models.Entity
 
             modelBuilder.Entity<LuuHocSinh>()
                 .HasMany(e => e.LHS_DaoTao)
-                .WithRequired(e => e.LuuHocSinh)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<LuuHocSinh>()
-                .HasMany(e => e.LHS_KhenThuong)
-                .WithRequired(e => e.LuuHocSinh)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<LuuHocSinh>()
-                .HasMany(e => e.LHS_KyLuat)
-                .WithRequired(e => e.LuuHocSinh)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<LuuHocSinh>()
-                .HasMany(e => e.LHS_QuanHam)
                 .WithRequired(e => e.LuuHocSinh)
                 .WillCascadeOnDelete(false);
 
@@ -135,11 +101,6 @@ namespace QLDHS.Models.Entity
                 .Property(e => e.KiHieu)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<QuanHam>()
-                .HasMany(e => e.LHS_QuanHam)
-                .WithRequired(e => e.QuanHam)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ThanNhan>()
                 .Property(e => e.CanBo)

@@ -51,6 +51,10 @@ namespace QLDHS.Models.Entity
         public float? BHYT { get; set; }
         public float? ChiPhiKhac { get; set; }
         public string QuyetDinhDuHoc { get; set; }
+        public int Khoa { get; set; }
+        public int BoMon { get; set; }
+
+
 
 
 

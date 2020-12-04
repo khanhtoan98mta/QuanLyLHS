@@ -34,29 +34,22 @@ namespace QLDHS.Controllers
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             var detaillhs = f_lhs.Detai_LHS_Ma(LHSID);
             ViewBag.Doituong = db.DoiTuongs.Where(x => x.MaDoiTuong != 0).ToList();
-            ViewBag.BoMon = db.DonVis.Where(x => x.CapDonVi == 1).ToList();
-            ViewBag.Khoa = db.DonVis.Where(x => x.CapDonVi == 2).ToList();
-            ViewBag.LHSID = detaillhs.LHSID; 
+            ViewBag.BoMon = db.BoMonDaoTaos.ToList();
+            ViewBag.Khoa = db.KhoaDaoTaos.ToList();
+            ViewBag.LHSID = LHSID; 
             ViewBag.CSDaotao = db.CoSoDaoTaos;
             ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
             ViewBag.BacDaoTao = db.BacDaoTaos;
             ViewBag.NganhDT = db.NganhDaoTaos;
-            ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;           
-            var lhs_time = f_lhs.Thongke_LHS_time(DateTime.UtcNow.Year);
-            for (int i = 0; i < lhs_time.Count; i++)
-            {
-                lhs_time[i].madiaban = lhs_time[i].madiaban.Trim();
-            }
-            ViewBag.diaban = lhs_time;
+            ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
+            ViewBag.diaban = db.DiaBanDaoTaos.ToList();
+            ViewBag.QuanHam = db.QuanHams.ToList();
 
             return View(detaillhs);
         }
         public ActionResult EditQuanHam(int LHSID)
         {
-            LUUHS db = new LUUHS();
-            LuuHocSinh lhs = db.LuuHocSinhs.SingleOrDefault(x => x.LHSID == LHSID);
-            ViewBag.QuanHamLHS = db.LHS_QuanHam.Where(x => x.LHSID == lhs.LHSID);
-            ViewBag.QuanHam = db.QuanHams;
+            
             return View();
         }
         public ActionResult EditKhenThuongVaKiLuat()
@@ -110,7 +103,7 @@ namespace QLDHS.Controllers
             {
                 malhs += "0";
             }
-            else if (count > 0 && count<10)
+            else if (count >= 0 && count<10)
             {
                 malhs += "00";
             }

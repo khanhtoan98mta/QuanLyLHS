@@ -155,6 +155,8 @@ namespace QLDHS.Models.Function
                             ID = lhs.LHSID,
                             LHSID = lhs.LHSID,
                             MaCSDaoTao = info.CSDaoTao,
+                            MaKhoaDaoTao = info.Khoa,
+                            MaBMDaoTao = info.BoMon,
                             MaBacDaoTao = info.MaBacDaoTao,
                             MaCNDaoTao1 = info.CNDT1,
                             MaCNDaoTao2 = info.CNDT2,                            
@@ -170,8 +172,12 @@ namespace QLDHS.Models.Function
                     {
                         lhs_daotao = db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID);
                         lhs_daotao.MaCSDaoTao = info.CSDaoTao;
+                        lhs_daotao.MaKhoaDaoTao = info.Khoa;
+                        lhs_daotao.MaBMDaoTao = info.BoMon;
                         lhs.MaDKP = info.MaDienKinhPhi;
                         lhs_daotao.MaBacDaoTao = info.MaBacDaoTao;
+
+
                         lhs_daotao.MaCNDaoTao1 = info.CNDT1;
                         lhs_daotao.MaCNDaoTao2 = info.CNDT2;
 

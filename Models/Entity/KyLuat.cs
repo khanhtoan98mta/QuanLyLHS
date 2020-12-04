@@ -9,19 +9,10 @@ namespace QLDHS.Models.Entity
     [Table("KyLuat")]
     public partial class KyLuat
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KyLuat()
-        {
-            LHS_KyLuat = new HashSet<LHS_KyLuat>();
-        }
-
         [Key]
         public int MaKyLuat { get; set; }
 
         [StringLength(100)]
         public string LoaiKyLuat { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LHS_KyLuat> LHS_KyLuat { get; set; }
     }
 }

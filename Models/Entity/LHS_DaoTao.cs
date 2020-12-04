@@ -16,7 +16,7 @@ namespace QLDHS.Models.Entity
 
         public int? MaKhoaDaoTao { get; set; }
 
-        public int MaCSDaoTao { get; set; }
+        public int? MaCSDaoTao { get; set; }
 
         public int? MaCNDaoTao1 { get; set; }
 

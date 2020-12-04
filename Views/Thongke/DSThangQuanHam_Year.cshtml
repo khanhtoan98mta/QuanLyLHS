@@ -1,18 +1,19 @@
 ﻿
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 
 
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/Scripts/pdfmake/pdfmake.min.js"></script>
+<script src="~/Scripts/pdfmake/vfs_fonts.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.min.js"></script>
 
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -45,7 +46,7 @@
                 <th scope="col">Họ tên</th>
                 <th scope="col">Ngày nhận</th>
                 <th scope="col">Quân hàm hiện tại</th>
-                <th scope="col">Cơ sở đào tạo</th>
+                <th scope="col" >Cơ sở đào tạo</th>
                 <th scope="col">Địa bàn</th>
                 <th scope="col">Công cụ</th>
 
@@ -74,11 +75,10 @@
                     </td>
                     <td scope="row">@ngaynhan</td>
                     <td scope="row">@item.QuanHam</td>
-                    <td scope="row">@item.CSDaoTao</td>
+                    <td scope="row" >@item.CSDaoTao</td>
                     <td scope="row">@item.DiaBan</td>
                     <td scope="row">
-                        <a href="~/LuuHS/DetailLHS?MALHS=@item.MaLHS"><div type="button" class="btn btn-primary" title="Xem chi tiết"><i class="fa fa-eye fa-sm"></i></div></a>
-                        <a href="~/LuuHS/EditLHS?MALHS=@item.MaLHS"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit fa-sm"></i></div></a>
+                        <a href="~/LuuHS/EditLHS?LHSID=@item.LHSID"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit fa-sm"></i></div></a>
                         <a href="#"><div type="button" class="btn btn-danger" title="Xóa sinh viên"><i class="fa fa-trash-o fa-sm"></i></div></a>
                     </td>
                 </tr>
@@ -94,11 +94,13 @@
 </script>
 
 <script>
+    var columnss;
     $(document).ready(function () {
 
         // Cấu hình các nhãn phân trang
-        $('#alllhs').dataTable({
+        var table = $('#alllhs').dataTable({
             dom: 'Bfrtip',
+
             buttons: [
                 {
                     text: 'Word',
@@ -120,7 +122,14 @@
                 },
                 {
                     extend: 'print',
-                    title: 'Thống kê thăng quân hàm năm ' + x
+                    title: 'Thống kê thăng quân hàm năm ' + x,
+                    exportOptions: {
+                        columns: [0, 1, 2, 5]
+                    }
+                },                
+                {
+                    extend: 'colvis',                                       
+                    columns: [0, 1, 2, 5]
                 }
             ],
             "language": {
@@ -148,9 +157,16 @@
         $("#alllhs").css("font-size", 16);
         table.columns.adjust().draw();
     });
+    $('#alllhs').on('column-visibility.dt', function (e, settings, column, state) {
+        console.log(
+            'Column ' + column + ' has changed to ' + (state ? 'visible' : 'hidden')
+        );
+    });
 
     function GetDate(date) {
         GetDate(date);
 
     }
 </script>
+
+<link href="~/Content/DataTables/css/DataTables.Colvis.css" rel="stylesheet" type="text/css" />
