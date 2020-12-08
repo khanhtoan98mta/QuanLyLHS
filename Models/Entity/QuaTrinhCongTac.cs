@@ -10,7 +10,6 @@ namespace QLDHS.Models.Entity
     public partial class QuaTrinhCongTac
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaQuaTrinh { get; set; }
 
         [Column("QuaTrinhCongTac")]

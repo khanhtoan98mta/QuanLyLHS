@@ -16,19 +16,71 @@
         thongtinbo = Model.ThongTinGiaDinh.Split('/')[0];
         thongtinme = Model.ThongTinGiaDinh.Split('/')[1];
     }
+    string ThoiGianDi = null;
+    string ThoiGianVe = null;
+    if (Model.ThoiGianDi != null)
+    {
+        string ngaysinhStr = Model.ThoiGianDi.ToString();
+        DateTime date = (Convert.ToDateTime(ngaysinhStr));
+        string month_kt = "-" + date.Month;
+        if (date.Month < 10)
+        {
+            month_kt = "-0" + date.Month;
+
+        }
+
+        ThoiGianDi = date.Year + month_kt ;
+    }
+    if (Model.ThoiGianVe != null)
+    {
+        string ngaysinhStr = Model.ThoiGianVe.ToString();
+        DateTime date = (Convert.ToDateTime(ngaysinhStr));
+        string  month_kt = "-" + date.Month;
+        if (date.Month < 10)
+        {
+            month_kt = "-0" + date.Month;
+
+        }
+
+        ThoiGianVe = date.Year + month_kt ;
+    }
     string thoigianbatdauhoc = null;
     string thoigianketthuchoc = null;
     if (Model.ThoiGianBatDauHoc!=null)
     {
         string ngaysinhStr = Model.ThoiGianBatDauHoc.ToString();
         DateTime date = (Convert.ToDateTime(ngaysinhStr));
-        thoigianbatdauhoc = date.Year + "-" + date.Month + "-" + date.Day;
+        string day_kt = "-" + date.Day, month_kt = "-" + date.Month;
+        if (date.Day < 10)
+        {
+            day_kt = "-0" + date.Day;
+
+        }
+        if (date.Month < 10)
+        {
+            month_kt = "-0" + date.Month;
+
+        }
+
+        thoigianbatdauhoc = date.Year + month_kt + day_kt;
     }
     if (Model.ThoiGianKetThucHoc != null)
     {
         string ngaysinhStr = Model.ThoiGianKetThucHoc.ToString();
         DateTime date = (Convert.ToDateTime(ngaysinhStr));
-        thoigianketthuchoc = date.Year + "-" + date.Month + "-" + date.Day;
+        string day_kt = "-" + date.Day, month_kt = "-" + date.Month;
+        if (date.Day < 10)
+        {
+            day_kt = "-0" + date.Day;
+
+        }
+        if (date.Month < 10)
+        {
+            month_kt = "-0" + date.Month;
+
+        }
+
+        thoigianketthuchoc = date.Year + month_kt + day_kt;
     }
 
     string ngaysinhdate = null;
@@ -146,12 +198,18 @@
                     <input id="fileInput" type="file" style="display:none;" accept="image/*" />
                     <button id="upfilebtn" onclick="document.getElementById('fileInput').click()" type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Thêm ảnh</button>
                     
+                
+                    <a class="btn btn-success btn-xs waves-effect mb-2 waves-light" role="button" href="/luuhs/XuatPhieuLHS?LHSID=@Model.LHSID" id="xuatphieulhs"  >
+                       Xuất phiếu LHS
+                    </a>
+                    
                 </form>
+                
                 <div class="text-left mt-3">
                     <p class="text-muted font-13 mb-2">
                         <strong>Cơ sở đào tạo :</strong><span class="ml-2"> @Model.CSDaoTao</span>
                     </p>
-                    <p class="text-muted mb-2 font-13"><strong>Bậc đào tạo :</strong> <span class="ml-2">@Model.CSDaoTao</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Bậc đào tạo :</strong> <span class="ml-2">@Model.BacDaoTao</span></p>
 
                     <p class="text-muted mb-2 font-13">
                         <strong>Kinh phí đào tạo :</strong><span class="ml-2">
@@ -159,7 +217,7 @@
                         </span>
                     </p>
                     <p class="text-muted mb-2 font-13"><strong>Đia chỉ liên lạc :</strong> <span class="ml-2 ">@Model.DiaChiLienLac</span></p>
-                    <p class="text-muted mb-2 font-13"><strong>Đoàn trưởng :</strong> <span class="ml-2 ">@Model.CanBo</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Đoàn trưởng :</strong> <span class="ml-2 ">@Model.DoanTruong</span></p>
 
                 </div>
 
@@ -434,7 +492,7 @@
                                     <div class="form-group">
                                         <label for="firstname">Khoa</label>
                                         <select value="@Model.Khoa" type="text" class="form-control" id="Khoa" name="Khoa" placeholder="Khoa">
-                                            <option value="-1" data-filter="-1">------------------</option>
+                                            <option value="-1">------------------</option>
                                             @foreach (var item in @ViewBag.Khoa)
                                             {
                                                 <option value="@item.MaKhoa" data-filter="@item.MaCSDaoTao">@item.TenKhoa</option>
@@ -447,7 +505,7 @@
                                     <div class="form-group">
                                         <label for="lastname">Bộ môn</label>
                                         <select type="text" class="form-control" id="BoMon" name="BoMon" placeholder="Bộ môn">
-                                            <option value="-1" data-filter="-1">------------------</option>
+                                            <option value="-1">------------------</option>
                                             
                                             @foreach (var item in @ViewBag.BoMon)
                                             {
@@ -558,13 +616,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">TG đi học theo quyết định</label>
-                                        <input value="@thoigianbatdauhoc" type="month" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
+                                        <input value="@ThoiGianDi" type="month" class="form-control" id="ThoiGianDi" name="ThoiGianDi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">TG tốt nghiệp theo quyết định</label>
-                                        <input value="@thoigianketthuchoc" type="month" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
+                                        <input value="@ThoiGianVe" type="month" class="form-control" id="ThoiGianVe" name="ThoiGianVe">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -846,7 +904,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Thông tin QĐ cử đi học</label>
-                                        <textarea class="form-control" id="QuyetDinhDuHoc" name="QuyetDinhDuHoc" rows="2">@Model.QuyetDinhDuHoc</textarea>
+                                        <textarea class="form-control" id="QuyetDinhDiHoc" name="QuyetDinhDiHoc" rows="2">@Model.QuyetDinhDiHoc</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -1068,11 +1126,11 @@
         var iddiaban = $("#Diaban :selected").val();
         
         filterCombobox($("#CSDaoTao"), iddiaban, true);
-        $('#CSDaoTao option[value=-1]').attr('selected', 'selected');
+        //$('#CSDaoTao option[value=-1]').attr('selected', 'selected');
 
 
     })
-    
+
     setInterval( function(){
         var khoa1 = $("#Khoa").val();
         var csdaotao1 = $("#CSDaoTao").val();

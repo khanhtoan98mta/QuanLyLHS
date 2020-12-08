@@ -10,7 +10,6 @@ namespace QLDHS.Models.Entity
     public partial class LuanVanTotNghiep
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaLuanVan { get; set; }
 
         [StringLength(50)]

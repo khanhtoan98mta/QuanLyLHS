@@ -26,10 +26,9 @@ background: #a1c4fd ;  /* fallback for old browsers */
   letter-spacing: 0.1em;
 }
 #sidebarCollapse{
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
+  position: relative;
   top: 0;
-  z-index:2
+  z-index:10
 }
 #myBtn {
   display: none;

@@ -34,6 +34,7 @@ namespace QLDHS.Models.Entity
         public virtual DbSet<QuaTrinhCongTac> QuaTrinhCongTacs { get; set; }
         public virtual DbSet<QuyetDinhDiHoc> QuyetDinhDiHocs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanNhan> ThanNhans { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<VePhep> VePheps { get; set; }

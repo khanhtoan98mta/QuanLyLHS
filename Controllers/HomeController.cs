@@ -11,15 +11,11 @@ using Newtonsoft.Json;
 namespace QLDHS.Controllers
 {
     
-
-
     public class DataMap
     {
         string iso {  get; set; }
         int soluong { get; set; }
-
-        
-        
+    
     }
 
     public class HomeController : Controller
@@ -145,7 +141,7 @@ namespace QLDHS.Controllers
                     headerRange.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
                     headerRange.Font.ColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdBlue;
                     headerRange.Font.Size = 14;
-                    headerRange.Text = "BÁO CÁO THỐNG KÊ DU HỌC SINH";
+                    headerRange.Text = "BÁO CÁO THỐNG KÊ LƯU HỌC SINH";
                 }
 
                 //them footer
@@ -161,7 +157,7 @@ namespace QLDHS.Controllers
 
                 //adding text to document  
                 document.Content.SetRange(0, 0);
-                document.Content.Text = "Báo cáo thống kê du học sinh trong năm qua :  " + Environment.NewLine;
+                document.Content.Text = "Báo cáo thống kê lưu học sinh trong năm qua :  " + Environment.NewLine;
 
                 //thêm đoạn văn 1
                 Microsoft.Office.Interop.Word.Paragraph para1 = document.Content.Paragraphs.Add(ref missing);
