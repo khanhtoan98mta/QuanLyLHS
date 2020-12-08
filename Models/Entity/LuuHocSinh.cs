@@ -14,9 +14,6 @@ namespace QLDHS.Models.Entity
         {
             KetQuaHocTaps = new HashSet<KetQuaHocTap>();
             LHS_DaoTao = new HashSet<LHS_DaoTao>();
-            LHS_KhenThuong = new HashSet<LHS_KhenThuong>();
-            LHS_KyLuat = new HashSet<LHS_KyLuat>();
-            LHS_QuanHam = new HashSet<LHS_QuanHam>();
             LHS_VePhep = new HashSet<LHS_VePhep>();
             LuanVanTotNghieps = new HashSet<LuanVanTotNghiep>();
             QuaTrinhCongTacs = new HashSet<QuaTrinhCongTac>();
@@ -84,9 +81,6 @@ namespace QLDHS.Models.Entity
 
         public string Image { get; set; }
 
-        [StringLength(50)]
-        public string QuanHam { get; set; }
-
         [StringLength(500)]
         public string NghienCuuNoiBat { get; set; }
 
@@ -98,6 +92,15 @@ namespace QLDHS.Models.Entity
         public int? MaDoiTuong { get; set; }
 
         public int? MaDVBQP { get; set; }
+
+        public string KhenThuong { get; set; }
+
+        public string KyLuat { get; set; }
+
+        public int? MaQuanHam { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? NgayNhanQuanHam { get; set; }
 
         public virtual DienKinhPhiDaoTao DienKinhPhiDaoTao { get; set; }
 
@@ -112,19 +115,12 @@ namespace QLDHS.Models.Entity
         public virtual ICollection<LHS_DaoTao> LHS_DaoTao { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LHS_KhenThuong> LHS_KhenThuong { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LHS_KyLuat> LHS_KyLuat { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LHS_QuanHam> LHS_QuanHam { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LHS_VePhep> LHS_VePhep { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LuanVanTotNghiep> LuanVanTotNghieps { get; set; }
+
+        public virtual QuanHam QuanHam { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuaTrinhCongTac> QuaTrinhCongTacs { get; set; }

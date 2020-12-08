@@ -41,7 +41,19 @@
     {
         string ngaysinhStr = Model.NgaySinh.ToString();
         DateTime date = (Convert.ToDateTime(ngaysinhStr));
-        ngaysinhdate = date.Year + "-" + date.Month + "-" + date.Day;
+        string day = "-"+date.Day , month = "-"+date.Month;
+        if (date.Day<10 )
+        {
+            day = "-0" + date.Day;
+
+        }
+        if (date.Month < 10)
+        {
+            month = "-0" + date.Month;
+
+        }
+
+        ngaysinhdate = date.Year + month + day;
 
     }
     if (Model.NgayNhapNgu != null)
@@ -49,7 +61,20 @@
 
         string ngaynhapnguStr = Model.NgayNhapNgu.ToString();
         DateTime date1 = (Convert.ToDateTime(ngaynhapnguStr));
-        ngaynhapngu = date1.Year + "-" + date1.Month + "-" + date1.Day;
+        string day1 = "-" + date1.Day, month1 = "-" + date1.Month;
+        if (date1.Day < 10)
+        {
+            day1 = "-0" + date1.Day;
+
+        }
+        if (date1.Month < 10)
+        {
+            month1 = "-0" + date1.Month;
+
+        }
+
+        ngaynhapngu = date1.Year + month1 + day1;
+
 
     }
     if (Model.NgayVaoDoan != null)
@@ -57,7 +82,18 @@
 
         string ngaydoanStr = Model.NgayVaoDoan.ToString();
         DateTime date2 = (Convert.ToDateTime(ngaydoanStr));
-        ngayvaodoan = date2.Year + "-" + date2.Month + "-" + date2.Day;
+        string day2 = "-" + date2.Day, month2 = "-" + date2.Month;
+        if (date2.Day < 10)
+        {
+            day2 = "-0" + date2.Day;
+        }
+        if (date2.Month < 10)
+        {
+            month2 = "-0" + date2.Month;
+        }
+
+        ngayvaodoan = date2.Year + month2 + day2;
+
 
     }
     if (Model.NgayVaoDang != null)
@@ -65,7 +101,17 @@
 
         string ngaydangStr = Model.NgayVaoDang.ToString();
         DateTime date3 = (Convert.ToDateTime(ngaydangStr));
-        ngayvaodang = date3.Year + "-" + date3.Month + "-" + date3.Day;
+        string day3 = "-" + date3.Day, month3 = "-" + date3.Month;
+        if (date3.Day < 10)
+        {
+            day3 = "-0" + date3.Day;
+        }
+        if (date3.Month < 10)
+        {
+            month3 = "-0" + date3.Month;
+        }
+
+        ngayvaodang = date3.Year + month3 + day3;
 
     }
     if (Model.NgayVaoDang != null)
@@ -73,7 +119,17 @@
 
         string ngaydangctStr = Model.NgayVaoDang.ToString();
         DateTime date4 = (Convert.ToDateTime(ngaydangctStr));
-        ngaychuyendangct = date4.Year + "-" + date4.Month + "-" + date4.Day;
+        string day4 = "-" + date4.Day, month4 = "-" + date4.Month;
+        if (date4.Day < 10)
+        {
+            day4 = "-0" + date4.Day;
+        }
+        if (date4.Month < 10)
+        {
+            month4 = "-0" + date4.Month;
+        }
+
+        ngaychuyendangct = date4.Year + month4 + day4;
     }
 }
 
@@ -135,7 +191,7 @@
 
                         <form action="./EditLHSTTCoban" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
-                            <input type="text" name="LHISD" id="LHSID" value="@ViewBag.LHSID" style="display: none" >
+                            <input type="text" name="LHSID" id="LHSID" value="@ViewBag.LHSID" style="display: none" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -225,34 +281,7 @@
                                         <textarea class="form-control" id="NoiOHienNay" name="NoiOHienNay" rows="2" placeholder="Quê quán">@Model.NoiOHienNay</textarea>
                                     </div>
                                 </div>
-                            </div> <!-- end row -->
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="firstname">Khoa</label>
-                                        <select value="@Model.Khoa" type="text" class="form-control" id="Khoa" name="Khoa" placeholder="Khoa">
-                                            @foreach (var item in @ViewBag.Khoa)
-                                            {
-                                                <option value="@item.MaDonVi">@item.DonVi1</option>
-                                            }
-                                        </select>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="lastname">Bộ môn</label>
-                                        <select type="text" class="form-control" id="BoMon" name="BoMon" placeholder="Bộ môn" >
-                                            @foreach (var item in @ViewBag.BoMon)
-                                            {
-                                                <option value="@item.MaDonVi">@item.DonVi1</option>
-                                            }
-
-                                        </select>
-                                    </div>
-                                </div> <!-- end col -->
-                            </div>
+                            </div> <!-- end row -->                            
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -295,7 +324,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Con em cán bộ</label>
-                                        <input type="text" class="form-control" id="Conemcanbo" name="Conemcanbo" placeholder="Không/Có" value="">
+                                        <input type="text" class="form-control" id="Conemcanbo" name="Conemcanbo" placeholder="Không/Có" value="@Model.CanBo">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -376,13 +405,11 @@
                                     <div class="form-group">
                                         <label for="firstname">Địa bàn</label>
                                         <select type="text" class="form-control" id="Diaban" name="Diaban" >
-                                            <option label="Thế giới" value="-1"></option>
+                                            <option label="- - - - - - - - - -" value="-1"></option>
                                             @foreach (var item in ViewBag.diaban)
                                             {
-                                                if (@item.soluong > 0)
-                                                {
-                                                    <option label="@item.diaban" value="@item.madiaban"></option>
-                                                }
+                                                
+                                                    <option label="@item.DiaBan" value="@item.IDDiaBan" data-filter="@item.IDDiaBan" ></option>                                                
 
                                             }
                                          </select>
@@ -392,14 +419,45 @@
                                     <div class="form-group">
                                         <label for="lastname">Cơ sở đào tạo</label>
                                         <select type="text" class="form-control" id="CSDaoTao" name="CSDaoTao" >
+                                            <option value="-1">------------------</option>
                                             @foreach (var item in ViewBag.CSDaotao)
                                             {
-                                                <option label="@item.CSDaoTao" value="@item.MaCSDaoTao"></option>
+                                                <option label="@item.CSDaoTao" value="@item.MaCSDaoTao" data-filter="@item.IDDiaBan"></option>
                                             }
                                             </select>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Khoa</label>
+                                        <select value="@Model.Khoa" type="text" class="form-control" id="Khoa" name="Khoa" placeholder="Khoa">
+                                            <option value="-1" data-filter="-1">------------------</option>
+                                            @foreach (var item in @ViewBag.Khoa)
+                                            {
+                                                <option value="@item.MaKhoa" data-filter="@item.MaCSDaoTao">@item.TenKhoa</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Bộ môn</label>
+                                        <select type="text" class="form-control" id="BoMon" name="BoMon" placeholder="Bộ môn">
+                                            <option value="-1" data-filter="-1">------------------</option>
+                                            
+                                            @foreach (var item in @ViewBag.BoMon)
+                                            {
+                                                <option value="@item.MaBM" data-filter="@item.MaKhoa">@item.TenBoMon</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -484,18 +542,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="firstname">Năm đi học</label>
+                                        <label for="firstname">Ngày đi học </label>
                                         <input value="@thoigianbatdauhoc" type="date" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="lastname">Năm tốt nghiệp</label>
+                                        <label for="lastname">Ngày về nước</label>
                                         <input value="@thoigianketthuchoc" type="date" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">TG đi học theo quyết định</label>
+                                        <input value="@thoigianbatdauhoc" type="month" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">TG tốt nghiệp theo quyết định</label>
+                                        <input value="@thoigianketthuchoc" type="month" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -686,13 +758,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Quân hàm</label>
-                                        <input value="@Model.QuanHam" type="text" class="form-control" id="QuanHam" name="QuanHam" placeholder="Quân hàm hiện tại">
+                                        <select type="text" class="form-control" id="QuanHam" name="QuanHam" placeholder="Quân hàm hiện tại">
+                                           @foreach (var item in ViewBag.QuanHam)
+                                           {
+                                            <option value="@item.MaQuanHam" label="@item.TenQuanHam"></option>
+
+                                           }
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="lastname">Năm nhận quân hàm</label>
-                                        <input value="@Model.NamNhanQuanHam"  type="date" class="form-control" id="NamNhanQuanHam" name="NamNhanQuanHam" >
+                                        <label for="lastname">Thời gian nhận quân hàm</label>
+                                        <input value="@Model.NamNhanQuanHam"  type="month" class="form-control" id="NamNhanQuanHam" name="NamNhanQuanHam" >
                                         
                                     </div>
                                 </div> <!-- end col -->
@@ -702,7 +780,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Khen thưởng</label>
-                                        <textarea class="form-control" id="KhenThuong" name="KhenThuong" rows="2" placeholder="Khen thưởng" disabled>@Model.KhenThuong</textarea>
+                                        <textarea class="form-control" id="KhenThuong" name="KhenThuong" rows="2" placeholder="">@Model.KhenThuong</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -710,11 +788,10 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Kỉ luật</label>
-                                        <textarea class="form-control" id="KiLuat" name="KiLuat" rows="2" placeholder="Kỉ luật" disabled>@Model.KiLuat</textarea>
+                                        <textarea class="form-control" id="KiLuat" name="KiLuat" rows="2" placeholder="">@Model.KiLuat</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -837,29 +914,40 @@
 
     //thêm các giá trị trong form chỉnh sửa: trong thẻ select
     var gioitinh = '@Model.GioiTinh';
+    if (gioitinh == undefined || gioitinh == null||gioitinh=='') {
+        gioitinh = 'Nam';
+    }
     $('#GioiTinh option[value=' + gioitinh + ']').attr('selected', 'selected');
     //mien
     var mien = '@Model.Mien';
+    if (mien == undefined || mien == null||mien=='') {
+        mien = 'Bắc';
+    }
     $('#Mien option[value=' + mien + ']').attr('selected', 'selected');
-
+    //diaban
+    var diaban = '@Model.IDDiaBan';
+    if (diaban == undefined || diaban == null||diaban=='') {
+        diaban = '-1';
+    }
+    $('#Diaban option[value=' + diaban + ']').attr('selected', 'selected');
 
 
     //Khoa
     var khoa = '@Model.MaKhoa';
     if (khoa == undefined || khoa == null||khoa=='') {
-        khoa = '0';
+        khoa = '-1';
     }
     $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
     //bomon
     var bomon = '@Model.MaDVBM';
     if (bomon == undefined || bomon == null||bomon=='') {
-        bomon = '0';
+        bomon = '-1';
     }
-    $('#Bomon option[value=' + bomon + ']').attr('selected', 'selected');
+    $('#BoMon option[value=' + bomon + ']').attr('selected', 'selected');
     //CSDaoTao
     var maCSDaoTao = '@Model.MaCSDaoTao';
     if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
-        maCSDaoTao = '0';
+        maCSDaoTao = '-1';
     }
     $('#CSDaoTao option[value=' + maCSDaoTao + ']').attr('selected', 'selected');
     //MaDienKinhPhi
@@ -962,5 +1050,50 @@
         var nganhdt = $("#NganhDT2 :selected").val();
         filterCombobox($("#CNDT2"), nganhdt, true);
     })
+
+    $('#Khoa').change(function(){
+        var nganhdt = $("#Khoa :selected").val();
+        filterCombobox($("#BoMon"), nganhdt, true);
+    })
+    $('#CSDaoTao').change(function(){
+        var nganhdt = $("#CSDaoTao :selected").val();
+        
+        filterCombobox($("#Khoa"), nganhdt, true);
+    })
+
+
+
+    //CHON DIA BAN
+    $('#Diaban').change(function(){
+        var iddiaban = $("#Diaban :selected").val();
+        
+        filterCombobox($("#CSDaoTao"), iddiaban, true);
+        $('#CSDaoTao option[value=-1]').attr('selected', 'selected');
+
+
+    })
     
+    setInterval( function(){
+        var khoa1 = $("#Khoa").val();
+        var csdaotao1 = $("#CSDaoTao").val();
+        if (csdaotao1==-1) {
+            $('#Khoa option[value=-1]').attr('selected', 'selected');
+            $('#BoMon option[value=-1]').attr('selected', 'selected');
+
+            filterCombobox($("#BoMon"), -1, true);
+            filterCombobox($("#Khoa"), -1, true);
+        }
+        if (khoa1==-1) {
+            $('#BoMon option[value=-1]').attr('selected', 'selected');
+            filterCombobox($("#BoMon"), -1, true);
+
+        }
+
+
+    
+        
+
+    },1000);
+    
+
 </script>
