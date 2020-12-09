@@ -172,7 +172,6 @@
     <Compile Include="Models\Entity\DoiTuong.cs" />
     <Compile Include="Models\Entity\DonVi.cs" />
     <Compile Include="Models\Entity\HoatDong.cs" />
-    <Compile Include="Models\Entity\inforLHS.cs" />
     <Compile Include="Models\Entity\KetQuaHocTap.cs" />
     <Compile Include="Models\Entity\KhenThuong.cs" />
     <Compile Include="Models\Entity\KhoaDaoTao.cs" />
@@ -187,13 +186,15 @@
     <Compile Include="Models\Entity\QuaTrinhCongTac.cs" />
     <Compile Include="Models\Entity\QuyetDinhDiHoc.cs" />
     <Compile Include="Models\Entity\Role.cs" />
+    <Compile Include="Models\Entity\sysdiagram.cs" />
     <Compile Include="Models\Entity\ThanNhan.cs" />
-    <Compile Include="Models\Entity\ThongKeNienHanQH.cs" />
-    <Compile Include="Models\Entity\ThongKe_TotNghiep_Year.cs" />
-    <Compile Include="Models\Entity\Thongtincoban.cs" />
-    <Compile Include="Models\Entity\Thongtindaotao.cs" />
     <Compile Include="Models\Entity\UserName.cs" />
     <Compile Include="Models\Entity\VePhep.cs" />
+    <Compile Include="Models\Model_view\inforLHS.cs" />
+    <Compile Include="Models\Model_view\ThongKeNienHanQH.cs" />
+    <Compile Include="Models\Model_view\ThongKe_TotNghiep_Year.cs" />
+    <Compile Include="Models\Model_view\Thongtincoban.cs" />
+    <Compile Include="Models\Model_view\Thongtindaotao.cs" />
     <Compile Include="Models\Function\F_Luuhocsinh.cs" />
     <Compile Include="Models\Function\F_User.cs" />
     <Compile Include="Models\Function\Reporter.cs" />
@@ -1036,6 +1037,7 @@
     <Content Include="Content\DataTables\extensions\RowReorder\css\semanticui.scss" />
     <Content Include="Content\DataTables\extensions\Buttons\css\mixins.scss" />
     <Content Include="Content\DataTables\extensions\Buttons\css\common.scss" />
+    <Content Include="Content\Reports\Template\PhieuLHS1.docx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

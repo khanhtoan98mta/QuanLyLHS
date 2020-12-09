@@ -154,8 +154,7 @@ namespace QLDHS.Models.Function
                         {
                             ID = lhs.LHSID,
                             LHSID = lhs.LHSID,
-                            MaCSDaoTao = info.CSDaoTao,
-                            MaKhoaDaoTao = info.Khoa,
+                            
                             MaBMDaoTao = info.BoMon,
                             MaBacDaoTao = info.MaBacDaoTao,
                             MaCNDaoTao1 = info.CNDT1,
@@ -165,15 +164,19 @@ namespace QLDHS.Models.Function
                             ThoiGianDaoTao = "5 Năm",
                             TinhTrangTotNghiep = info.TinhTrangTotNghiep,
                         };
+                        if (info.BoMon ==-1)
+                        {
+                            lhs_daotao.MaBMDaoTao = null;
+                        }
                         db.LHS_DaoTao.Add(lhs_daotao);
                         db.SaveChanges();
                     }
                     else
                     {
-                        lhs_daotao = db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                        lhs_daotao.MaCSDaoTao = info.CSDaoTao;
-                        lhs_daotao.MaKhoaDaoTao = info.Khoa;
+                      
+                        lhs_daotao = db.LHS_DaoTao.SingleOrDefault(x => x.LHSID == lhs.LHSID);     
                         lhs_daotao.MaBMDaoTao = info.BoMon;
+                        
                         lhs.MaDKP = info.MaDienKinhPhi;
                         lhs_daotao.MaBacDaoTao = info.MaBacDaoTao;
 
@@ -184,6 +187,11 @@ namespace QLDHS.Models.Function
                         lhs_daotao.ThoiGianBatDau = info.ThoiGianBatDauHoc;
                         lhs_daotao.ThoiGianKetThuc = info.ThoiGianKetThucHoc;
                         lhs_daotao.TinhTrangTotNghiep = info.TinhTrangTotNghiep;
+
+                        if (info.BoMon == -1)
+                        {
+                            lhs_daotao.MaBMDaoTao = null;
+                        }
                         db.SaveChanges();
                     }
                     
@@ -192,7 +200,7 @@ namespace QLDHS.Models.Function
                     if (db.LuanVanTotNghieps.SingleOrDefault(x => x.LHSID == lhs.LHSID)==null)
                     {
                         lvtn = new LuanVanTotNghiep();
-                        lvtn.MaLuanVan = lhs.LHSID;
+                       
                         lvtn.LHSID = lhs.LHSID;
                         lvtn.TenLuanVan = info.TenLuanVan;
                         lvtn.KetQuaBaoVe = info.KetQuaBaoVe;
@@ -203,7 +211,6 @@ namespace QLDHS.Models.Function
                     else
                     {
                         lvtn = db.LuanVanTotNghieps.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                        lvtn.MaLuanVan = lhs.LHSID;
                         lvtn.LHSID = lhs.LHSID;
                         lvtn.TenLuanVan = info.TenLuanVan;
                         lvtn.KetQuaBaoVe = info.KetQuaBaoVe;
@@ -275,20 +282,24 @@ namespace QLDHS.Models.Function
                     lhs.SinhHoatPhi = info.SinhHoatPhi;
                     lhs.BHYT = info.BHYT;
                     lhs.ChiPhiKhac = info.ChiPhiKhac;
+                    lhs.KhenThuong = info.KhenThuong;
+                    lhs.KiLuat = info.KiLuat;
+
 
 
                     if (db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID)!= null)
                     {
                         qd = db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID);
-                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDuHoc;
+                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDiHoc;
+                        qd.ThoiGianDi = info.ThoiGianDi;
+                        qd.ThoiGianVe = info.ThoiGianVe;
+
                         db.SaveChanges();
                     }
                     else
                     {
                         qd = new QuyetDinhDiHoc();
-
-                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDuHoc;
-                        qd.MaQuyetDinh = lhs.LHSID;
+                        qd.QuyetDinhDiHoc1 = info.QuyetDinhDiHoc;
                         qd.LHSID = lhs.LHSID;
                         db.QuyetDinhDiHocs.Add(qd);
 
@@ -310,7 +321,7 @@ namespace QLDHS.Models.Function
 
         }
 
-        public bool AddNewLHS(LuuHocSinh lhs)
+        public int AddNewLHS(LuuHocSinh lhs)
         {
             using (LUUHS luuhs = new LUUHS())
             {
@@ -318,12 +329,34 @@ namespace QLDHS.Models.Function
                 {                    
                     luuhs.LuuHocSinhs.Add(lhs);
                     luuhs.SaveChanges();
-                    return true;
+                    int id = lhs.LHSID;
+                    // add LHS_Daotao
+                    LHS_DaoTao lhs_daotao = new LHS_DaoTao();
+                    lhs_daotao.LHSID = id;
+                    luuhs.LHS_DaoTao.Add(lhs_daotao);
+                    //add LuanVan
+                    LuanVanTotNghiep lvtn = new LuanVanTotNghiep();
+                    lvtn.LHSID = id;
+                    luuhs.LuanVanTotNghieps.Add(lvtn);
+                    // add Ket qua hoc tap
+                    KetQuaHocTap kqht = new KetQuaHocTap();
+                    kqht.LHSID = id;
+                    luuhs.KetQuaHocTaps.Add(kqht);
+                    //add qua trinh cong tac
+                    QuaTrinhCongTac qtct = new QuaTrinhCongTac();
+                    qtct.LHSID = id;
+                    luuhs.QuaTrinhCongTacs.Add(qtct);
+                    //add quyet dinh di hoc
+                    QuyetDinhDiHoc qddh = new QuyetDinhDiHoc();
+                    qddh.LHSID = id;
+                    luuhs.QuyetDinhDiHocs.Add(qddh);
+                    luuhs.SaveChanges();
+                    return id;
                 }
                 catch (Exception)
                 {
 
-                    return false;
+                    return -1;
                 }             
             }
         }

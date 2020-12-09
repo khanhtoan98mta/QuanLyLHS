@@ -95,7 +95,7 @@ namespace QLDHS.Models.Entity
 
         public string KhenThuong { get; set; }
 
-        public string KyLuat { get; set; }
+        public string KiLuat { get; set; }
 
         public int? MaQuanHam { get; set; }
 
