@@ -305,7 +305,28 @@ namespace QLDHS.Models.Function
 
                         db.SaveChanges();
                     }
+
+                    //xóa tất cả về phép cũ
+                    List<LHS_VePhep> lstvephep = new List<LHS_VePhep>();
+                    lstvephep = db.LHS_VePhep.Where(x => x.LHSID == lhs.LHSID).ToList();
+                    foreach(var item in lstvephep)
+                    {
+                        db.LHS_VePhep.Remove(item);
+                        db.SaveChanges();
+                    }
+                    for(int i=0;i<info.dsvephep.Count;i++)
+                    {
+
+                        LHS_VePhep lhs_vephep = new LHS_VePhep();
+                        lhs_vephep.LHSID = lhs.LHSID;
+                        lhs_vephep.MaVePhep = info.dsvephep[i].MaVePhep;
+                        lhs_vephep.NgayDi = info.dsvephep[i].NgayDi;
+                        lhs_vephep.NgayVe = info.dsvephep[i].NgayVe;
+                        db.LHS_VePhep.Add(lhs_vephep);
+                        db.SaveChanges();
+                    }
                     
+
 
                 }
 
