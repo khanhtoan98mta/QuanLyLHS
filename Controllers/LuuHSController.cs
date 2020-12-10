@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using QLDHS.Models.Entity;
 using Xceed.Words.NET;
+using QLDHS.Models.Model_view;
 
 namespace QLDHS.Controllers
 {
@@ -83,8 +84,22 @@ namespace QLDHS.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditLHSTTDaotao(Thongtindaotao infolhs)
+        public ActionResult EditLHSTTDaotao(Thongtindaotao infolhs,int[] MaVePhep,DateTime[] NgayDi, DateTime[] NgayVe)
         {
+            List<DsVePhep> dsvephep = new List<DsVePhep>();
+            if(MaVePhep!=null)
+            {
+                for (int i = 0; i < MaVePhep.Length; i++)
+                {
+                    DsVePhep item = new DsVePhep();
+                    item.MaVePhep = MaVePhep[i];
+                    item.NgayDi = NgayDi[i];
+                    item.NgayVe = NgayVe[i];
+                    dsvephep.Add(item);
+                }
+                infolhs.dsvephep = dsvephep;
+            }
+            
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             f_lhs.EditLHSTTDaotao(infolhs);
             return (Redirect("/luuhs/EditLHS?LHSID=" + infolhs.LHSID));
@@ -136,7 +151,7 @@ namespace QLDHS.Controllers
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
             int id=f_lhs.AddNewLHS(luuhocsinh);
               
-            return (Redirect("luuhs/EditLHS?LHSID="+id.ToString()));
+            return (Redirect("~/luuhs/EditLHS?LHSID="+id.ToString()));
         }
 
         public ActionResult DeleteLHS(int LHSID)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLDHS.Models.Model_view;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -55,7 +56,7 @@ namespace QLDHS.Models.Entity
         public int BoMon { get; set; }
         public DateTime? ThoiGianDi { get; set; }
         public DateTime? ThoiGianVe { get; set; }
-
+        public List<DsVePhep> dsvephep { get; set; }
 
 
 
