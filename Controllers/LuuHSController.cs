@@ -45,6 +45,8 @@ namespace QLDHS.Controllers
             ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
             ViewBag.diaban = db.DiaBanDaoTaos.ToList();
             ViewBag.QuanHam = db.QuanHams.ToList();
+            ViewBag.VePhep = db.VePheps.ToList();
+            ViewBag.LHS_VePhep = db.LHS_VePhep.Where(x => x.LHSID == LHSID).ToList();
 
             return View(detaillhs);
         }
@@ -61,6 +63,13 @@ namespace QLDHS.Controllers
         public ActionResult EditVephep()
         {
             return View();
+        }
+
+        public string XoaLHSVePhep(int LHSID, int IDVePhep)
+        {
+
+
+            return "Thành công";
         }
 
         [HttpPost]

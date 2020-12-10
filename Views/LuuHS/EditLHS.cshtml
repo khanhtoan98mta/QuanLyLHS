@@ -909,7 +909,45 @@
                                 </div>
                             </div> <!-- end row -->
 
+                        @* ádasdasd *@
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm quân hàm</button>
+                                    <table class="table table-bordered">
+                                        <thead >
+                                            <tr>
+                                                <th>Loại về phép</th>
+                                                <th>Thời gian về phép</th>
+                                                <th>Công cụ</th>
+                                            </tr>
+                                        </thead>
 
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <select id="MaVePhep" name="MaVePhep">
+                                                        <option label="" value="">ádasdddddddddddddddđ  đ</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    Ngày đi : <input name="NgayDi" id="NgayDi" type="date" value="" min="01-01-2010" max="01-01-2100" /><br />
+                                                    Ngày về : <input name="NgayVe" id="NgayVe" type="date" value="" min="01-01-2010" max="01-01-2100" />
+
+
+                                                </td>
+
+                                                <td>                                                   
+                                                    <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+
+                        @*  *@
                             <div class="text-right">
                                 <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Lưu</button>
                             </div>
@@ -1155,3 +1193,58 @@
     
 
 </script>
+
+@{ 
+    string Tag_LoaiVePhep = "";
+    foreach (var item in ViewBag.VePhep)
+    {
+        
+           Tag_LoaiVePhep += "<option label='" + item.LoaiVePhep + "' value='"+ item.MaVePhep + "'> </option>";
+    }
+}
+
+<script>
+    var Tag_LoaiVePhep = '@Tag_LoaiVePhep';
+
+    $(document).ready(function () {
+
+        var actions = $("table td:last-child").html();
+        // Append table with add row form on add new button click
+        $(".add-new").click(function () {
+
+            var index = $("table tbody tr:last-child").index() +2;
+            var row = "<tr>" +
+                                                "<td>"+
+                                                    "<select id='MaVePhep' name='MaVePhep'>"+
+
+                                                        "<option label='Về phép tiêu chuẩn' value='1'></option>"
+                                                        +"<option label='Về phép Ng' value='2'></option>"+
+
+                                                    "</select>"+
+                                                "</td>"+
+                                                "<td>"+
+                                                    "Ngày đi : <input name='NgayDi' id='NgayDi' type='date' value='' min='01-01-2010' max='01-01-2100' /><br />"+
+                                                    "Ngày về : <input name='NgayVe' id='NgayVe' type='date' value='' min='01-01-2010' max='01-01-2100' />"+
+
+
+                                                "</td>"+
+
+                                                "<td>"+
+                                                    "<a class='delete' title='Xóa'><i class='fa fa-remove'></i></a>"+
+                                                "</td>"+
+                    "</tr>";
+            $("table").append(row);
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        // Delete row on delete button click
+        $(document).on("click", ".delete", function () {
+            $(this).parents("tr").remove();
+            $(".add-new").removeAttr("disabled");
+            index--;
+
+        });
+    });
+</script>
+
+@*  *@
