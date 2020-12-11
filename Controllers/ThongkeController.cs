@@ -154,30 +154,16 @@ namespace QLDHS.Controllers
         public ActionResult ThongkeNienHanQuanHam()
         {
             int year = 2020;
+            int madoituong = 1;
             SqlParameter endDate = new SqlParameter("@date", year);
+            SqlParameter doituong = new SqlParameter("@madoituong", madoituong);
             endDate.SqlDbType = System.Data.SqlDbType.Int;
-            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @date", endDate).ToList();
-            string filename = @"D:/Tai_lieu_hoc_tap/ThucTap/quanham.docx";
-            var doc = Xceed.Words.NET.DocX.Create(filename);
-
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @date @madoituong", endDate,doituong).ToList();
+            string filename = @"D:/Tai_lieu_hoc_tap/QuanLyLHS/MAU/DSThangQuanHam.docx";
+            var doc = DocX.Load(filename);
+            var doc1 = doc.Copy();
             int rowcount = ThongKeQH.Count;
-            Table t = doc.AddTable(rowcount + 1, 6);
-            t.Rows[0].Cells[0].Paragraphs.First().Append("Mã LHS");
-            t.Rows[0].Cells[1].Paragraphs.First().Append("Họ tên");
-            t.Rows[0].Cells[2].Paragraphs.First().Append("Ngày nhận");
-            t.Rows[0].Cells[3].Paragraphs.First().Append("Quân hàm");
-            t.Rows[0].Cells[4].Paragraphs.First().Append("Cơ sở đào tạo");
-            t.Rows[0].Cells[5].Paragraphs.First().Append("Địa bàn");
-            for (int i = 0; i < ThongKeQH.Count; i++)
-            {
-                t.Rows[i + 1].Cells[0].Paragraphs.First().Append(ThongKeQH[i].MaLHS);
-                t.Rows[i + 1].Cells[1].Paragraphs.First().Append(ThongKeQH[i].HoTen);
-                t.Rows[i + 1].Cells[2].Paragraphs.First().Append(ThongKeQH[i].NgayNhan.ToString());
-                t.Rows[i + 1].Cells[3].Paragraphs.First().Append(ThongKeQH[i].QuanHam);
-                t.Rows[i + 1].Cells[4].Paragraphs.First().Append(ThongKeQH[i].CSDaoTao);
-                t.Rows[i + 1].Cells[5].Paragraphs.First().Append(ThongKeQH[i].DiaBan);
-            }
-            doc.InsertTable(t);
+            
 
             using (var stream = new System.IO.MemoryStream())
             {
@@ -190,6 +176,7 @@ namespace QLDHS.Controllers
             }
         }
 
+       
 
 
 

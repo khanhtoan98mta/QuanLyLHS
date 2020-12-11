@@ -363,6 +363,11 @@ namespace QLDHS.Controllers
                 vephep = vephep.Remove(vephep.Length - 1);
 
             }
+            if(vephep[0]==',')
+            {
+                vephep = vephep.Remove(0,1);
+                
+            }
             doc1.ReplaceText("<vephep>", vephep);
             doc1.ReplaceText("<thongtinllgd>", lhs.ThongTinLienLac);
             doc1.ReplaceText("<thongtingd>", lhs.ThongTinGiaDinh);

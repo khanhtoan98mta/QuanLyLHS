@@ -11,7 +11,10 @@ using System.Web.UI;
 using ClosedXML.Excel;
 using ClosedXML;
 using Newtonsoft.Json.Linq;
-
+using System.Data.SqlClient;
+using Xceed.Document.NET;
+using Xceed.Words.NET;
+using Table = Xceed.Document.NET.Table;
 
 namespace QLDHS.Controllers
 {
@@ -132,6 +135,100 @@ namespace QLDHS.Controllers
                 }
             }
 
+          
+        }
+        public ActionResult ThongkeNienHanQuanHam()
+        {
+            LUUHS db = new LUUHS();
+            int year = 2021;
+            int madoituong = 1;
+            SqlParameter endDate = new SqlParameter("@date", year);
+            SqlParameter doituong = new SqlParameter("@madoituong", madoituong);
+            endDate.SqlDbType = System.Data.SqlDbType.Int;
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @date, @madoituong", endDate, doituong).ToList();
+            string filename = @"D:/Tai_lieu_hoc_tap/QuanLyLHS/MAU/DSThangQuanHam.docx";
+            var doc = Xceed.Words.NET.DocX.Load(filename);
+            var doc1 = doc.Copy();
+            string dt = db.DoiTuongs.Find(madoituong).DoiTuong1;
+            if(madoituong==0)
+            {
+                dt = "";
+            }
+            doc1.ReplaceText("<doituong>", dt);
+            doc1.ReplaceText("<nam>", year.ToString());
+            Table table = doc1.Tables[0];
+            for(int i=0;i<ThongKeQH.Count;i++)
+            {
+                //cột stt
+                Row myrow = table.InsertRow();
+                Paragraph para0 = myrow.Cells[0].Paragraphs.First().Font("Time New Roman").FontSize(14).Append((i + 1).ToString() + ".");
+                para0.Alignment = Alignment.center;
+                para0.FontSize(14);
+                para0.Font("Time New Roman");
+                //cột hộ tên
+                Paragraph para1 = myrow.Cells[1].Paragraphs.First().Append(ThongKeQH[i].HoTen);
+                para1.FontSize(14);
+                para1.Font("Time New Roman");
+                //cột Quân hàm hiện tại
+                Paragraph para2 = myrow.Cells[2].Paragraphs.First().Append(ThongKeQH[i].KiHieu);
+                para2.FontSize(14);
+                para2.Font("Time New Roman");
+                para2.Alignment = Alignment.center;
+                //cột sở sở đào tạo
+                Paragraph para3 = myrow.Cells[3].Paragraphs.First().Append(ThongKeQH[i].CSDaoTao);
+                para3.FontSize(14);
+                para3.Font("Time New Roman");
+                //cột thời gian nhận quân hàm
+                if (ThongKeQH[i].NgayNhan != null)
+                {
+                    string str = ThongKeQH[i].NgayNhan.ToString();
+                    DateTime date = Convert.ToDateTime(str);
+                    string ngay = "";
+                    string thang = "";
+                    string nam = "";
+                    ngay = date.Day.ToString();
+                    if (ngay.Length == 1)
+                    {
+                        ngay = "0" + ngay;
+                    }
+                    thang = date.Month.ToString();
+                    if (thang.Length == 1)
+                    {
+                        thang = "0" + thang;
+                    }
+                    nam = date.Year.ToString();
+                    if (nam.Length == 1)
+                    {
+                        nam = "0" + nam;
+                    }
+                    string ngaynhan = ngay + "/" + thang + "/" + nam;
+
+                    Paragraph para5 = myrow.Cells[4].Paragraphs.First().Append(ngaynhan);
+                    para5.FontSize(14);
+                    para5.Font("Time New Roman");
+                    para5.Alignment = Alignment.center;
+                }
+                else
+                {
+                    Paragraph para5 = myrow.Cells[4].Paragraphs.First().Append(ThongKeQH[i].NgayNhan.ToString());
+                    para5.FontSize(14);
+                    para5.Font("Time New Roman");
+                    para5.Alignment = Alignment.center;
+
+                }
+
+            }
+
+
+            using (var stream = new System.IO.MemoryStream())
+            {
+                doc1.SaveAs(stream);
+                var content = stream.ToArray();
+                return File(
+                    content,
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "ThongkeNienHanQuanHam.docx");
+            }
         }
 
     }
