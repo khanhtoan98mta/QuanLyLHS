@@ -70,15 +70,39 @@ namespace QLDHS.Controllers
             
         }
 
-        public ActionResult DSThangQuanHam_Year(int year)
+        [HttpGet]
+        public ActionResult DSThangQuanHam_Year(int Year,int DoiTuong)
         {
-            year = 2020;
-            SqlParameter endDate = new SqlParameter("@date", year);
-            endDate.SqlDbType = SqlDbType.Int;
-            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH_SiQuan @date", endDate).ToList();
+           
+            SqlParameter year = new SqlParameter("@nam", Year);
+            SqlParameter doituong = new SqlParameter("@madoituong", DoiTuong);
+
+            year.SqlDbType = SqlDbType.Int;
+            doituong.SqlDbType = SqlDbType.Int;
+
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @nam , @madoituong ", year,doituong).ToList();
             ViewBag.alllhs = ThongKeQH;
           
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult DSThangQuanHam_Year_Post(int Year, int DoiTuong)
+        {
+
+            SqlParameter year = new SqlParameter("@nam", Year);
+            SqlParameter doituong = new SqlParameter("@madoituong", DoiTuong);
+
+            year.SqlDbType = SqlDbType.Int;
+            doituong.SqlDbType = SqlDbType.Int;
+
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @nam , @madoituong ", year, doituong).ToList();
+            
+
+            return Json(new
+            {
+                list = ThongKeQH
+            }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -118,6 +142,15 @@ namespace QLDHS.Controllers
             }
         }
 
+        public ActionResult ThongKeLHSKetThucKhoaHoc(int year)
+        {
+            SqlParameter Year = new SqlParameter("@year", year);
+            Year.SqlDbType = SqlDbType.Int;
+
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKeLHSVeNuoc @year ", Year).ToList();
+            ViewBag.LHS_KTKhoaHoc = ThongKeQH;
+            return View();
+        }
         public ActionResult ThongkeNienHanQuanHam()
         {
             int year = 2020;

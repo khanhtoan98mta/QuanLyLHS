@@ -1199,6 +1199,7 @@
     <Content Include="Views\LuuHS\EditQuanHam.cshtml" />
     <Content Include="Views\LuuHS\EditKhenThuongVaKiLuat.cshtml" />
     <Content Include="Views\LuuHS\EditVephep.cshtml" />
+    <Content Include="Views\Thongke\ThongKeLHSKetThucKhoaHoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\js\vendor\" />

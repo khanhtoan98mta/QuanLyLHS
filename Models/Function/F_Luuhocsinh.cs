@@ -269,22 +269,24 @@ namespace QLDHS.Models.Function
                         db.SaveChanges();
                     }
 
-
-
-                    //quan ham
-                    //nam nhan quan ham
-                    //khenthuong
-                    //kiluat
-                    //vepheptieuchuan
-                    //vepheptutuc
-
                     lhs.HocPhi = info.HocPhi;
                     lhs.SinhHoatPhi = info.SinhHoatPhi;
                     lhs.BHYT = info.BHYT;
                     lhs.ChiPhiKhac = info.ChiPhiKhac;
                     lhs.KhenThuong = info.KhenThuong;
                     lhs.KiLuat = info.KiLuat;
-
+                    if (info.MaQuanHam != 0)
+                    {
+                        lhs.MaQuanHam = info.MaQuanHam;
+                        lhs.NgayNhanQuanHam = info.NgayNhanQuanHam;
+                    }
+                    else
+                    {
+                        lhs.MaQuanHam = null;
+                        lhs.NgayNhanQuanHam = null;
+                    }
+                    
+                    
 
 
                     if (db.QuyetDinhDiHocs.SingleOrDefault(x => x.LHSID == lhs.LHSID)!= null)

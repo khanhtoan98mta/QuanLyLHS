@@ -1,11 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Chỉnh sửa quân hàm quân nhân";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<style>
-
+﻿<style>
     .table-wrapper {
         width: 900px;
         margin: 30px auto;
@@ -101,21 +94,39 @@
         table.table td .add {
             display: none;
         }
-        th, td{
-            text-align:center;
-        }
+
+    th, td {
+        text-align: center;
+    }
 </style>
 <script>
 
     $(document).ready(function () {
-        var index = 1;
-        var actions = $("tbody tr:last-child").html();
+
+        var actions = $("table td:last-child").html();
         // Append table with add row form on add new button click
         $(".add-new").click(function () {
-            
-            
-            $("table").append(actions);
-        });        
+
+            var index = $("table tbody tr:last-child").index() +2;
+            var row = '<tr>' +
+                '<td>'+
+                        '<select id="MaVePhep" name="MaVePhep">'+
+                            '<option label="" value=""></option>'+
+                       ' </select>' +
+                        '</td>'+
+                        '<td>'+
+                        ' <input name="NgayVe" id="NgayVe" type="date" value="" min="01-01-2010" max="01-01-2100" />'+
+                        ' </td>'+
+                        '<td>'+
+                        '<input name="NgayDi" id="NgayDi" type="date" value="" min="01-01-2010" max="01-01-2100" />'+
+                        '</td>'+
+
+                        '<td>' + actions + '</td>' +
+                    '</tr>';
+            $("table").append(row);
+            $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
         // Delete row on delete button click
         $(document).on("click", ".delete", function () {
@@ -129,71 +140,50 @@
 
 
 
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8"><h2>Quân hàm của <b>Nguyễn Văn Nam</b></h2></div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm quân hàm</button>
-                    </div>
-                </div>
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h2>Quân hàm của <b>Nguyễn Văn Nam</b></h2></div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm quân hàm</button>
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Quân Hàm</th>
-                            <th>Năm nhận</th>
-                            <th>Công cụ</th>
-                        </tr>
-                    </thead>
+        </div>
+    </div>
+    <form action="./EditVePhep" enctype="multipart/form-data" method="post">
 
-                    <tbody>
-                        @foreach (var item in ViewBag.QuanHamLHS)
-                        {
-                            string NgayNhan = null;
-                            if (@item.NgayNhan != null)
-                            {
-                                string NgayNhanStr = @item.NgayNhan.ToString();
-                                DateTime date = (Convert.ToDateTime(NgayNhanStr));
-                                NgayNhan = date.Year + "-" + date.Month + "-" + date.Day;
-                            }
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <select class="form-control" name="MaQuanHam" id="MaQuanHam">
-                                        <option value="0" label="Chưa nhập" ></option>
-                                        @foreach (var qh in ViewBag.QuanHam)
-                                        {
-                                            if (@item.MaQuanHam == @qh.MaQuanHam)
-                                            {
-                                                <option value="@qh.MaQuanHam" label="@qh.TenQuanHam" selected></option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@qh.MaQuanHam" label="@qh.TenQuanHam" ></option>
-                                            }
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Loại về phép</th>
+                    <th>Ngày về phép</th>
+                    <th>Ngày trả phép</th>
+                    <th>Công cụ</th>
+                </tr>
+            </thead>
 
-                                        }
-                                    </select>
-                                </td>
-                                <td><input class="form-control" value="@NgayNhan" type="date" name="NgayNhan" /></td>
-                                <td>                                                                     
-                                    <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
-                                </td>
-                            </tr>
-                        }
-                          
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="MaVePhep" name="MaVePhep">
+                            <option label="" value=""></option>
+                        </select>
+                    </td>
+                    <td>
+                        <input name="NgayVe" id="NgayVe" type="date" value="" min="01-01-2010" max="01-01-2100" />
+                    </td>
+                    <td>
+                        <input name="NgayDi" id="NgayDi" type="date" value="" min="01-01-2010" max="01-01-2100" />
+                    </td>
+
+                    <td>
+                        <a class="add" title="Thêm"><i class="fa fa-plus-circle"></i></a>
+
+                        <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
+                    </td>
+                </tr>
 
 
-                    </tbody>
-                </table>
-                <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Lưu</button>
-                
-            </form>
-            </div>
-<script>
-
-</script>
-
+            </tbody>
+        </table>
+    </form>
+</div>
