@@ -42,7 +42,7 @@ namespace QLDHS.Models.Entity
         public string KetQuaBaoVe { get; set; }
         public string PhanLoaiTotNghiep { get; set; }
         public string QuanHam { get; set; }
-        public string NamNhanQuanHam { get; set; }
+        public DateTime? NgayNhanQuanHam { get; set; }
         public string KhenThuong { get; set; }
         public string KiLuat { get; set; }
         public string VePhepTieuChuan { get; set; }
@@ -57,6 +57,7 @@ namespace QLDHS.Models.Entity
         public DateTime? ThoiGianDi { get; set; }
         public DateTime? ThoiGianVe { get; set; }
         public List<DsVePhep> dsvephep { get; set; }
+        public int? MaQuanHam { get; set; }
 
 
 

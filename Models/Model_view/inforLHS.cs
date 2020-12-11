@@ -87,7 +87,7 @@ namespace QLDHS.Models.Entity
         public string BacDaoTao { get; set; }
         public int? TinhTrangTotNghiep { get; set; }
         public int? MaKhoa { get; set; }
-        public DateTime? NamNhanQuanHam { get; set; }
+        public DateTime? NgayNhanQuanHam { get; set; }
         public int? MaBacDaoTao { get; set; }
         public int? MaCSDaoTao { get; set; }
         public string ThoiGianHoc { get; set; }
@@ -97,6 +97,7 @@ namespace QLDHS.Models.Entity
         public DateTime? ThoiGianDi { get; set; }
         public DateTime? ThoiGianVe { get; set; }
         public string DoanTruong { get; set; }
+        public int? MaQuanHam { get; set; }
 
 
     }

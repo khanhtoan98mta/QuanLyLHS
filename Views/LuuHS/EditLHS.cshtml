@@ -44,6 +44,21 @@
 
         ThoiGianVe = date.Year + month_kt;
     }
+    string NgayNhanQuanHam = null;
+    if (Model.NgayNhanQuanHam != null)
+    {
+        string ngaynhanquanhamstr = Model.NgayNhanQuanHam.ToString();
+        DateTime dateqh = (Convert.ToDateTime(ngaynhanquanhamstr));
+        string month_qh = "-" + dateqh.Month;
+        string day_qh = "-" + dateqh.Day;
+        if (dateqh.Month < 10)
+        {
+            month_qh = "-0" + dateqh.Month;
+
+        }
+
+        NgayNhanQuanHam = dateqh.Year + month_qh;
+    }
     string thoigianbatdauhoc = null;
     string thoigianketthuchoc = null;
     if (Model.ThoiGianBatDauHoc != null)
@@ -816,10 +831,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Quân hàm</label>
-                                        <select type="text" class="form-control" id="QuanHam" name="QuanHam" placeholder="Quân hàm hiện tại">
+                                        <select type="text" class="form-control" id="MaQuanHam" name="MaQuanHam" placeholder="Quân hàm hiện tại">
+                                            <option value="0" label="- - - - - - - - - - - - - -"></option>
                                             @foreach (var item in ViewBag.QuanHam)
                                             {
-                                                <option value="@item.MaQuanHam" label="@item.TenQuanHam"></option>
+                                                if (@item.MaQuanHam == Model.MaQuanHam)
+                                                {
+                                                    <option value="@item.MaQuanHam" label="@item.TenQuanHam" selected></option>
+                                                }
+
+                                                else
+                                                {
+                                                    <option value="@item.MaQuanHam" label="@item.TenQuanHam"></option>
+
+                                                }
 
                                             }
                                         </select>
@@ -828,7 +853,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Thời gian nhận quân hàm</label>
-                                        <input value="@Model.NamNhanQuanHam" type="month" class="form-control" id="NamNhanQuanHam" name="NamNhanQuanHam">
+                                        <input value="@NgayNhanQuanHam" type="month" class="form-control" id="NgayNhanQuanHam" name="NgayNhanQuanHam">
 
                                     </div>
                                 </div> <!-- end col -->

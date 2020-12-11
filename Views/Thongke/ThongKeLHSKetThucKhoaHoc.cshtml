@@ -33,9 +33,9 @@
         <select class="dataTables_length" id="DoiTuong" onchange="ChangeYearThongKeNienHanQH()">
             <option value="0" label="Tất cả"></option>
             <option value="1" label="Sỹ quan"></option>
-            <option  value="2" label="Hạ sỹ quan"></option>
+            <option value="2" label="Hạ sỹ quan"></option>
         </select>
-       
+
     </form>
 
     <table id="alllhs" class="table table-bordered" style="width :100%">
@@ -43,28 +43,19 @@
         <thead>
             <tr>
 
-                <th scope="col">MaLHS</th>
-                <th scope="col">Họ tên</th>
-                <th scope="col">Ngày nhận</th>
-                <th scope="col">Quân hàm hiện tại</th>
-                <th scope="col" >Cơ sở đào tạo</th>
-                <th scope="col">Địa bàn</th>
-                <th scope="col">Công cụ</th>
+                <th>STT</th>
+                <th>Họ Tên</th>
+                <th>Ngày Sinh</th>
+                <th>Cấp bậc</th>
+                <th>Ngày nhập ngũ</th>
+                <th>Ngày về nước</th>
+
+
 
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>3</td>
-                <td>Apple</td>
-                <td>12</td>
-                <td>Man2</td>
-                <td>7</td>
-                <td>7</td>
-                <td>7</td>
 
-
-            </tr>
             @{
                 var all_luuhs = ViewBag.alllhs as IEnumerable<QLDHS.Models.Entity.ThongKeNienHanQH>;
             }
@@ -83,18 +74,15 @@
                     <td scope="row">@item.KiHieu @item.HoTen </td>
                     <td scope="row">@ngaynhan</td>
                     <td scope="row">@item.QuanHam</td>
-                    <td scope="row" >@item.CSDaoTao</td>
+                    <td scope="row">@item.CSDaoTao</td>
                     <td scope="row">@item.DiaBan</td>
-                    <td scope="row">
-                        <a href="~/LuuHS/EditLHS?LHSID=@item.LHSID"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit fa-sm"></i></div></a>
-                        <a href="#"><div type="button" class="btn btn-danger" title="Xóa sinh viên"><i class="fa fa-trash-o fa-sm"></i></div></a>
-                    </td>
+                   
                 </tr>
             }
         </tbody>
 
     </table>
-    <a  class="btn btn-outline-primary btn-sm" role="button" href="/thongke/ThongkeNienHanQuanHam" id="nhqh">Tải về</a>
+    <a class="btn btn-outline-primary btn-sm" role="button" href="/thongke/ThongkeNienHanQuanHam" id="nhqh">Tải về</a>
 </div>
 <script>
         var x = document.getElementById("yearQH").value;
@@ -128,10 +116,6 @@
              {
                  name: '6',
                  "visible": true,
-             },
-             {
-                 name: '7',
-                 "visible": false
              }],
             buttons: [
                 {
@@ -257,5 +241,6 @@
 </script>
 
 <link href="~/Content/DataTables/css/DataTables.Colvis.css" rel="stylesheet" type="text/css" />
+
 
 
