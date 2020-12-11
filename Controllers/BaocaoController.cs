@@ -137,11 +137,10 @@ namespace QLDHS.Controllers
 
           
         }
-        public ActionResult ThongkeNienHanQuanHam()
+        public ActionResult ThongkeNienHanQuanHam(int year,int madoituong)
         {
             LUUHS db = new LUUHS();
-            int year = 2021;
-            int madoituong = 1;
+           
             SqlParameter endDate = new SqlParameter("@date", year);
             SqlParameter doituong = new SqlParameter("@madoituong", madoituong);
             endDate.SqlDbType = System.Data.SqlDbType.Int;

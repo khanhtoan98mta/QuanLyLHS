@@ -190,6 +190,7 @@
     <Compile Include="Models\Entity\ThanNhan.cs" />
     <Compile Include="Models\Entity\UserName.cs" />
     <Compile Include="Models\Entity\VePhep.cs" />
+    <Compile Include="Models\Model_view\CVDeNghiTotNgiep.cs" />
     <Compile Include="Models\Model_view\DsVePhep.cs" />
     <Compile Include="Models\Model_view\inforLHS.cs" />
     <Compile Include="Models\Model_view\ThongKeNienHanQH.cs" />

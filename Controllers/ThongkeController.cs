@@ -10,6 +10,8 @@ using Xceed.Document.NET;
 using Xceed.Words.NET;
 using System.Data.SqlClient;
 using Table = Xceed.Document.NET.Table;
+using QLDHS.Models.Model_view;
+
 namespace QLDHS.Controllers
 {
     public class ThongkeController : Controller
@@ -147,8 +149,8 @@ namespace QLDHS.Controllers
             SqlParameter Year = new SqlParameter("@year", year);
             Year.SqlDbType = SqlDbType.Int;
 
-            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKeLHSVeNuoc @year ", Year).ToList();
-            ViewBag.LHS_KTKhoaHoc = ThongKeQH;
+            List<CVDeNghiTotNgiep> DSDeNghiTotNgieps = new LUUHS().Database.SqlQuery<CVDeNghiTotNgiep>("exec dbo.ThongKeLHSVeNuoc @year ", Year).ToList();
+            ViewBag.LHS_KTKhoaHoc = DSDeNghiTotNgieps;
             return View();
         }
         public ActionResult ThongkeNienHanQuanHam()
