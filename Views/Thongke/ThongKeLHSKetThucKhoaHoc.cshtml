@@ -14,30 +14,19 @@
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 <div class="section-heading">
-    <h1>Danh sách<br /> lưu học sinh thăng quân hàm</h1>
+    <h2>Danh sách<br /> Đề nghị tốt nghiệp năm 
+                 
+                     <select>
+                         <option>2020</option>
+                         <option>2021</option>
+                     </select>
+                 
+    
+    </h2>   
+
 </div>
 <div class="section-content">
-    <form enctype="multipart/form-data" method="get" action="" style="margin:0px;">
-        Năm nhận quân hàm
-        <select class="dataTables_length" id="yearQH" onchange="ChangeYearThongKeNienHanQH()">
-            @for (int i = -2; i < 3; i++)
-            {
-                DateTime date = DateTime.UtcNow;
-                int year = date.Year + i;
-                <option value="@year">@year</option>
-            }
-
-
-        </select>
-        Đối tượng thăng quân hàm
-        <select class="dataTables_length" id="DoiTuong" onchange="ChangeYearThongKeNienHanQH()">
-            <option value="0" label="Tất cả"></option>
-            <option value="1" label="Sỹ quan"></option>
-            <option value="2" label="Hạ sỹ quan"></option>
-        </select>
-
-    </form>
-
+    
     <table id="alllhs" class="table table-bordered" style="width :100%">
 
         <thead>
@@ -57,25 +46,41 @@
         <tbody>
 
             @{
-                var all_luuhs = ViewBag.alllhs as IEnumerable<QLDHS.Models.Entity.ThongKeNienHanQH>;
+                var all_luuhs = ViewBag.LHS_KTKhoaHoc as IEnumerable<QLDHS.Models.Model_view.CVDeNghiTotNgiep>;
+                var dem = 0;
             }
             @foreach (var item in all_luuhs)
             {
-
-                string ngaynhan = null;
-                if (item.NgayNhan != null)
+                dem = dem + 1;
+                string ngaysinh = null;
+                if (item.Ngaysinh != null)
                 {
-                    string ngaynhanStr = item.NgayNhan.ToString();
+                    string ngaynhanStr = item.Ngaysinh.ToString();
                     DateTime date = (Convert.ToDateTime(ngaynhanStr));
-                    ngaynhan = date.Day + "-" + date.Month + "-" + date.Year;
+                    ngaysinh = date.Day + "-" + date.Month + "-" + date.Year;
+                }
+                string ngaynhanngu = null;
+
+                if(item.NgayNhapNgu!=null)
+                {
+                    string ngaynhapnguStr = item.Ngaysinh.ToString();
+                    DateTime date = (Convert.ToDateTime(ngaynhapnguStr));
+                    ngaynhanngu = date.Day + "-" + date.Month + "-" + date.Year;
+                }
+                string ngayvenuoc = null;
+                if (item.NgayVeNuoc != null)
+                {
+                    string ngayvenuocStr = item.Ngaysinh.ToString();
+                    DateTime date = (Convert.ToDateTime(ngayvenuocStr));
+                    ngayvenuoc = date.Day + "-" + date.Month + "-" + date.Year;
                 }
                 <tr>
-                    <td scope="row">@item.MaLHS</td>
-                    <td scope="row">@item.KiHieu @item.HoTen </td>
-                    <td scope="row">@ngaynhan</td>
-                    <td scope="row">@item.QuanHam</td>
-                    <td scope="row">@item.CSDaoTao</td>
-                    <td scope="row">@item.DiaBan</td>
+                    <td scope="row">@dem</td>
+                    <td scope="row">@item.HoTen </td>
+                    <td scope="row">@ngaysinh</td>
+                    <td scope="row">@item.CapBac</td>
+                    <td scope="row">@ngaynhanngu</td>
+                    <td scope="row">@ngayvenuoc</td>
                    
                 </tr>
             }

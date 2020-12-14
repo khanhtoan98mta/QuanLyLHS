@@ -16,6 +16,9 @@
 <div class="section-heading">
     <h1>Danh sách<br /> lưu học sinh thăng quân hàm</h1>
 </div>
+@{ 
+    var yearselect = 0;
+}
 <div class="section-content">
     <form enctype="multipart/form-data" method="get" action="" style="margin:0px;">
         Năm nhận quân hàm
@@ -71,6 +74,7 @@
             @foreach (var item in all_luuhs)
             {
 
+                
                 string ngaynhan = null;
                 if (item.NgayNhan != null)
                 {
@@ -94,7 +98,8 @@
         </tbody>
 
     </table>
-    <a  class="btn btn-outline-primary btn-sm" role="button" href="/thongke/ThongkeNienHanQuanHam" id="nhqh">Tải về</a>
+    
+    <a  class="btn btn-outline-primary btn-sm" role="button" href="/baocao/ThongkeNienHanQuanHam?year=2021?madoituong=1" id="nhqh">Tải về</a>
 </div>
 <script>
         var x = document.getElementById("yearQH").value;
@@ -105,6 +110,7 @@
     var table;
     var columnsVisible ;
     $(document).ready(function () {
+
 
         // Cấu hình các nhãn phân trang
         table = $('#alllhs').DataTable({
