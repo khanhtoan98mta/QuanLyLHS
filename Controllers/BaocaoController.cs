@@ -146,8 +146,8 @@ namespace QLDHS.Controllers
             SqlParameter doituong = new SqlParameter("@madoituong", madoituong);
             endDate.SqlDbType = System.Data.SqlDbType.Int;
             List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @date, @madoituong", endDate, doituong).ToList();
-            string filename = @"D:/Tai_lieu_hoc_tap/QuanLyLHS/MAU/DSThangQuanHam.docx";
-            var doc = Xceed.Words.NET.DocX.Load(filename);
+            string targetfile = Server.MapPath("~/Content/Reports/Template/DSThangQuanHam.docx");
+            var doc = Xceed.Words.NET.DocX.Load(targetfile);
             var doc1 = doc.Copy();
             string dt = db.DoiTuongs.Find(madoituong).DoiTuong1;
             if(madoituong==0)
