@@ -98,6 +98,8 @@ namespace QLDHS.Models.Entity
         public DateTime? ThoiGianVe { get; set; }
         public string DoanTruong { get; set; }
         public int? MaQuanHam { get; set; }
+        public int? GhiChu { get; set; }
+
 
 
     }

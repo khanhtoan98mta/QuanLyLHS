@@ -87,7 +87,8 @@ namespace QLDHS.Models.Function
                     lhs.NgayVaoDoan = info.NgayVaoDoan;
                     lhs.NgayVaoDang = info.Ngayvaodang;
                     lhs.NgayChuyenDangCT = info.Ngaychuyendangchinhthuc;
-                    lhs.NghienCuuNoiBat = info.Linhvucthemanh;                    
+                    lhs.NghienCuuNoiBat = info.Linhvucthemanh;
+                    lhs.GhiChu = info.GhiChu;                   
                 }
                 db.SaveChanges();
                 ThanNhan thannhan;

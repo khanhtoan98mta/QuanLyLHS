@@ -204,7 +204,7 @@
     <div class="row">
 
         <div class="col-lg-4 col-xl-4">
-            <div class="card-box text-center" style="position: sticky;top: 0; z-index:3">
+            <div id="avatar-box" class="card-box text-center" style="position: sticky;top: 0; z-index:3">
                 <img id="avatar" src="~/@Model.Image" class="avatar-xl img-thumbnail" alt="profile-image">
 
                 <h4 class="mb-0">@Model.Hoten</h4>
@@ -275,7 +275,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày sinh</label>
-                                        <input value="@ngaysinhdate" type="date" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" >
+                                        <input value="@ngaysinhdate" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" >
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -366,7 +366,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Thời gian nhập ngũ</label>
-                                        <input value="@ngaynhapngu" type="date" class="form-control" id="NgayNhapNgu" name="NgayNhapNgu" placeholder="Ngày nhập ngũ" >
+                                        <input value="@ngaynhapngu" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgayNhapNgu" name="NgayNhapNgu" placeholder="Ngày nhập ngũ" >
 
                                     </div>
                                 </div> <!-- end col -->
@@ -376,13 +376,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Ngày vào đoàn</label>
-                                        <input value="@ngayvaodoan" type="date" class="form-control" id="NgayVaoDoan" name="NgayVaoDoan" placeholder="Ngày vào đoàn">
+                                        <input value="@ngayvaodoan" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgayVaoDoan" name="NgayVaoDoan" placeholder="Ngày vào đoàn">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày vào đảng</label>
-                                        <input value="@ngayvaodang" type="date" class="form-control" id="Ngayvaodang" name="Ngayvaodang" placeholder="Ngày vào đảng">
+                                        <input value="@ngayvaodang" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="Ngayvaodang" name="Ngayvaodang" placeholder="Ngày vào đảng">
                                     </div>
                                 </div> <!-- end col -->
                             </div>
@@ -391,7 +391,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Ngày chuyển đảng chính thức</label>
-                                        <input value="@ngaychuyendangct" type="date" class="form-control" id="Ngaychuyendangchinhthuc" name="Ngaychuyendangchinhthuc" placeholder="Ngày chuyển đảng chính thức">
+                                        <input value="@ngaychuyendangct" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="Ngaychuyendangchinhthuc" name="Ngaychuyendangchinhthuc" placeholder="Ngày chuyển đảng chính thức">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -456,6 +456,20 @@
                                     <div class="form-group">
                                         <label for="userbio">Lĩnh vực thế mạnh</label>
                                         <textarea class="form-control" id="Linhvucthemanh" name="Linhvucthemanh" rows="2" placeholder="Lĩnh vực thế mạnh">@Model.NghienCuuNoiBat</textarea>
+                                    </div>
+                                </div>
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="userbio">Mức độ quan tâm</label>
+                                        <select class="form-control" id="GhiChu" name="GhiChu" rows="2" placeholder="Mức độ quan tâm">
+                                            <option label="Mức độ bình thường" value="1"></option>
+                                            <option label="Mức độ trung bình" value="2"></option>
+                                            <option label="Mức độ cao" value="3"></option>
+
+                                        </select>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -616,13 +630,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Ngày đi học </label>
-                                        <input value="@thoigianbatdauhoc" type="date" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
+                                        <input value="@thoigianbatdauhoc" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="ThoiGianBatDauHoc" name="ThoiGianBatDauHoc">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày về nước</label>
-                                        <input value="@thoigianketthuchoc" type="date" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
+                                        <input value="@thoigianketthuchoc" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="ThoiGianKetThucHoc" name="ThoiGianKetThucHoc">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -1006,8 +1020,8 @@
                                                               </select>
                                                     </td>
                                                     <td>
-                                                        Ngày đi: <input name="NgayDi" id="NgayDi_@index" type="date" value="@ngaydi"  min="01-01-2010" max="01-01-2100" /><br />
-                                                        Ngày về: <input name="NgayVe" id="NgayVe_@index" type="date" value="@ngayve"  min="01-01-2010" max="01-01-2100" />
+                                                        Ngày đi: <input name="NgayDi" id="NgayDi_@index" type="date" max="2999-12-30" min="1900-01-01" value="@ngaydi"  min="01-01-2010" max="01-01-2100" /><br />
+                                                        Ngày về: <input name="NgayVe" id="NgayVe_@index" type="date" max="2999-12-30" min="1900-01-01" value="@ngayve"  min="01-01-2010" max="01-01-2100" />
 
 
                                                     </td>
@@ -1043,6 +1057,22 @@
 
 
 <script>
+    //thay doi css cua card-box voi cac muc do quan tam khac nhau
+    var Quantam = '@Model.GhiChu';
+    if (Quantam =='2') {
+        //vang
+        $('#avatar-box').css("background-color", "rgba(255, 255, 0, 0.2)")
+    }
+    else if (Quantam =='3') {
+        //do
+        $('#avatar-box').css("background-color", "rgba(255, 0, 0, 0.2)")
+    }
+    else{
+        //xanh
+        $('#avatar-box').css("background-color", "rgba(0, 0, 255, 0.1)")
+
+    }
+    
     $(document).ready(function () {
         $(".nav-link").click(function () {
             $('#about-me-button,#setting-button').toggleClass("active");
