@@ -137,6 +137,7 @@ namespace QLDHS.Controllers
 
           
         }
+
         public ActionResult ThongkeNienHanQuanHam(int year,int madoituong)
         {
             LUUHS db = new LUUHS();
