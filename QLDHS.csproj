@@ -1041,6 +1041,8 @@
     <Content Include="Content\DataTables\extensions\Buttons\css\mixins.scss" />
     <Content Include="Content\DataTables\extensions\Buttons\css\common.scss" />
     <Content Include="Content\Reports\Template\PhieuLHS1.docx" />
+    <Content Include="Content\Reports\Template\DSThangQuanHam.docx" />
+    <Content Include="Content\Reports\Template\CV2.docx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

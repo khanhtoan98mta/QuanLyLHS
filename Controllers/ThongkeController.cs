@@ -146,7 +146,9 @@ namespace QLDHS.Controllers
 
         public ActionResult ThongKeLHSKetThucKhoaHoc(int year)
         {
+           
             SqlParameter Year = new SqlParameter("@year", year);
+            
             Year.SqlDbType = SqlDbType.Int;
 
             List<CVDeNghiTotNgiep> DSDeNghiTotNgieps = new LUUHS().Database.SqlQuery<CVDeNghiTotNgiep>("exec dbo.ThongKeLHSVeNuoc @year ", Year).ToList();
