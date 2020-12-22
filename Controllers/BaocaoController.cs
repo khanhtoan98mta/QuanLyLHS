@@ -155,7 +155,7 @@ namespace QLDHS.Controllers
             {
                 dt = "";
             }
-            doc1.ReplaceText("<doituong>", dt);
+            doc1.ReplaceText("<doituong>", dt.ToUpper());
             doc1.ReplaceText("<nam>", year.ToString());
             Table table = doc1.Tables[0];
             for(int i=0;i<ThongKeQH.Count;i++)

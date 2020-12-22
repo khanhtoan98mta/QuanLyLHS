@@ -44,7 +44,7 @@ namespace QLDHS.Controllers
             ViewBag.BacDaoTao = db.BacDaoTaos;
             ViewBag.NganhDT = db.NganhDaoTaos;
             ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
-            ViewBag.diaban = db.DiaBanDaoTaos.ToList();
+            ViewBag.diaban = db.DiaBanDaoTaos.OrderBy(x=>x.DiaBan);
             ViewBag.QuanHam = db.QuanHams.ToList();
             ViewBag.VePhep = db.VePheps.ToList();
             ViewBag.LHS_VePhep = db.LHS_VePhep.Where(x => x.LHSID == LHSID).ToList();
@@ -358,6 +358,7 @@ namespace QLDHS.Controllers
             doc1.ReplaceText("<kyluat>", lhs.KiLuat);
             string vephep = "";
             vephep = lhs.VePhepTC + "," + lhs.VePhepTT;
+            if(vephep != ",")
             if (vephep.LastIndexOf(',') == vephep.Length - 1)
             {
                 vephep = vephep.Remove(vephep.Length - 1);

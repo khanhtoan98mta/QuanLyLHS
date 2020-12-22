@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "EditVephep";
+    ViewBag.Title =  ViewBag.TenDiaBan ;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -116,18 +116,20 @@
             var index = $("table tbody tr:last-child").index() +2;
             var row = '<tr>' +
                     '<td>' +
-                        `${index}`+
-            '</td>'+
-            '<td>'+
-            '<input name="TenBoMon" id="TenBoMon" type="text" value="" />'+
-            '</td>'+
-            '<td>'+
-            '<input name="GhiChu" id="GhiChu" type="text" value=""  />'+
-            '</td>'+
+                    `${index}`+
+                    '</td>'+
+                    '<td class="text-editting">' +
+                        ' <input type="text" name="CSDT" id="CSDT" value="" placeholder="Điền tên CSDT">'+
+                        ' </td>'+
+                        '<td>'+
+                        ' <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền mô tả"/>'+
+                        ' </td>'+
 
-            '<td>'+
-            '<a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>'+
-                            '</td>'+
+                        '<td>'+
+                        '<a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>'+
+                            '<a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>'+
+
+                    '</td>'+
                     '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
@@ -144,33 +146,15 @@
     });
 </script>
 
-
-<span class="col-sm-12">
-    <select id="Nuoc" name="Nuoc">
-        <option label="Chọn nước" hidden="hidden"></option>
-    </select>
-    >>
-    <select id="CSDT" name="CSDT">
-        <option label="Chọn cơ sở đào tạo" hidden="hidden"></option>
-
-    </select>
-    <a href="google.com"><i class="fa fa-info-circle" style="color:#07f764;"></i></a>
-    >>
-    <select id="CSDT" name="CSDT">
-        <option label="Chọn khoa" hidden="hidden"></option>
-    </select>
-    <a href="google.com"><i class="fa fa-info-circle" style="color:#07f764;"></i></a>
-
-</span>
-
+<b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN</b>
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8">
-                <h2>Khoa Công nghệ thông tin</h2>
+                
             </div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm bộ môn</button>
+                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm cơ sở đào tạo</button>
             </div>
         </div>
     </div>
@@ -180,30 +164,38 @@
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Tên khoa</th>
+                    <th>Tên CSDT</th>
                     <th>Ghi chú</th>
                     <th>Công cụ</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        <input name="TenBoMon" id="TenBoMon" type="text" value="" />
-                    </td>
-                    <td>
-                        <input name="GhiChu" id="GhiChu" type="text" value="" />
-                    </td>
+               
+                    @{ var indexx = 0;}
+                    @foreach (var item in ViewBag.CSDTs)
+                    {
+                        indexx += 1;
+                        <tr>
+                            <td>
+                                @indexx
+                            </td>
+                            <td class="text-editting">
+                                <input type="text" name="CSDT" id="CSDT" value="@item.CSDaoTao" placeholder="Điền tên CSDT">
+                            </td>
+                            <td>
+                                <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền mô tả"/>
+                            </td>
 
-                    <td>
-                        <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#07f764;"></i></a>
-                        <a class="delete" title="Xóa"><i class="fa fa-remove"></i></a>
+                            <td>
+                                <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                                <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
-                    </td>
-                </tr>
+                            </td>
+                        </tr>
+                    }
+
+                      
 
 
             </tbody>
@@ -211,7 +203,11 @@
     </form>
 </div>
 
-
+<style>
+    input[type=text] {
+        border: none;
+    }
+</style>
 
 
 
