@@ -1206,6 +1206,7 @@
     <Content Include="Views\Thongke\ThongKeLHSKetThucKhoaHoc.cshtml" />
     <Content Include="Views\QLCSDaoTao\ThongtinCSDT.cshtml" />
     <Content Include="Views\QLCSDaoTao\ThongtinKhoa.cshtml" />
+    <Content Include="Views\QLCSDaoTao\ThongtinBoMon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\js\vendor\" />

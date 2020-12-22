@@ -86,7 +86,7 @@
                 <th scope="col">Cơ sở đào tạo</th>
                 <th scope="col">Bậc đào tạo</th>
                 <th scope="col">Thời gian đào tạo</th>
-                <th scope="col">Công cụ</th>
+                <th scope="col"  width=5% >Công cụ</th>
             </tr>
         </thead>
         <tbody>
@@ -106,14 +106,15 @@
 
                 <tr>
                     <th scope="row">@item.MaLHS</th>
-                    <td scope="row">@item.Hoten <br @item.NgaySinh/>
-                                                    </td>
+                    <td scope="row">@item.Hoten <br @item.NgaySinh/> </td>
                     <td scope="row">@ngaysinhdate</td>
                     <td scope="row">@item.GioiTinh</td>
                     <td scope="row">@item.QuanHam</td>
                     <td scope="row">
-                        <a href="~/LuuHS/EditLHS?LHSID=@item.LHSID"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit"></i></div></a>
-                        <a href="~/LuuHS/DeleteLHS?LHSID=@item.LHSID" id="deleteLHS"><div type="button" class="btn btn-danger" title="Xóa sinh viên"><i class="fa fa-trash-o"></i></div></a>
+                        @*<a href="~/LuuHS/EditLHS?LHSID=@item.LHSID"><div type="button" class="btn btn-success" title="Chỉnh sửa thông tin"><i class="fa fa-edit"></i></div></a>*@
+                       @* <a href="~/LuuHS/DeleteLHS?LHSID=@item.LHSID" id="deleteLHS"><div type="button" class="btn btn-danger" title="Xóa sinh viên"><i class="fa fa-trash-o"></i></div></a>*@
+                        <a class="info" href="~/LuuHS/EditLHS?LHSID=@item.LHSID" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                        <a class="delete" href="~/LuuHS/DeleteLHS?LHSID=@item.LHSID" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
                     </td>
                 </tr>
             }

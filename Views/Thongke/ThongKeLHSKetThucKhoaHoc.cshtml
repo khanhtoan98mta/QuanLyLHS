@@ -14,7 +14,7 @@
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 <div class="section-heading">
-    <h2>Danh sách<br /> Đề nghị tốt nghiệp năm 
+    <h2>Danh sách<br /> 
                  
                      <select>
                          <option>2020</option>
@@ -70,7 +70,7 @@
                 string ngayvenuoc = null;
                 if (item.NgayVeNuoc != null)
                 {
-                    string ngayvenuocStr = item.Ngaysinh.ToString();
+                    string ngayvenuocStr = item.NgayVeNuoc.ToString();
                     DateTime date = (Convert.ToDateTime(ngayvenuocStr));
                     ngayvenuoc = date.Day + "-" + date.Month + "-" + date.Year;
                 }
