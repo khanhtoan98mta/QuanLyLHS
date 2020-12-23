@@ -61,6 +61,12 @@
                     Báo cáo
                 </a>
             </li>
+            <li class="nav-item" id="QLCSDaoTao">
+                <a href="../QLCSDaoTao" class="nav-link text-light font-italic">
+                    <i class="fa fa-file mr-3 text-primary fa-fw"></i>
+                    Quản lí CSDT
+                </a>
+            </li>
         </ul>
     </div>
     <!-- End vertical navbar -->
@@ -116,6 +122,8 @@
             var patt3 = new RegExp("/thongke");
             var patt4 = new RegExp("/hoatdong");
             var patt5 = new RegExp("/baocao");
+            var patt6 = new RegExp("/QLCSDaoTao");
+
 
             if (patt1.exec(pathName)!= null||pathName=="/") {
                 $("#home").css("background", "#0d0e0f");
@@ -133,6 +141,9 @@
             }
             else if (patt5.exec(pathName) != null) {
                 $("#baocao").css("background", "#0d0e0f");
+            }
+            else if (patt6.exec(pathName) != null) {
+                $("#QLCSDaoTao").css("background", "#0d0e0f");
             }
             else {
 

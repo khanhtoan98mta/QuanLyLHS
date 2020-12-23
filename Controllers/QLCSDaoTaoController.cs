@@ -12,7 +12,10 @@ namespace QLDHS.Controllers
         // GET: QLCSDaoTao
         public ActionResult Index()
         {
-            return View();
+            LUUHS context = new LUUHS();
+            List<DiaBanDaoTao> diaban = context.DiaBanDaoTaos.ToList() ;
+
+            return View(diaban);
         }
 
         public ActionResult ThongtinCSDT(int IDDiaBan)
@@ -30,6 +33,8 @@ namespace QLDHS.Controllers
             var khoas = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MACSDT).OrderBy(x => x.TenKhoa);
             ViewBag.Khoas = khoas;
             ViewBag.TenCSDT = context.CoSoDaoTaos.SingleOrDefault(x => x.MaCSDaoTao == MACSDT).CSDaoTao;
+            var iddiaban = context.CoSoDaoTaos.SingleOrDefault(x => x.MaCSDaoTao == MACSDT).IDDiaBan;
+            ViewBag.TenDiaBan = context.DiaBanDaoTaos.Single(x => x.IDDiaBan == iddiaban).DiaBan;
 
             return View();
         }
@@ -40,6 +45,7 @@ namespace QLDHS.Controllers
             var bomons = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).OrderBy(x => x.TenBoMon);
             ViewBag.Bomons = bomons;
             ViewBag.TenKhoa = context.KhoaDaoTaos.SingleOrDefault(x => x.MaKhoa == MaKhoa).TenKhoa;
+
 
             return View();
         }

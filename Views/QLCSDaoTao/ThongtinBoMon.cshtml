@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = ViewBag.TenKhoa;
+    ViewBag.Title = "Khoa " +ViewBag.TenKhoa;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -147,7 +147,8 @@
 </script>
 
 <span>
-    <a href="/qlcsdaotao/index">Danh sách nước</a> >> @ViewBag.TenDiaBan >> Đại học VN >> Khoa Công nghệ thông tin >> Bộ môn CNTT
+    <a href="/qlcsdaotao/index">Danh sách nước</a> 
+    >> @ViewBag.TenDiaBan >> Đại học VN >> @ViewBag.TenKhoa
 </span>
 <div class="table-wrapper">
     <div class="table-title">

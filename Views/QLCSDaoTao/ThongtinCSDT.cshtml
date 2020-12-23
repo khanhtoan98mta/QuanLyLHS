@@ -146,7 +146,12 @@
     });
 </script>
 
-<b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN</b>
+<b>
+    <a href="/qlcsdaotao/index">Danh sách nước</a>
+    >> 
+    @ViewBag.TenDiaBan
+
+</b>
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -188,7 +193,7 @@
                             </td>
 
                             <td>
-                                <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                                <a class="info" href="~/QLCSDaoTao/ThongTinKhoa?MACSDT=@item.MaCSDaoTao" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                                 <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                             </td>

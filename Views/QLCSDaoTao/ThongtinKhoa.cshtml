@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = ViewBag.TenCSDT;
+    ViewBag.Title = "Trường "+ ViewBag.TenCSDT;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -146,7 +146,13 @@
     });
 </script>
 
-<b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN >> Khoa Công nghệ thông tin</b>
+<b>
+    <a href="/qlcsdaotao/index">Danh sách nước</a>
+     >> 
+    @ViewBag.TenDiaBan
+     >> 
+    @ViewBag.TenCSDT
+</b>
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -188,7 +194,7 @@
                         </td>
 
                         <td>
-                            <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                            <a class="info" href="~/QLCSDaoTao/ThongTinBoMon?MaKhoa=@item.MaKhoa" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                             <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                         </td>
