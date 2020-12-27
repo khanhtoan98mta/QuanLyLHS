@@ -1207,7 +1207,6 @@
     <Content Include="Views\QLCSDaoTao\ThongtinCSDT.cshtml" />
     <Content Include="Views\QLCSDaoTao\ThongtinKhoa.cshtml" />
     <Content Include="Views\QLCSDaoTao\ThongtinBoMon.cshtml" />
-    <Content Include="Views\QLCSDaoTao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\js\vendor\" />

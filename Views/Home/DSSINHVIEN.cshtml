@@ -7,8 +7,40 @@
 <script>
   $(document).ready(function() {
 
+
+      $('#alllhs thead tr').clone(true).appendTo('#alllhs thead');
+      $('#alllhs thead tr:eq(1) th').each(function (i) {
+          var title = $(this).text();
+          $(this).html('<input type="text" placeholder="Search' + '"style="width:100px;"' + ' />');
+          $('input', this).on('keyup change', function () {
+              if (table.column(i).search() !== this.value) {
+                  table
+                      .column(i)
+                      .search(this.value)
+                      .draw();
+              }
+          });
+      });
+
   // Cấu hình các nhãn phân trang
       var table = $('#alllhs').dataTable({
+
+          initComplete: function () {
+              // Apply the search
+              this.api().columns().every( function () {
+                  var that = this;
+ 
+                  $( 'input', this.header() ).on( 'keyup change clear', function () {
+                      if ( that.search() !== this.value ) {
+                          that
+                              .search( this.value )
+                              .draw();
+                      }
+                  } );
+              } );
+          },
+          orderCellsTop: true,
+          fixedHeader: true,
       "language": {
       "sProcessing":   "Đang xử lý...",
       "sLengthMenu":   "Xem _MENU_ mục",
