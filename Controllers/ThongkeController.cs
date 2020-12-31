@@ -76,13 +76,13 @@ namespace QLDHS.Controllers
         public ActionResult DSThangQuanHam_Year(int Year,int DoiTuong)
         {
            
-            SqlParameter year = new SqlParameter("@nam", Year);
+            SqlParameter nam = new SqlParameter("@nam", Year);
             SqlParameter doituong = new SqlParameter("@madoituong", DoiTuong);
 
-            year.SqlDbType = SqlDbType.Int;
+            nam.SqlDbType = SqlDbType.Int;
             doituong.SqlDbType = SqlDbType.Int;
 
-            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @nam , @madoituong ", year,doituong).ToList();
+            List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @nam , @madoituong ", nam,doituong).ToList();
             ViewBag.alllhs = ThongKeQH;
           
             return View();
@@ -111,7 +111,8 @@ namespace QLDHS.Controllers
         public ActionResult ThongKePLTN()
         {
             List<ThongKe_TotNghiep_Year> ThongKeTN = new LUUHS().Database.SqlQuery<ThongKe_TotNghiep_Year>("exec dbo.ThongKe_LHS_TotNghiep").ToList();
-            string filename = @"D:/Tai_lieu_hoc_tap/ThucTap/baocao.docx";
+            string filename = Server.MapPath("~/Content/Reports/Template/baocao.docx");
+
             var doc = DocX.Load(filename);
             string nam = "<nam";
             string xs_ = "<xs_";
@@ -162,8 +163,9 @@ namespace QLDHS.Controllers
             SqlParameter endDate = new SqlParameter("@date", year);
             SqlParameter doituong = new SqlParameter("@madoituong", madoituong);
             endDate.SqlDbType = System.Data.SqlDbType.Int;
+            doituong.SqlDbType = System.Data.SqlDbType.Int;
             List<ThongKeNienHanQH> ThongKeQH = new LUUHS().Database.SqlQuery<ThongKeNienHanQH>("exec dbo.ThongKe_NienHanQH @date @madoituong", endDate,doituong).ToList();
-            string filename = @"D:/Tai_lieu_hoc_tap/QuanLyLHS/MAU/DSThangQuanHam.docx";
+            string filename = Server.MapPath("~/Content/Reports/Template/DSThangQuanHam.docx");
             var doc = DocX.Load(filename);
             var doc1 = doc.Copy();
             int rowcount = ThongKeQH.Count;

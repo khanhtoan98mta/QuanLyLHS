@@ -1043,6 +1043,8 @@
     <Content Include="Content\Reports\Template\PhieuLHS1.docx" />
     <Content Include="Content\Reports\Template\DSThangQuanHam.docx" />
     <Content Include="Content\Reports\Template\CV2.docx" />
+    <Content Include="Content\Reports\Template\baocao.docx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -1208,6 +1210,7 @@
     <Content Include="Views\QLCSDaoTao\ThongtinKhoa.cshtml" />
     <Content Include="Views\QLCSDaoTao\ThongtinBoMon.cshtml" />
     <Content Include="Views\QLCSDaoTao\Index.cshtml" />
+    <Content Include="Views\baocao.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\js\vendor\" />
