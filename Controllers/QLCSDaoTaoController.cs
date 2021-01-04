@@ -48,7 +48,7 @@ namespace QLDHS.Controllers
         }
 
         [HttpPost]
-        public string ThemCSDT(int IDDiaBan,string[] CSDaoTao,int[] MaCSDaoTao)
+        public string ThemCSDT(int IDDiaBan,string[] CSDaoTao)
         {
             LUUHS context = new LUUHS();
 
@@ -58,10 +58,23 @@ namespace QLDHS.Controllers
                 List<CoSoDaoTao> CSDT_current = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).ToList();
                 for (int i = 0; i < CSDaoTao.Length; i++)
                 {
-                    if (CSDT_current!=null && i<CSDT_current.Count-1)
+                    if (CSDT_current!=null && i<CSDT_current.Count)
                     {
 
+                        int macsdt = CSDT_current.ElementAt(i).MaCSDaoTao;
+                        CoSoDaoTao csdt = context.CoSoDaoTaos.Single(a => a.MaCSDaoTao == macsdt);
+                        csdt.CSDaoTao = CSDaoTao[i];
+                        context.SaveChanges();
 
+
+                    }
+                    else
+                    {
+                        CoSoDaoTao csdt = new CoSoDaoTao();
+                        csdt.CSDaoTao = CSDaoTao[i];
+                        csdt.MaCSDaoTao = context.CoSoDaoTaos.Count() + 1;
+                        context.CoSoDaoTaos.Add(csdt);
+                        context.SaveChanges();
                     }
                 }
             }

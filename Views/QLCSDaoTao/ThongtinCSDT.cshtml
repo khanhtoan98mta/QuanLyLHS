@@ -119,7 +119,7 @@
                     `${index}`+
                     '</td>'+
                     '<td class="text-editting">' +
-                        '<input name="IDDiaBan" value="'+`${iddiaban}`+'" style="display:none;" /> <input type="text" name="CSDaoTao" id="CSDaoTao" value="" placeholder="Điền tên CSDT" required>' +
+                        '<input type="text" name="CSDaoTao" id="CSDaoTao" value="" placeholder="Điền tên CSDT" required>' +
                         ' </td>'+
                         '<td>'+
                         ' <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền mô tả"/>'+
@@ -166,6 +166,8 @@
                 </div>
             </div>
         </div>
+    <form action="ThemCSDT" method="post" enctype="multipart/form-data">
+        <input name="IDDiaBan" value="@ViewBag.IDDB" style="display:none;" />
         <table class="table table-bordered">
             <thead>
                 <tr>
