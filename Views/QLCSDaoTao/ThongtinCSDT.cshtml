@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title =  ViewBag.TenDiaBan ;
+    ViewBag.Title = ViewBag.TenDiaBan;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -23,7 +23,7 @@
             font-size: 22px;
         }
 
-        .table-title .add-new {
+        .table-title .add-new, .save {
             float: right;
             height: 30px;
             font-weight: bold;
@@ -35,7 +35,7 @@
         }
 
             .table-title .add-new i {
-                margin-right: 4px;
+                margin-right: 2px;
             }
 
     table.table {
@@ -106,20 +106,20 @@
     }
 </style>
 <script>
-
+    var iddiaban = '@ViewBag.IDDB'
     $(document).ready(function () {
 
         var actions = $("table td:last-child").html();
         // Append table with add row form on add new button click
         $(".add-new").click(function () {
-
+            
             var index = $("table tbody tr:last-child").index() +2;
             var row = '<tr>' +
                     '<td>' +
                     `${index}`+
                     '</td>'+
                     '<td class="text-editting">' +
-                        ' <input type="text" name="CSDT" id="CSDT" value="" placeholder="Điền tên CSDT">'+
+                        '<input name="IDDiaBan" value="'+`${iddiaban}`+'" style="display:none;" /> <input type="text" name="CSDaoTao" id="CSDaoTao" value="" placeholder="Điền tên CSDT" required>' +
                         ' </td>'+
                         '<td>'+
                         ' <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền mô tả"/>'+
@@ -143,23 +143,29 @@
             index--;
 
         });
+
+
     });
 </script>
 
 <b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN</b>
 <div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8">
-                
-            </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm cơ sở đào tạo</button>
+
+
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8">
+
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm CSDT</button>
+                </div>
+                <div class="col-sm-2">
+                    <button id="saveCSDT" type="submit" class="btn btn-success save"><i class="fa fa-save"></i> Lưu thông tin</button>
+
+                </div>
             </div>
         </div>
-    </div>
-    <form action="./EditVePhep" enctype="multipart/form-data" method="post">
-
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -171,20 +177,23 @@
             </thead>
 
             <tbody>
-               
-                    @{ var indexx = 0;}
-                    @foreach (var item in ViewBag.CSDTs)
-                    {
-                        indexx += 1;
-                        <tr>
+
+                @{ var indexx = 0;}
+                @foreach (var item in ViewBag.CSDTs)
+                {
+                    indexx += 1;
+                    <tr>
                             <td>
                                 @indexx
                             </td>
                             <td class="text-editting">
-                                <input type="text" name="CSDT" id="CSDT" value="@item.CSDaoTao" placeholder="Điền tên CSDT">
+                                <input name="MaCSDaoTao" value="@item.MaCSDaoTao" type="text"/>
+                                <input name="IDDiaBan" value="@ViewBag.IDDB" style="display:none;" />
+
+                                <input type="text" name="CSDaoTao" id="CSDaoTao_@indexx" value="@item.CSDaoTao" placeholder="Điền tên CSDT" required>
                             </td>
                             <td>
-                                <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền mô tả"/>
+                                <input name="GhiChu" id="GhiChu_@indexx" type="text" value="" placeholder="Điền mô tả" />
                             </td>
 
                             <td>
@@ -192,15 +201,18 @@
                                 <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                             </td>
-                        </tr>
-                    }
+                    </tr>
+                }
 
-                      
+
 
 
             </tbody>
         </table>
+
+
     </form>
+
 </div>
 
 <style>

@@ -12,19 +12,22 @@ namespace QLDHS.Controllers
         // GET: QLCSDaoTao
         public ActionResult Index()
         {
-            return View();
+            LUUHS context = new LUUHS();
+            List<DiaBanDaoTao> diabans = context.DiaBanDaoTaos.ToList();
+            return View(diabans);
         }
 
         public ActionResult ThongtinCSDT(int IDDiaBan)
         {
             LUUHS context = new LUUHS();
-            var csdataos = context.CoSoDaoTaos.Where(x => x.IDDiaBan  == IDDiaBan).OrderBy(s =>s.CSDaoTao);
+            var csdataos = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).OrderBy(s => s.CSDaoTao);
             ViewBag.CSDTs = csdataos;
+            ViewBag.IDDB = IDDiaBan;
             ViewBag.TenDiaBan = context.DiaBanDaoTaos.SingleOrDefault(x => x.IDDiaBan == IDDiaBan).DiaBan;
             return View();
         }
 
-        public ActionResult ThongtinKhoa(int MACSDT )
+        public ActionResult ThongtinKhoa(int MACSDT)
         {
             LUUHS context = new LUUHS();
             var khoas = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MACSDT).OrderBy(x => x.TenKhoa);
@@ -42,6 +45,41 @@ namespace QLDHS.Controllers
             ViewBag.TenKhoa = context.KhoaDaoTaos.SingleOrDefault(x => x.MaKhoa == MaKhoa).TenKhoa;
 
             return View();
+        }
+
+        [HttpPost]
+        public string ThemCSDT(int IDDiaBan,string[] CSDaoTao,int[] MaCSDaoTao)
+        {
+            LUUHS context = new LUUHS();
+
+            if (CSDaoTao != null)
+            {
+                //luu thong tin cua nhung csdt da co
+                List<CoSoDaoTao> CSDT_current = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).ToList();
+                for (int i = 0; i < CSDaoTao.Length; i++)
+                {
+                    if (CSDT_current!=null && i<CSDT_current.Count-1)
+                    {
+
+
+                    }
+                }
+            }
+
+
+                return "Thêm cơ sở đào tạo thành công";
+        }
+
+        [HttpPost]
+        public string ThemKhoa()
+        {
+            return "Thêm khoa thành công";
+        }
+
+        [HttpPost]
+        public string ThemBoMon()
+        {
+            return "Thêm bộ môn thành công";
         }
     }
 }

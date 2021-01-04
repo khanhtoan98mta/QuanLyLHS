@@ -1,0 +1,91 @@
+﻿@model List<QLDHS.Models.Entity.DiaBanDaoTao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+<script>
+  $(document).ready(function() {
+
+  // Cấu hình các nhãn phân trang
+      var table = $('#alllhs').dataTable({
+      "language": {
+      "sProcessing":   "Đang xử lý...",
+      "sLengthMenu":   "Xem _MENU_ mục",
+      "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+      "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+      "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+      "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+      "sInfoPostFix":  "",
+      "sSearch":       "Tìm:",
+      "sUrl":          "",
+      "oPaginate": {
+          "sFirst":    "Đầu",
+          "sPrevious": "Trước",
+          "sNext":     "Tiếp",
+          "sLast":     "Cuối"
+          }
+      },
+      "processing": true, // tiền xử lý trước
+      "aLengthMenu": [[10, 15, 20, 50], [10, 15, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
+      "order": [[ 0, 'asc' ]] //sắp xếp giảm dần theo cột thứ 1
+  } );
+
+    $("#alllhs").css("font-size", 16);
+    table.columns.adjust().draw();
+
+  });
+
+
+
+</script>
+
+
+
+<div class="section-heading">
+    <h1>Danh sách<br /> các nước</h1>
+</div>
+<div class="section-content">
+    <table id="alllhs" class="table table-bordered" style="width :100%">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên nước</th>
+                <th scope="col">Số lượng CSDT</th>
+                <th scope="col">Số lượng LHS</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">1</td>
+                    <td scope="row"><a href="/QLCSDaoTao/ThongtinCSDT?IDDiaBan=@item.IDDiaBan">@item.DiaBan</a></td>
+                    <td scope="row">Số lượng CSDT</td>
+                    <td scope="row">Số lượng LHS</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên nước</th>
+                <th scope="col">Số lượng CSDT</th>
+                <th scope="col">Số lượng LHS</th>
+
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<script>
+
+</script>
+
+
