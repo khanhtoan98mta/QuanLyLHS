@@ -23,7 +23,7 @@ namespace QLDHS.Controllers
             var csdataos = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).OrderBy(s => s.CSDaoTao);
             ViewBag.CSDTs = csdataos;
             ViewBag.IDDB = IDDiaBan;
-            ViewBag.TenDiaBan = context.DiaBanDaoTaos.SingleOrDefault(x => x.IDDiaBan == IDDiaBan).DiaBan;
+            ViewData["TenDiaBan"] = context.DiaBanDaoTaos.SingleOrDefault(x => x.IDDiaBan == IDDiaBan).DiaBan;
             return View();
         }
 
@@ -32,7 +32,8 @@ namespace QLDHS.Controllers
             LUUHS context = new LUUHS();
             var khoas = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MACSDT).OrderBy(x => x.TenKhoa);
             ViewBag.Khoas = khoas;
-            ViewBag.TenCSDT = context.CoSoDaoTaos.SingleOrDefault(x => x.MaCSDaoTao == MACSDT).CSDaoTao;
+            ViewData["TenCSDT"] = context.CoSoDaoTaos.SingleOrDefault(x => x.MaCSDaoTao == MACSDT).CSDaoTao;
+            ViewBag.MACSDT = MACSDT;
 
             return View();
         }
@@ -42,31 +43,35 @@ namespace QLDHS.Controllers
             LUUHS context = new LUUHS();
             var bomons = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).OrderBy(x => x.TenBoMon);
             ViewBag.Bomons = bomons;
-            ViewBag.TenKhoa = context.KhoaDaoTaos.SingleOrDefault(x => x.MaKhoa == MaKhoa).TenKhoa;
+            ViewData["TenKhoa"] = context.KhoaDaoTaos.SingleOrDefault(x => x.MaKhoa == MaKhoa).TenKhoa;
+            ViewBag.MaKhoa = MaKhoa;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult ThemCSDT(int IDDiaBan,string[] CSDaoTao)
+        public ActionResult ThemCSDT(int IDDiaBan,string[] CSDaoTao,int[] MaCSDT)
         {
             LUUHS context = new LUUHS();
+            //luu thong tin cua nhung csdt da co
+            List<CoSoDaoTao> CSDT_current = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).ToList();
+            //neu so luong csdt hien tai lon hơn số được gửi đến
+            if (CSDT_current.Count() > MaCSDT.Count())
+            {
+
+            }
 
             if (CSDaoTao != null)
             {
-                //luu thong tin cua nhung csdt da co
-                List<CoSoDaoTao> CSDT_current = context.CoSoDaoTaos.Where(x => x.IDDiaBan == IDDiaBan).ToList();
+
                 for (int i = 0; i < CSDaoTao.Length; i++)
                 {
                     if (CSDT_current!=null && i<CSDT_current.Count)
                     {
-
-                        int macsdt = CSDT_current.ElementAt(i).MaCSDaoTao;
+                        int macsdt = MaCSDT[i];
                         CoSoDaoTao csdt = context.CoSoDaoTaos.Single(a => a.MaCSDaoTao == macsdt);
                         csdt.CSDaoTao = CSDaoTao[i];
                         context.SaveChanges();
-
-
                     }
                     else
                     {
@@ -85,15 +90,76 @@ namespace QLDHS.Controllers
         }
 
         [HttpPost]
-        public string ThemKhoa()
+        public ActionResult ThemKhoa(int MaCSDaoTao, string[] Khoa,int[] MaKhoa)
         {
-            return "Thêm khoa thành công";
+
+            LUUHS context = new LUUHS();
+
+            if (Khoa != null)
+            {
+                //luu thong tin cua nhung csdt da co
+                List<KhoaDaoTao> Khoa_current = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MaCSDaoTao).ToList();
+                for (int i = 0; i < Khoa.Length; i++)
+                {
+                    if(Khoa[i] !="")
+                    if (Khoa_current != null && i < Khoa_current.Count)
+                    {
+                        int ma = MaKhoa[i];
+                        KhoaDaoTao khoa = context.KhoaDaoTaos.Single(a => a.MaKhoa == ma);
+                        khoa.TenKhoa = Khoa[i];
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        KhoaDaoTao khoa = new KhoaDaoTao();
+                        khoa.TenKhoa = Khoa[i];
+                        khoa.MaKhoa = context.KhoaDaoTaos.Count() + 1;
+                        khoa.MaCSDaoTao = MaCSDaoTao;
+                        context.KhoaDaoTaos.Add(khoa);
+                        context.SaveChanges();
+                    }
+                }
+            }
+
+
+            return Redirect("/QLCSDaoTao/ThongtinKhoa?MACSDT=" + MaCSDaoTao);
         }
 
         [HttpPost]
-        public string ThemBoMon()
+        public ActionResult ThemBoMon(int MaKhoa, string[] BoMon, int[] MaBoMon)
         {
-            return "Thêm bộ môn thành công";
+            LUUHS context = new LUUHS();
+            //xoa những bộ môn không có trong mã bộ môn
+
+
+            if (BoMon != null)
+            {
+                //luu thong tin cua nhung csdt da co
+                List<BoMonDaoTao> BoMon_current = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).ToList();
+                for (int i = 0; i < BoMon.Length; i++)
+                {
+                    if (BoMon[i] != "")
+                        if (BoMon_current != null && i < BoMon_current.Count)
+                        {
+                            int ma = MaBoMon[i];
+                            BoMonDaoTao bomon = context.BoMonDaoTaos.Single(a => a.MaBM == ma);
+                            bomon.TenBoMon = BoMon[i];
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            BoMonDaoTao bomon = new BoMonDaoTao();
+                            bomon.TenBoMon = BoMon[i];
+                            bomon.MaBM = context.BoMonDaoTaos.Count() + 1;
+                            bomon.MaKhoa = MaKhoa;
+                            context.BoMonDaoTaos.Add(bomon);
+                            context.SaveChanges();
+                        }
+                }
+            }
+
+
+            return Redirect("/QLCSDaoTao/ThongtinBoMon?MaKhoa=" + MaKhoa);
         }
     }
 }

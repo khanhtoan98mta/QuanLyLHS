@@ -23,7 +23,7 @@
             font-size: 22px;
         }
 
-        .table-title .add-new {
+        .table-title .add-new, .save {
             float: right;
             height: 30px;
             font-weight: bold;
@@ -35,7 +35,7 @@
         }
 
             .table-title .add-new i {
-                margin-right: 4px;
+                margin-right: 2px;
             }
 
     table.table {
@@ -146,20 +146,24 @@
     });
 </script>
 
-<b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN >> Khoa Công nghệ thông tin</b>
+<b>Danh sách nước >> @ViewData["TenDiaBan"] >> @ViewData["TenCSDT"]</b>
 <div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8">
+    <form action="ThemKhoa" enctype="multipart/form-data" method="post">
+        <input name="MaCSDaoTao" value="@ViewBag.MACSDT" style="display:none;"/>
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8">
 
-            </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm khoa</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm khoa</button>
+                </div>
+                <div class="col-sm-2">
+                    <button id="saveKhoa" type="submit" class="btn btn-success save"><i class="fa fa-save"></i> Lưu thông tin</button>
+
+                </div>
             </div>
         </div>
-    </div>
-    <form action="./EditVePhep" enctype="multipart/form-data" method="post">
-
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -179,16 +183,19 @@
                     <tr>
                         <td>
                             @indexx
+                            <input type="text" name="MaKhoa" id="MaKhoa" value="@item.MaKhoa" style="display:none;">
+
                         </td>
                         <td class="text-editting">
                             <input type="text" name="Khoa" id="Khoa" value="@item.TenKhoa" placeholder="Điền tên khoa">
+
                         </td>
                         <td>
                             <input name="GhiChu" id="GhiChu" type="text" value="" />
                         </td>
 
                         <td>
-                            <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                            <a class="info" href="/QLCSDaoTao/ThongtinBoMon?MaKhoa=@item.MaKhoa" + MaKhoa" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                             <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                         </td>

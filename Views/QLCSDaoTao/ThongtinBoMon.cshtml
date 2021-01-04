@@ -23,7 +23,7 @@
             font-size: 22px;
         }
 
-        .table-title .add-new {
+        .table-title .add-new, .save {
             float: right;
             height: 30px;
             font-weight: bold;
@@ -35,7 +35,7 @@
         }
 
             .table-title .add-new i {
-                margin-right: 4px;
+                margin-right: 2px;
             }
 
     table.table {
@@ -119,7 +119,7 @@
                     `${index}`+
                     '</td>'+
                     '<td class="text-editting">'+
-                            '<input type="text" name="TenBoMon" id="TenBoMon" value="" placeholder="Điền tên bộ môn">' +
+                            '<input type="text" name="BoMon" id="BoMon" value="" placeholder="Điền tên bộ môn">' +
                             '</td>'+
                             '<td>'+
                             ' <input name="GhiChu" id="GhiChu" type="text" value=""placeholder="Điền mô tả" />'+
@@ -150,23 +150,28 @@
     <a href="/qlcsdaotao/index">Danh sách nước</a> >> @ViewBag.TenDiaBan >> Đại học VN >> Khoa Công nghệ thông tin >> Bộ môn CNTT
 </span>
 <div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8">
+    
+    <form action="ThemBoMon" enctype="multipart/form-data" method="post">
+        <input name="MaKhoa" value="@ViewBag.MaKhoa" style="display:none;" />
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8">
 
-            </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm bộ môn</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm bộ môn</button>
+                </div>
+                <div class="col-sm-2">
+                    <button id="saveBM" type="submit" class="btn btn-success save"><i class="fa fa-save"></i> Lưu thông tin</button>
+
+                </div>
             </div>
         </div>
-    </div>
-    <form action="./EditVePhep" enctype="multipart/form-data" method="post">
-
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Tên khoa</th>
+                    <th>Tên bộ môn</th>
                     <th>Ghi chú</th>
                     <th>Công cụ</th>
                 </tr>
@@ -181,16 +186,16 @@
                     <tr>
                         <td>
                             @indexx
+                            <input name="MaBoMon" value="@item.MaBM" />
                         </td>
                         <td class="text-editting">
-                            <input type="text" name="TenBoMon" id="TenBoMon" value="@item.TenBoMon" placeholder="Điền tên bộ môn">
+                            <input type="text" name="BoMon" id="TenBoMon" value="@item.TenBoMon" placeholder="Điền tên bộ môn">
                         </td>
                         <td>
-                            <input name="GhiChu" id="GhiChu" type="text" value="" />
+                            <input name="GhiChu" id="GhiChu" type="text" value="" placeholder="Điền ghi chú"/>
                         </td>
 
                         <td>
-                            <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                             <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                         </td>

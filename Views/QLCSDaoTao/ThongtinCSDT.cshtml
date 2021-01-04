@@ -148,7 +148,7 @@
     });
 </script>
 
-<b>Danh sách nước >> @ViewBag.TenDiaBan >> Đại học VN</b>
+<b>Danh sách nước >> @ViewData["TenDiaBan"]</b>
 <div class="table-wrapper">
 
 
@@ -188,18 +188,19 @@
                     <tr>
                             <td>
                                 @indexx
+                                <input name="MaCSDT" value="@item.MaCSDaoTao" style="display:none;"/>
+
                             </td>
                             <td class="text-editting">
-                                <input name="IDDiaBan" value="@ViewBag.IDDB" style="display:none;" />
 
-                                <input type="text" name="CSDaoTao" id="CSDaoTao_@indexx" value="@item.CSDaoTao" placeholder="Điền tên CSDT" required>
+                                <input type="text" name="CSDaoTao" value="@item.CSDaoTao" placeholder="Điền tên CSDT" required>
                             </td>
                             <td>
                                 <input name="GhiChu" id="GhiChu_@indexx" type="text" value="" placeholder="Điền mô tả" />
                             </td>
 
                             <td>
-                                <a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                                <a class="info" href="/QLCSDaoTao/ThongtinKhoa?MACSDT=@item.MaCSDaoTao" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                                 <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                             </td>
