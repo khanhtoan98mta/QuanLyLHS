@@ -48,7 +48,7 @@ namespace QLDHS.Controllers
         }
 
         [HttpPost]
-        public string ThemCSDT(int IDDiaBan,string[] CSDaoTao)
+        public ActionResult ThemCSDT(int IDDiaBan,string[] CSDaoTao)
         {
             LUUHS context = new LUUHS();
 
@@ -81,7 +81,7 @@ namespace QLDHS.Controllers
             }
 
 
-                return "Thêm cơ sở đào tạo thành công";
+                return Redirect("/QLCSDaoTao/ThongtinCSDT?IDDiaBan="+IDDiaBan);
         }
 
         [HttpPost]
