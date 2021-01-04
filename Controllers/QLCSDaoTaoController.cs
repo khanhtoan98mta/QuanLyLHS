@@ -73,6 +73,7 @@ namespace QLDHS.Controllers
                         CoSoDaoTao csdt = new CoSoDaoTao();
                         csdt.CSDaoTao = CSDaoTao[i];
                         csdt.MaCSDaoTao = context.CoSoDaoTaos.Count() + 1;
+                        csdt.IDDiaBan = IDDiaBan;
                         context.CoSoDaoTaos.Add(csdt);
                         context.SaveChanges();
                     }
