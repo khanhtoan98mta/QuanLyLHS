@@ -10,13 +10,18 @@ namespace QLDHS.Controllers
     {
         public ActionResult Index()
         {
+            
+            if(Session["login"]==null)
+            {
+                return View("Index");
+            }
             ViewBag.messe = "";
             return View();
         }
         [HttpPost]
         public ActionResult Login(string username, string pass)
         {
-
+            
             int check = new F_User().CheckUser(username, pass);
             if (check == -1)
             {
@@ -24,6 +29,7 @@ namespace QLDHS.Controllers
                 ViewBag.messe = str;
                 return View("Index");
             }
+            Session["login"] = "admin";
             return Redirect("~/Home/Index");
 
         }

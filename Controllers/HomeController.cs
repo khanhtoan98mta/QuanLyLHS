@@ -22,7 +22,12 @@ namespace QLDHS.Controllers
     {
         public ActionResult Index()
         {            
+            if(Session["login"]!=null)
             return View();
+            else
+            {
+                return Redirect("~/User/Index");
+            }
         }
 
         public ActionResult InitMap()
