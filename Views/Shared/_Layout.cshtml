@@ -67,12 +67,18 @@
                     Cơ sở đào tạo
                 </a>
             </li>
+            <li class="nav-item" id="qlcsdt">
+                <a href="../QLCSDaoTao/ThongTinNganhDaoTao" class="nav-link text-light font-italic">
+                    <i class="fa fa-file mr-3 text-primary fa-fw"></i>
+                    Thông tin ngành đào tạo
+                </a>
+            </li>
         </ul>
     </div>
     <!-- End vertical navbar -->
     <!-- Page content holder -->
 
-    <div class="page-content p-5" id="content"style="min-height:800px;">
+    <div class="page-content p-5" id="content" >
         <!-- Toggle button -->
         @*<button id="sidebarCollapse" type="button" class="btn btn-dark bg-dark rounded-pill shadow-sm px-4 mb-4" ><i class="fa fa-bars mr-2"></i><small id="textToogle" anhien="an" class="text-uppercase font-weight-bold">Ẩn</small></button>*@        
         <div id="carbon-block"></div>
@@ -81,7 +87,7 @@
 
     </div>
     <!-- End content -->
-
+    <div style="min-height:200px;"></div>
     <!-- Footer content -->
     <div class="footer" style="border-top: solid black">
         <footer class="flex-rw">
@@ -122,6 +128,8 @@
             var patt3 = new RegExp("/thongke");
             var patt4 = new RegExp("/hoatdong");
             var patt5 = new RegExp("/baocao");
+            var patt6 = new RegExp("/QLCSDaoTao");
+
 
             if (patt1.exec(pathName)!= null||pathName=="/") {
                 $("#home").css("background", "#0d0e0f");
@@ -139,6 +147,10 @@
             }
             else if (patt5.exec(pathName) != null) {
                 $("#baocao").css("background", "#0d0e0f");
+            }
+            else if (patt6.exec(pathName) != null) {
+                $("#qlcsdt").css("background", "#0d0e0f");
+
             }
             else {
 

@@ -161,10 +161,139 @@ namespace QLDHS.Controllers
                         }
                 }
             }
-
-
             return Redirect("/QLCSDaoTao/ThongtinBoMon?MaKhoa=" + MaKhoa);
         }
+
+        public ActionResult ThongTinNganhDaoTao()
+        {
+            LUUHS context = new LUUHS();
+            List<NganhDaoTao> list_nganhdt = context.NganhDaoTaos.ToList();
+
+            ViewBag.list_nganhdt = list_nganhdt;
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ThemNganhDaoTao(string[] TenNganh, int[] MaNganh)
+        {
+            LUUHS context = new LUUHS();
+
+            if (TenNganh != null)
+            {
+                List<NganhDaoTao> Nganh_current = context.NganhDaoTaos.ToList();
+                //luu thong tin cua nhung csdt da co
+                for (int i = 0; i < TenNganh.Length; i++)
+                {
+                    if (TenNganh[i] != "")
+                        if (Nganh_current != null && i < Nganh_current.Count)
+                        {
+                            int ma = MaNganh[i];
+                            NganhDaoTao nganhdaotao = context.NganhDaoTaos.Single(a => a.MaNganh == ma);
+                            nganhdaotao.NganhDaoTao1 = TenNganh[i];
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            NganhDaoTao nganhdaotao = new NganhDaoTao();
+                            nganhdaotao.NganhDaoTao1 = TenNganh[i];
+                            nganhdaotao.MaNganh = context.NganhDaoTaos.Count() + 1;
+                            context.NganhDaoTaos.Add(nganhdaotao);
+                            context.SaveChanges();
+                        }
+                }
+            }
+            return Redirect("/QLCSDaoTao/ThongTinNganhDaoTao");
+        }
+
+        public string XoaNganhDaoTao(int MaNganh)
+        {
+            LUUHS context = new LUUHS();
+            try
+            {
+                if (MaNganh != 0)
+                {
+                    NganhDaoTao khoa = context.NganhDaoTaos.Single(x => x.MaNganh == MaNganh);
+                    context.NganhDaoTaos.Remove(khoa);
+                    //không có sinh viên nào học bộ môn này...
+
+                    context.SaveChanges();
+                }
+                return "1";
+            }
+            catch (Exception)
+            {
+
+                return "0";
+            }
+        }
+        public ActionResult ThongTinChuyenNganhDaoTao(int MaNganh)
+        {
+            LUUHS context = new LUUHS();
+            List<ChuyenNganhDaoTao> chuyennganh = context.ChuyenNganhDaoTaos.Where(x => x.MaNganh == MaNganh).ToList();
+            ViewBag.chuyennganh = chuyennganh;
+            ViewBag.MaNganh = MaNganh;
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ThemChuyenNganhDaoTao(int MaNganh,string[] TenChuyenNganh, int[] MaChuyenNganh)
+        {
+            LUUHS context = new LUUHS();
+
+            if (TenChuyenNganh != null)
+            {
+                List<ChuyenNganhDaoTao> ChuyenNganh_current = context.ChuyenNganhDaoTaos.Where(x=>x.MaNganh == MaNganh).ToList();
+                //luu thong tin cua nhung csdt da co
+                for (int i = 0; i < TenChuyenNganh.Length; i++)
+                {
+                    if (TenChuyenNganh[i] != "")
+                        if (ChuyenNganh_current != null && i < ChuyenNganh_current.Count)
+                        {
+                            int ma = MaChuyenNganh[i];
+                            ChuyenNganhDaoTao nganhdaotao = context.ChuyenNganhDaoTaos.Single(a => a.MaChuyenNganh == ma);
+                            nganhdaotao.ChuyenNganhDaoTao1 = TenChuyenNganh[i];
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            ChuyenNganhDaoTao nganhdaotao = new ChuyenNganhDaoTao();
+                            nganhdaotao.ChuyenNganhDaoTao1 = TenChuyenNganh[i];
+                            nganhdaotao.MaChuyenNganh = context.NganhDaoTaos.Count() + 1;
+                            nganhdaotao.MaNganh = MaNganh;
+                            context.ChuyenNganhDaoTaos.Add(nganhdaotao);
+                            context.SaveChanges();
+                        }
+                }
+            }
+            return Redirect("/QLCSDaoTao/ThongTinChuyenNganhDaoTao?MaNganh="+MaNganh);
+        }
+
+        [HttpPost]
+        public string XoaChuyenNganhDaoTao(int MaChuyenNganh)
+        {
+            LUUHS context = new LUUHS();
+            try
+            {
+                if (MaChuyenNganh != 0)
+                {
+                    ChuyenNganhDaoTao khoa = context.ChuyenNganhDaoTaos.Single(x => x.MaChuyenNganh == MaChuyenNganh);
+                    context.ChuyenNganhDaoTaos.Remove(khoa);
+                    //không có sinh viên nào học bộ môn này...
+
+                    context.SaveChanges();
+                }
+                return "1";
+            }
+            catch (Exception)
+            {
+
+                return "0";
+            }
+        }
+
+
 
         [HttpPost]
         public string XoaBoMon(int MaBoMon)

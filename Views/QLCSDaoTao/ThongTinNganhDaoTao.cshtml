@@ -1,6 +1,7 @@
 ﻿
+
 @{
-    ViewBag.Title = ViewBag.TenCSDT;
+    ViewBag.Title = "ThongTinNganhDaoTao";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -115,21 +116,19 @@
 
             var index = $("table tbody tr:last-child").index() +2;
             var row = '<tr>' +
-                    '<td>' +
-                    `${index}`+ '<input id="'+`${index}`+'" name="MaKhoa" value="" style="display:none"/>' +
-                    '</td>'+
-                    '<td class="text-editting">'+
-                            '<input type="text" name="Khoa" id="Khoa" value="" placeholder="Điền tên khoa">'+
-                            '</td>'+
-                            '<td>'+
-                            ' <input name="GhiChu" id="GhiChu" type="text" value=""placeholder="Điền mô tả" />'+
-                            ' </td>'+
-
-                            ' <td>'+
-                            '<a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>'+
-                                '<a class="delete" data-delete= "' + `${index}` + '" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>' +
-
-                       '</td>'+
+                    '<td>' + `${index}`+
+            '<input type="text" name="MaNganh" id="' + `${index}`+'" value="" style="display:none;">' +
+            '</td>' +
+            '<td class="text-editting">' +
+                            '<input type="text" name="TenNganh" id="TenNganh" value="" placeholder="Điền tên ngành đào tạo">' +
+                            '</td>' +
+                            '<td>' +
+                            '<input name="GhiChu" id="GhiChu" type="text" value="" />' +
+                            '</td>' +
+                            '<td>' +
+                            '<a class="info" href="#" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>' +
+                                '<a class="delete" data-delete="' + `${index}`+'" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>' +
+                        '</td>' +
                     '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
@@ -146,40 +145,45 @@
             }
             //
             var formData = new FormData();
-            formData.append('MaKhoa', ma);
+            formData.append('MaNganh', ma);
             $.ajax({
-                url: 'XoaKhoa',
+                url: 'XoaNganhDaoTao',
                 type: 'POST',
                 data: formData,
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,  // tell jQuery not to set contentType
                 success: function (data) {
-                    $(x).parents("tr").remove();
-                    alert(data);
+                    if (data=="1") {
+                        $(x).parents("tr").remove();
+                        alert("Xóa thành công!");
+                    }
+                    else {
+                        alert("Xóa không thành công! Chuyên ngành chưa trống!");
+
+                    }
+                    
                 },
                 error: function (data) {
                     alert(data)
                 }
             });
             //
-            $(".add-new").removeAttr("disabled");
             index--;
 
         });
     });
 </script>
 
-<b>Danh sách nước >> @ViewData["TenDiaBan"] >> @ViewData["TenCSDT"]</b>
+
 <div class="table-wrapper">
-    <form action="ThemKhoa" enctype="multipart/form-data" method="post">
-        <input name="MaCSDaoTao" value="@ViewBag.MACSDT" style="display:none;"/>
+    <form action="ThemNganhDaoTao" enctype="multipart/form-data" method="post">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-8">
 
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm khoa</button>
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Thêm ngành ĐT</button>
                 </div>
                 <div class="col-sm-2">
                     <button id="saveKhoa" type="submit" class="btn btn-success save"><i class="fa fa-save"></i> Lưu thông tin</button>
@@ -200,27 +204,23 @@
             <tbody>
 
                 @{ var indexx = 0;}
-                @foreach (var item in ViewBag.Khoas)
+                @foreach (var item in ViewBag.list_nganhdt as List<QLDHS.Models.Entity.NganhDaoTao>)
                 {
                     indexx = indexx + 1;
                     <tr>
                         <td>
                             @indexx
-                            <input type="text" name="MaKhoa" id="@indexx" value="@item.MaKhoa" style="display:none;">
-
+                            <input type="text" name="MaNganh" id="@indexx" value="@item.MaNganh" style="display:none;">
                         </td>
                         <td class="text-editting">
-                            <input type="text" name="Khoa" id="Khoa" value="@item.TenKhoa" placeholder="Điền tên khoa">
-
+                            <input type="text" name="TenNganh" id="TenNganh" value="@item.NganhDaoTao1" placeholder="Điền tên ngành đào tạo">
                         </td>
                         <td>
                             <input name="GhiChu" id="GhiChu" type="text" value="" />
                         </td>
-
                         <td>
-                            <a class="info" href="/QLCSDaoTao/ThongtinBoMon?MaKhoa=@item.MaKhoa" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
+                            <a class="info" href="/QLCSDaoTao/ThongTinChuyenNganhDaoTao?MaNganh=@item.MaNganh" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
                             <a class="delete" data-delete="@indexx" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
-
                         </td>
                     </tr>
                 }
@@ -238,8 +238,5 @@
         border: none;
     }
 </style>
-
-
-
 
 
