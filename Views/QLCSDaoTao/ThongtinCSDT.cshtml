@@ -116,7 +116,7 @@
             var index = $("table tbody tr:last-child").index() +2;
             var row = '<tr>' +
                     '<td>' +
-                    `${index}`+
+                    `${index}` + '<input id="' + `${index}` + '" name="MaCSDT" value="" style="display:none"/>' +
                     '</td>'+
                     '<td class="text-editting">' +
                         '<input type="text" name="CSDaoTao" id="CSDaoTao" value="" placeholder="Điền tên CSDT" required>' +
@@ -127,7 +127,7 @@
 
                         '<td>'+
                         '<a class="info" href="/Thongtin" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>'+
-                            '<a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>'+
+                            '<a class="delete" data-delete="' + `${index}` + '" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>' +
 
                     '</td>'+
                     '</tr>';
@@ -138,7 +138,30 @@
 
         // Delete row on delete button click
         $(document).on("click", ".delete", function () {
-            $(this).parents("tr").remove();
+            var x = this;
+            var id = '#' + $(this).attr("data-delete");
+            var ma = $(id).val();
+            if (ma=="") {
+                ma = 0;
+            }
+            //
+            var formData = new FormData();
+            formData.append('MaCSDT', ma);
+            $.ajax({
+                url: 'XoaCSDT',
+                type: 'POST',
+                data: formData,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                success: function (data) {
+                    $(x).parents("tr").remove();
+                    alert(data);
+                },
+                error: function (data) {
+                    alert(data)
+                }
+            });
+            //
             $(".add-new").removeAttr("disabled");
             index--;
 
@@ -188,7 +211,7 @@
                     <tr>
                             <td>
                                 @indexx
-                                <input name="MaCSDT" value="@item.MaCSDaoTao" style="display:none;"/>
+                                <input name="MaCSDT" id="@indexx" value="@item.MaCSDaoTao" style="display:none;"/>
 
                             </td>
                             <td class="text-editting">
@@ -201,7 +224,7 @@
 
                             <td>
                                 <a class="info" href="/QLCSDaoTao/ThongtinKhoa?MACSDT=@item.MaCSDaoTao" title="Thông tin"><i class="fa fa-info-circle" style="color:#22a1be;"></i></a>
-                                <a class="delete" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
+                                <a class="delete" data-delete="@indexx" title="Xóa"><i class="fa fa-remove" style="color:#22a1be;"></i></a>
 
                             </td>
                     </tr>

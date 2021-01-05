@@ -131,11 +131,10 @@ namespace QLDHS.Controllers
             LUUHS context = new LUUHS();
             //xoa những bộ môn không có trong mã bộ môn
 
-
             if (BoMon != null)
             {
-                //luu thong tin cua nhung csdt da co
                 List<BoMonDaoTao> BoMon_current = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).ToList();
+                //luu thong tin cua nhung csdt da co
                 for (int i = 0; i < BoMon.Length; i++)
                 {
                     if (BoMon[i] != "")
@@ -160,6 +159,78 @@ namespace QLDHS.Controllers
 
 
             return Redirect("/QLCSDaoTao/ThongtinBoMon?MaKhoa=" + MaKhoa);
+        }
+
+        [HttpPost]
+        public string XoaBoMon(int MaBoMon)
+        {
+            LUUHS context = new LUUHS();
+            try
+            {
+                if (MaBoMon.ToString() != "")
+                {
+                    BoMonDaoTao bomon = context.BoMonDaoTaos.Single(x => x.MaBM == MaBoMon);
+                    context.BoMonDaoTaos.Remove(bomon);
+                    //không có sinh viên nào học bộ môn này...
+
+                    context.SaveChanges();
+                }
+                return "Xoa thành công";
+            }
+            catch (Exception)
+            {
+
+                return "Xóa không thành công";
+            }
+
+        }
+
+        [HttpPost]
+        public string XoaKhoa(int MaKhoa)
+        {
+            LUUHS context = new LUUHS();
+            try
+            {
+                if (MaKhoa.ToString() != "")
+                {
+                    KhoaDaoTao khoa = context.KhoaDaoTaos.Single(x => x.MaKhoa == MaKhoa);
+                    context.KhoaDaoTaos.Remove(khoa);
+                    //không có sinh viên nào học bộ môn này...
+
+                    context.SaveChanges();
+                }
+                return "Xoa thành công";
+            }
+            catch (Exception)
+            {
+
+                return "Xóa không thành công! Khoa chưa trống!";
+            }
+
+        }
+
+        [HttpPost]
+        public string XoaCSDT(int MaCSDT)
+        {
+            LUUHS context = new LUUHS();
+            try
+            {
+                if (MaCSDT.ToString() != "")
+                {
+                    CoSoDaoTao coso = context.CoSoDaoTaos.Single(x => x.MaCSDaoTao == MaCSDT);
+                    context.CoSoDaoTaos.Remove(coso);
+                    //không có sinh viên nào học bộ môn này...
+
+                    context.SaveChanges();
+                }
+                return "Xóa thành công";
+            }
+            catch (Exception)
+            {
+
+                return "Xóa không thành công! Cơ sở đào tạo chưa trống!";
+            }
+
         }
     }
 }
