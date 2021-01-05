@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLDHS.Models.Entity;
+using QLDHS.Models.Model_view;
 
 namespace QLDHS.Controllers
 {
@@ -13,8 +15,11 @@ namespace QLDHS.Controllers
         public ActionResult Index()
         {
             LUUHS context = new LUUHS();
-            List<DiaBanDaoTao> diabans = context.DiaBanDaoTaos.ToList();
-            return View(diabans);
+            //List<model_DiaBanDT> listdb = new List<model_DiaBanDT>();
+            int year = DateTime.Today.Year;
+            SqlParameter year_para = new SqlParameter("@year", year);
+            var listdb = new LUUHS().Database.SqlQuery<model_DiaBanDT>("exec dbo.DsDiaBan @year", year_para).ToList();
+            return View(listdb);
         }
 
         public ActionResult ThongtinCSDT(int IDDiaBan)

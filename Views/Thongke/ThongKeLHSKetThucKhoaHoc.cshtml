@@ -28,7 +28,7 @@
 </div>
 <div class="section-content">
     
-    <table id="alllhs" class="table table-bordered" style="width :100%">
+    <table id="alllhs1" class="table table-bordered" style="width :100%">
 
         <thead>
             <tr>
@@ -96,12 +96,12 @@
 </script>
 
 <script>
-    var table;
+    var table1;
     var columnsVisible ;
     $(document).ready(function () {
 
         // Cấu hình các nhãn phân trang
-        table = $('#alllhs').DataTable({
+        table1 = $('#alllhs1').DataTable({
             dom: 'Bfrtip',
             columns: [{
                 name: '1',
@@ -186,16 +186,16 @@
             "order": [[0, 'asc']] //sắp xếp giảm dần theo cột thứ 1
         });
 
-        $("#alllhs").css("font-size", 16);
+        $("#alllhs1").css("font-size", 16);
     });
 
     function get_visible_columns() {
         //console.log(table);
-        var all_columns = table.settings().init().columns;
+        var all_columns = table1.settings().init().columns;
         console.log('all_columns', all_columns);
         var visible_columns = [];
         for (var i in all_columns) {
-            if (table.column(all_columns[i].name + ':name').visible()) {
+            if (table1.column(all_columns[i].name + ':name').visible()) {
                 visible_columns.push(+i);
             }
         }
@@ -203,7 +203,7 @@
         return visible_columns;
     }
 
-    $('#alllhs').on('column-visibility.dt', function (e, settings, column, state) {
+    $('#alllhs1').on('column-visibility.dt', function (e, settings, column, state) {
         get_visible_columns();
     });
 
@@ -212,36 +212,7 @@
 
     }
 
-    function ChangeYearThongKeNienHanQH() {
-        var namthangquanham = $('#yearQH :selected').val();
-        var doituongthangquanham = $('#DoiTuong :selected').val();
-        var formData = new FormData();
-        formData.append('Year', namthangquanham);
-        formData.append('DoiTuong', doituongthangquanham);
-
-        $.ajax({
-            url: '@Url.Action("DSThangQuanHam_Year_Post", "Thongke")',
-            data: { Year: namthangquanham, DoiTuong: doituongthangquanham },
-            dataType: "json",
-            type: 'POST',
-            traditional: true,
-            success: function (result) {
-                table
-	            .clear()
-	            .draw();
-                var list = result.list;
-                $.each(list, function (index, value) {
-                    var myDate = new Date(parseInt(value.NgayNhan.substr(6)));
-                    table.row.add([
-                    value.MaLHS + '', value.HoTen + '', myDate.getDate() + '-' +myDate.getMonth()+1 +'-'+myDate.getFullYear() , value.KiHieu + '', value.CSDaoTao + '', value.DiaBan + '', ''
-                    ]).draw();
-                });
-            },
-            error: function () {
-                alert("Có lỗi xảy ra khi lây dữ liệu");
-            }
-        });
-    }
+    
 
 
 </script>

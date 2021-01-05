@@ -1,4 +1,4 @@
-﻿@model List<QLDHS.Models.Entity.DiaBanDaoTao>
+﻿@model List<QLDHS.Models.Model_view.model_DiaBanDT>
 
 @{
     ViewBag.Title = "Index";
@@ -51,6 +51,9 @@
 <div class="section-heading">
     <h1>Danh sách<br /> các nước</h1>
 </div>
+@{ 
+    var i = 0;
+}
 <div class="section-content">
     <table id="alllhs" class="table table-bordered" style="width :100%">
         <thead>
@@ -65,23 +68,18 @@
         <tbody>
             @foreach (var item in Model)
             {
+               
+                i = i + 1;
                 <tr>
-                    <td scope="row">1</td>
+                    <td scope="row">@i</td>
                     <td scope="row"><a href="/QLCSDaoTao/ThongtinCSDT?IDDiaBan=@item.IDDiaBan">@item.DiaBan</a></td>
-                    <td scope="row">Số lượng CSDT</td>
-                    <td scope="row">Số lượng LHS</td>
+                    <td scope="row">@item.SoLuongCSDT</td>
+                    <td scope="row">@item.SoLuongLHS</td>
                 </tr>
+                
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên nước</th>
-                <th scope="col">Số lượng CSDT</th>
-                <th scope="col">Số lượng LHS</th>
 
-            </tr>
-        </tfoot>
     </table>
 </div>
 <script>
