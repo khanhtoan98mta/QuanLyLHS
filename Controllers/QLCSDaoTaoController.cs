@@ -309,12 +309,12 @@ namespace QLDHS.Controllers
 
                     context.SaveChanges();
                 }
-                return "Xoa thành công";
+                return "1";
             }
             catch (Exception)
             {
 
-                return "Xóa không thành công";
+                return "0";
             }
 
         }
@@ -333,12 +333,12 @@ namespace QLDHS.Controllers
 
                     context.SaveChanges();
                 }
-                return "Xoa thành công";
+                return "1";
             }
             catch (Exception)
             {
 
-                return "Xóa không thành công! Khoa chưa trống!";
+                return "0";
             }
 
         }
@@ -357,12 +357,12 @@ namespace QLDHS.Controllers
 
                     context.SaveChanges();
                 }
-                return "Xóa thành công";
+                return "1";
             }
             catch (Exception)
             {
 
-                return "Xóa không thành công! Cơ sở đào tạo chưa trống!";
+                return "0";
             }
 
         }

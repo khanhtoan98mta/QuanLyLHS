@@ -154,8 +154,13 @@
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,  // tell jQuery not to set contentType
                 success: function (data) {
-                    $(x).parents("tr").remove();
-                    alert(data);
+                    if (data == "1") {
+                        $(x).parents("tr").remove();
+                        alert("Xóa thành công!");
+                    }
+                    else {
+                        alert("Xóa không thành công! Chuyên ngành này còn lưu học sinh đang học!");
+                    }
                 },
                 error: function (data) {
                     alert(data)
