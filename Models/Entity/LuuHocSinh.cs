@@ -102,6 +102,8 @@ namespace QLDHS.Models.Entity
         [Column(TypeName = "date")]
         public DateTime? NgayNhanQuanHam { get; set; }
 
+        public string MoTaAn { get; set; }
+
         public virtual DienKinhPhiDaoTao DienKinhPhiDaoTao { get; set; }
 
         public virtual DoiTuong DoiTuong { get; set; }

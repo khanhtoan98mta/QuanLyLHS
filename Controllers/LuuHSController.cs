@@ -40,8 +40,8 @@ namespace QLDHS.Controllers
             ViewBag.Khoa = db.KhoaDaoTaos.ToList();
             ViewBag.LHSID = LHSID; 
             ViewBag.CSDaotao = db.CoSoDaoTaos;
-            ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos;
-            ViewBag.BacDaoTao = db.BacDaoTaos;
+            ViewBag.DienKinhPhi = db.DienKinhPhiDaoTaos.ToList();
+            ViewBag.BacDaoTao = db.BacDaoTaos.ToList();
             ViewBag.NganhDT = db.NganhDaoTaos;
             ViewBag.ChuyenNganhDaoTao = db.ChuyenNganhDaoTaos;
             ViewBag.diaban = db.DiaBanDaoTaos.OrderBy(x=>x.DiaBan);
@@ -146,14 +146,15 @@ namespace QLDHS.Controllers
         /// <param name="luuhocsinh"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddNewLHS(LuuHocSinh luuhocsinh)
+        public ActionResult AddNewLHS(LuuHocSinh luuhocsinh,string Email,string SoDienThoai)
         {
             F_Luuhocsinh f_lhs = new F_Luuhocsinh();
+            luuhocsinh.ThongTinLienLac = Email + "/" + SoDienThoai;
             int id=f_lhs.AddNewLHS(luuhocsinh);
               
             return (Redirect("~/luuhs/EditLHS?LHSID="+id.ToString()));
         }
-
+     
         public ActionResult DeleteLHS(int LHSID)
         {
             LUUHS luuhs = new LUUHS();

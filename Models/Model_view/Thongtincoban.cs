@@ -35,6 +35,8 @@ namespace QLDHS.Models.Entity
         public string Doantruong { get; set; }
         public string Linhvucthemanh { get; set; }
         public int? GhiChu { get; set; }
+        public string Email { get; set; }
+        public string SoDienThoai { get; set; }
 
 
 

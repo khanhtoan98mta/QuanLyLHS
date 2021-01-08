@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,7 +36,8 @@ namespace QLDHS.Controllers
         public ActionResult ThongtinKhoa(int MACSDT)
         {
             LUUHS context = new LUUHS();
-            var khoas = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MACSDT).OrderBy(x => x.TenKhoa);
+            var khoas = context.KhoaDaoTaos.Where(x => x.MaCSDaoTao == MACSDT).OrderBy(x => x.TenKhoa).ToList();
+           
             ViewBag.Khoas = khoas;
             ViewData["TenCSDT"] = context.CoSoDaoTaos.SingleOrDefault(x => x.MaCSDaoTao == MACSDT).CSDaoTao;
             ViewBag.MACSDT = MACSDT;
@@ -46,8 +48,10 @@ namespace QLDHS.Controllers
         public ActionResult ThongtinBoMon(int MaKhoa)
         {
             LUUHS context = new LUUHS();
-            var bomons = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).OrderBy(x => x.TenBoMon);
+            var bomons = context.BoMonDaoTaos.Where(x => x.MaKhoa == MaKhoa).OrderBy(x => x.TenBoMon).ToList();
+          
             ViewBag.Bomons = bomons;
+           
             ViewData["TenKhoa"] = context.KhoaDaoTaos.SingleOrDefault(x => x.MaKhoa == MaKhoa).TenKhoa;
             ViewBag.MaKhoa = MaKhoa;
 
@@ -82,10 +86,11 @@ namespace QLDHS.Controllers
                     {
                         CoSoDaoTao csdt = new CoSoDaoTao();
                         csdt.CSDaoTao = CSDaoTao[i];
-                        csdt.MaCSDaoTao = context.CoSoDaoTaos.Count() + 1;
                         csdt.IDDiaBan = IDDiaBan;
-                        context.CoSoDaoTaos.Add(csdt);
+                        csdt=context.CoSoDaoTaos.Add(csdt);
                         context.SaveChanges();
+
+                        
                     }
                 }
             }
@@ -118,10 +123,12 @@ namespace QLDHS.Controllers
                     {
                         KhoaDaoTao khoa = new KhoaDaoTao();
                         khoa.TenKhoa = Khoa[i];
-                        khoa.MaKhoa = context.KhoaDaoTaos.Count() + 1;
+                        
                         khoa.MaCSDaoTao = MaCSDaoTao;
-                        context.KhoaDaoTaos.Add(khoa);
+                        khoa = context.KhoaDaoTaos.Add(khoa);
                         context.SaveChanges();
+
+                      
                     }
                 }
             }
@@ -323,6 +330,10 @@ namespace QLDHS.Controllers
         public string XoaKhoa(int MaKhoa)
         {
             LUUHS context = new LUUHS();
+            SqlParameter makhoa_= new SqlParameter("@nam", MaKhoa);
+           
+            
+            makhoa_.SqlDbType = SqlDbType.Int;
             try
             {
                 if (MaKhoa.ToString() != "")

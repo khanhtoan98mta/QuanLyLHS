@@ -4,7 +4,7 @@ namespace QLDHS.Models.Entity
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial; 
+    using System.Data.Entity.Spatial;
 
     [Table("KhoaDaoTao")]
     public partial class KhoaDaoTao
@@ -23,6 +23,8 @@ namespace QLDHS.Models.Entity
         public string TenKhoa { get; set; }
 
         public int? MaCSDaoTao { get; set; }
+
+        public string GhiChu { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoMonDaoTao> BoMonDaoTaos { get; set; }

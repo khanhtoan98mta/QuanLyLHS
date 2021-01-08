@@ -16,6 +16,13 @@
         thongtinbo = Model.ThongTinGiaDinh.Split('/')[0];
         thongtinme = Model.ThongTinGiaDinh.Split('/')[1];
     }
+    string email = null;
+    string sodienthoai = null;
+    if(Model.ThongTinLienLac!=null)
+    {
+        email = Model.ThongTinLienLac.Split('/')[0];
+        sodienthoai = Model.ThongTinLienLac.Split('/')[1];
+    }
     string ThoiGianDi = null;
     string ThoiGianVe = null;
     if (Model.ThoiGianDi != null)
@@ -227,11 +234,11 @@
                     <p class="text-muted mb-2 font-13"><strong>Bậc đào tạo :</strong> <span class="ml-2">@Model.BacDaoTao</span></p>
 
                     <p class="text-muted mb-2 font-13">
-                        <strong>Kinh phí đào tạo :</strong><span class="ml-2">
-                            @Model.SinhHoatPhi
+                        <strong>Email :</strong><span class="ml-2">
+                            @email
                         </span>
                     </p>
-                    <p class="text-muted mb-2 font-13"><strong>Đia chỉ liên lạc :</strong> <span class="ml-2 ">@Model.DiaChiLienLac</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Số điện thoại :</strong> <span class="ml-2 ">@sodienthoai</span></p>
                     <p class="text-muted mb-2 font-13"><strong>Đoàn trưởng :</strong> <span class="ml-2 ">@Model.DoanTruong</span></p>
 
                 </div>
@@ -264,18 +271,18 @@
 
                         <form action="./EditLHSTTCoban" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
-                            <input type="text" name="LHSID" id="LHSID" value="@ViewBag.LHSID" style="display: none" >
+                            <input type="text" name="LHSID" id="LHSID" value="@ViewBag.LHSID" style="display: none">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Họ và tên</label>
-                                        <input value="@Model.Hoten" type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên" >
+                                        <input value="@Model.Hoten" type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày sinh</label>
-                                        <input value="@ngaysinhdate" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" >
+                                        <input value="@ngaysinhdate" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh">
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -284,7 +291,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Giới tính</label>
-                                        <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính" >
+                                        <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính">
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
@@ -302,13 +309,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Tôn giáo</label>
-                                        <input value="@Model.TonGiao" type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo" >
+                                        <input value="@Model.TonGiao" type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Miền</label>
-                                        <select type="text" class="form-control" id="Mien" name="Mien" placeholder="Miền" >
+                                        <select type="text" class="form-control" id="Mien" name="Mien" placeholder="Miền">
                                             <option value="Bắc">Bắc</option>
                                             <option value="Trung">Trung</option>
                                             <option value="Nam">Nam</option>
@@ -320,14 +327,23 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="firstname">Thông tin liên lạc</label>
-                                        <input value="@Model.ThongTinLienLac" type="text" class="form-control" id="ThongTinLienLac" name="ThongTinLienLac" placeholder="Thông tin liên lạc">
+                                        <label for="firstname">Email</label>
+                                        <input value="@email" type="text" class="form-control" id="Email" name="Email" placeholder="Thông tin liên lạc">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="firstname">Số điện thoại</label>
+                                        <input value="@sodienthoai" type="text" class="form-control" id="SoDienThoai" name="SoDienThoai" placeholder="Thông tin liên lạc">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="lastname">Đối tượng</label>
-                                        <select type="text" class="form-control" id="MaDoiTuong" name="MaDoiTuong" placeholder="Đối tượng" >
+                                        <select type="text" class="form-control" id="MaDoiTuong" name="MaDoiTuong" placeholder="Đối tượng">
                                             @foreach (var item in @ViewBag.Doituong)
                                             {
                                                 <option value="@item.MaDoiTuong">@item.DoiTuong1</option>
@@ -336,13 +352,24 @@
                                         </select>
                                     </div>
                                 </div> <!-- end col -->
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="userbio">Mức độ quan tâm</label>
+                                        <select class="form-control" id="GhiChu" name="GhiChu" rows="2" placeholder="Mức độ quan tâm">
+                                            <option label="Mức độ bình thường" value="1"></option>
+                                            <option label="Mức độ trung bình" value="2"></option>
+                                            <option label="Mức độ cao" value="3"></option>
+
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="userbio">Quê quán</label>
-                                        <textarea class="form-control" id="QueQuan" name="QueQuan" rows="2" placeholder="Quê quán" >@Model.QueQuan</textarea>
+                                        <textarea class="form-control" id="QueQuan" name="QueQuan" rows="2" placeholder="Quê quán">@Model.QueQuan</textarea>
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -354,7 +381,7 @@
                                         <textarea class="form-control" id="NoiOHienNay" name="NoiOHienNay" rows="2" placeholder="Quê quán">@Model.NoiOHienNay</textarea>
                                     </div>
                                 </div>
-                            </div> <!-- end row -->                            
+                            </div> <!-- end row -->
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -366,7 +393,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Thời gian nhập ngũ</label>
-                                        <input value="@ngaynhapngu" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgayNhapNgu" name="NgayNhapNgu" placeholder="Ngày nhập ngũ" >
+                                        <input value="@ngaynhapngu" type="date" max="2999-12-30" min="1900-01-01" class="form-control" id="NgayNhapNgu" name="NgayNhapNgu" placeholder="Ngày nhập ngũ">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -460,19 +487,9 @@
                                 </div>
                             </div> <!-- end row -->
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="userbio">Mức độ quan tâm</label>
-                                        <select class="form-control" id="GhiChu" name="GhiChu" rows="2" placeholder="Mức độ quan tâm">
-                                            <option label="Mức độ bình thường" value="1"></option>
-                                            <option label="Mức độ trung bình" value="2"></option>
-                                            <option label="Mức độ cao" value="3"></option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> <!-- end row -->
+                           
+                                
+                           
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Lưu</button>
@@ -492,7 +509,7 @@
                                     <div class="form-group">
                                         <label for="firstname">Địa bàn</label>
                                         <select type="text" class="form-control" id="Diaban" name="Diaban">
-                                            <option label="- - - - - - - - - -" value="-1"></option>
+                                            <option label="- - - - - - - - - -" value="-1" selected></option>
                                             @foreach (var item in ViewBag.diaban)
                                             {
 
@@ -504,12 +521,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="lastname">Cơ sở đào tạo</label>
-                                        <select type="text" class="form-control" id="CSDaoTao" name="CSDaoTao">
-                                            <option value="-1">------------------</option>
+                                        <label for="firstname">Cơ sở đào tạo</label>
+                                        <select value="@Model.CSDaoTao" type="text" class="form-control" id="CSDaoTao" name="CSDaoTao">
+                                       
                                             @foreach (var item in ViewBag.CSDaotao)
                                             {
-                                                <option label="@item.CSDaoTao" value="@item.MaCSDaoTao" data-filter="@item.IDDiaBan"></option>
+                                                <option value="@item.MaCSDaoTao" data-filter="@item.IDDiaBan">@item.CSDaoTao </option>
                                             }
                                         </select>
                                     </div>
@@ -521,7 +538,7 @@
                                     <div class="form-group">
                                         <label for="firstname">Khoa</label>
                                         <select value="@Model.Khoa" type="text" class="form-control" id="Khoa" name="Khoa" placeholder="Khoa">
-                                            <option value="-1">------------------</option>
+                                          
                                             @foreach (var item in @ViewBag.Khoa)
                                             {
                                                 <option value="@item.MaKhoa" data-filter="@item.MaCSDaoTao">@item.TenKhoa</option>
@@ -534,7 +551,7 @@
                                     <div class="form-group">
                                         <label for="lastname">Bộ môn</label>
                                         <select type="text" class="form-control" id="BoMon" name="BoMon" placeholder="Bộ môn">
-                                            <option value="-1">------------------</option>
+                                          
 
                                             @foreach (var item in @ViewBag.BoMon)
                                             {
@@ -734,7 +751,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Kết quả học tập kỳ 6</label>
-                                        <input type="number" class="form-control" id="Ki6" name="Ki6" placeholder="Không/Có" value="@Model.Ki6">
+                                        <input type="number" class="form-control" id="Ki6" name="Ki6" placeholder="" value="@Model.Ki6">
 
                                     </div>
                                 </div> <!-- end col -->
@@ -1122,7 +1139,7 @@
     if (gioitinh == undefined || gioitinh == null||gioitinh=='') {
         gioitinh = 'Nam';
     }
-
+    
     $('#GioiTinh option[value=' + gioitinh + ']').attr('selected', 'selected');
     //mien
     var mien = '@Model.Mien';
@@ -1130,32 +1147,8 @@
         mien = 'Bắc';
     }
     $('#Mien option[value=' + mien + ']').attr('selected', 'selected');
-    //diaban
-    var diaban = '@Model.IDDiaBan';
-    if (diaban == undefined || diaban == null||diaban=='') {
-        diaban = '-1';
-    }
-    $('#Diaban option[value=' + diaban + ']').attr('selected', 'selected');
+    
 
-
-    //Khoa
-    var khoa = '@Model.MaKhoa';
-    if (khoa == undefined || khoa == null||khoa=='') {
-        khoa = '-1';
-    }
-    $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
-    //bomon
-    var bomon = '@Model.MaDVBM';
-    if (bomon == undefined || bomon == null||bomon=='') {
-        bomon = '-1';
-    }
-    $('#BoMon option[value=' + bomon + ']').attr('selected', 'selected');
-    //CSDaoTao
-    var maCSDaoTao = '@Model.MaCSDaoTao';
-    if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
-        maCSDaoTao = '-1';
-    }
-    $('#CSDaoTao option[value=' + maCSDaoTao + ']').attr('selected', 'selected');
     //MaDienKinhPhi
     var maDienKinhPhi = '@Model.MaDKP';
     if (maDienKinhPhi == undefined || maDienKinhPhi == null||maDienKinhPhi=='') {
@@ -1260,14 +1253,57 @@
         filterCombobox($("#CNDT2"), nganhdt, true);
     })
 
-    $('#Khoa').change(function(){
-        var nganhdt = $("#Khoa :selected").val();
-        filterCombobox($("#BoMon"), nganhdt, true);
-    })
-    $('#CSDaoTao').change(function(){
+    $(document).ready(function () {
+                //diaban
+    var diaban = '@Model.IDDiaBan';
+    if (diaban == undefined || diaban == null||diaban=='') {
+        diaban = '-1';
+    }
+    $('#Diaban option[value=' + diaban + ']').attr('selected', 'selected');
+    //CSDaoTao
+    var maCSDaoTao = '@Model.MaCSDaoTao';
+    if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
+        maCSDaoTao = '-1';
+    }
+    $('#CSDaoTao option[value=' + maCSDaoTao + ']').attr('selected', 'selected');
+    //Khoa
+    var khoa = '@Model.MaKhoa';
+    if (khoa == undefined || khoa == null||khoa=='') {
+        khoa = '-1';
+    }
+    $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
+    //bomon
+    var bomon = '@Model.MaDVBM';
+    if (bomon == undefined || bomon == null||bomon=='') {
+        bomon = '-1';
+    }
+    $('#BoMon option[value=' + bomon + ']').attr('selected', 'selected');
+
+
+
+        var iddiaban = $("#Diaban :selected").val();
+        filterCombobox($("#CSDaoTao"), iddiaban, true);
         var nganhdt = $("#CSDaoTao :selected").val();
-        
         filterCombobox($("#Khoa"), nganhdt, true);
+        var KHOA = $("#Khoa :selected").val();
+        filterCombobox($("#BoMon"), KHOA, true);
+
+
+
+
+    })
+
+    $('#Khoa').change(function(){
+        var KHOA = $("#Khoa :selected").val();
+        filterCombobox($("#BoMon"), KHOA, true);
+    })
+
+    $('#CSDaoTao').change(function(){
+        var CSDT = $("#CSDaoTao :selected").val();
+        filterCombobox($("#Khoa"), CSDT, true);
+
+        var KHOA = $("#Khoa :selected").val();
+        filterCombobox($("#BoMon"), KHOA, true);
     })
 
 
@@ -1275,35 +1311,12 @@
     //CHON DIA BAN
     $('#Diaban').change(function(){
         var iddiaban = $("#Diaban :selected").val();
-        
         filterCombobox($("#CSDaoTao"), iddiaban, true);
-        //$('#CSDaoTao option[value=-1]').attr('selected', 'selected');
+        
 
 
     })
 
-    setInterval( function(){
-        var khoa1 = $("#Khoa").val();
-        var csdaotao1 = $("#CSDaoTao").val();
-        if (csdaotao1==-1) {
-            $('#Khoa option[value=-1]').attr('selected', 'selected');
-            $('#BoMon option[value=-1]').attr('selected', 'selected');
-
-            filterCombobox($("#BoMon"), -1, true);
-            filterCombobox($("#Khoa"), -1, true);
-        }
-        if (khoa1==-1) {
-            $('#BoMon option[value=-1]').attr('selected', 'selected');
-            filterCombobox($("#BoMon"), -1, true);
-
-        }
-
-
-    
-        
-
-    },1000);
-    
 
 </script>
 

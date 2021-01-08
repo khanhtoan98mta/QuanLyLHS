@@ -34,7 +34,6 @@ namespace QLDHS.Models.Entity
         public virtual DbSet<QuaTrinhCongTac> QuaTrinhCongTacs { get; set; }
         public virtual DbSet<QuyetDinhDiHoc> QuyetDinhDiHocs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanNhan> ThanNhans { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<VePhep> VePheps { get; set; }
@@ -44,6 +43,10 @@ namespace QLDHS.Models.Entity
             modelBuilder.Entity<BacDaoTao>()
                 .Property(e => e.BacDaoTao1)
                 .IsFixedLength();
+
+            modelBuilder.Entity<BoMonDaoTao>()
+                .Property(e => e.GhiChu)
+                .IsUnicode(false);
 
             modelBuilder.Entity<BoMonDaoTao>()
                 .HasMany(e => e.LHS_DaoTao)
@@ -60,6 +63,10 @@ namespace QLDHS.Models.Entity
                 .WithOptional(e => e.ChuyenNganhDaoTao1)
                 .HasForeignKey(e => e.MaCNDaoTao2);
 
+            modelBuilder.Entity<CoSoDaoTao>()
+                .Property(e => e.GhiChu)
+                .IsUnicode(false);
+
             modelBuilder.Entity<DiaBanDaoTao>()
                 .Property(e => e.MaDiaBan)
                 .IsUnicode(false);
@@ -68,6 +75,10 @@ namespace QLDHS.Models.Entity
                 .HasMany(e => e.LuuHocSinhs)
                 .WithOptional(e => e.DonVi)
                 .HasForeignKey(e => e.MaDVBQP);
+
+            modelBuilder.Entity<KhoaDaoTao>()
+                .Property(e => e.GhiChu)
+                .IsUnicode(false);
 
             modelBuilder.Entity<KhoaDaoTao>()
                 .HasMany(e => e.LHS_DaoTao)

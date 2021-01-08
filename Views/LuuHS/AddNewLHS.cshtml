@@ -14,7 +14,7 @@
         <div class="col-lg-4 col-xl-4" >
             <div class="card-box text-center" style="position: sticky;top: 0;">
                 <img id="avatar" src="../Content/img/img_lhs/Avatar-Female.jpg" class="avatar-xl img-thumbnail" alt="profile-image">
-                <p class="text-muted"><input id="displaymalhs" type="text" placeholder="Nhập mã sinh viên" style="text-align:center;border:none;"/></p>
+                @*<p class="text-muted"><input id="displaymalhs" type="text" placeholder="Nhập mã sinh viên" style="text-align:center;border:none;"/></p>*@
                 <form>
                     <input id="fileInput" type="file" style="display:none;" accept="image/*" />
                     <button id="upfilebtn" onclick="document.getElementById('fileInput').click()" type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Thêm ảnh</button>
@@ -50,47 +50,55 @@
                     <div class="tab-pane show active" id="settings">
                         <form action="./AddNewLHS" enctype="multipart/form-data" method="post">
                             <h5 class="mb-3 text-uppercase bg-light p-2" style="position: sticky;top: 0; z-index:3"><i class="mdi mdi-account-circle mr-1"></i> Thông tin cơ bản</h5>
-                            <input name="MaLHS" id="MaLHS" value="" style="display:none" required/>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Mã lưu học sinh</label>
+                                        <input type="text" class="form-control" id="" name="MaLHS" placeholder="Mã lưu học sinh" required>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Họ và tên</label>
                                         <input type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên" required>
                                     </div>
                                 </div>
+                            </div> <!-- end row -->
+                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Ngày sinh</label>
                                         <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" placeholder="Ngày sinh" required>
                                     </div>
                                 </div>
-                            </div> <!-- end row -->
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Giới tính</label>
                                         <select class="form-control" id="GioiTinh" name="GioiTinh" placeholder="Giới tính" required>
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
-                                            </select>
+                                        </select>
                                     </div>
                                 </div>
+                            </div> <!-- end row -->
+                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Dân tộc</label>
                                         <input type="text" class="form-control" id="DanToc" name="DanToc" placeholder="Dân tộc" required>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Tôn giáo</label>
                                         <input type="text" class="form-control" id="TonGiao" name="TonGiao" placeholder="Tôn giáo">
                                     </div>
                                 </div>
+                            </div> <!-- end row -->
+                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Miền</label>
@@ -98,18 +106,9 @@
                                             <option value="Bắc">Bắc</option>
                                             <option value="Trung">Trung</option>
                                             <option value="Nam">Nam</option>
-                                            </select>
+                                        </select>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="firstname">Thông tin liên lạc</label>
-                                        <input type="text" class="form-control" id="ThongTinLienLac" name="ThongTinLienLac" placeholder="Thông tin liên lạc">
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lastname">Đối tượng</label>
@@ -118,12 +117,25 @@
                                             {
                                                 <option value="@item.MaDoiTuong">@item.DoiTuong1</option>
                                             }
-                                            
+
                                         </select>
                                     </div>
                                 </div> <!-- end col -->
+                            </div> <!-- end row -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Email</label>
+                                        <input type="text" class="form-control" id="ThongTinLienLac" name="Email" placeholder="Thông tin liên lạc">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Số điện thoại</label>
+                                        <input type="text" class="form-control" id="ThongTinLienLac" name="SoDienThoai" placeholder="Thông tin liên lạc">
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -132,7 +144,6 @@
                                     </div>
                                 </div>
                             </div> <!-- end row -->
-
                             <div class="text-right">
                                 <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Tạo</button>
                             </div>

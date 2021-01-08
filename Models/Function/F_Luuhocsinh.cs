@@ -81,7 +81,7 @@ namespace QLDHS.Models.Function
                     lhs.ThongTinLienLac = info.ThongTinLienLac;
                     lhs.MaDoiTuong = info.MaDoiTuong;
                     lhs.QueQuan = info.QueQuan;
-                   
+                    lhs.ThongTinLienLac = info.Email + "/" + info.SoDienThoai;
                     lhs.SoHieuSiQuan = info.SoHieuSiQuan;
                     lhs.NgayNhapNgu = info.NgayNhapNgu;
                     lhs.NgayVaoDoan = info.NgayVaoDoan;
@@ -179,8 +179,15 @@ namespace QLDHS.Models.Function
                         lhs_daotao.MaBMDaoTao = info.BoMon;
                         
                         lhs.MaDKP = info.MaDienKinhPhi;
+                        if(lhs.MaDKP==0)
+                        {
+                            lhs.MaDKP = null;
+                        }
                         lhs_daotao.MaBacDaoTao = info.MaBacDaoTao;
-
+                        if(info.MaBacDaoTao==0)
+                        {
+                            lhs_daotao.MaBacDaoTao = null;
+                        }
 
                         lhs_daotao.MaCNDaoTao1 = info.CNDT1;
                         lhs_daotao.MaCNDaoTao2 = info.CNDT2;

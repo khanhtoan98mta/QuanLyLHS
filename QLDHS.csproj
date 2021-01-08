@@ -186,7 +186,6 @@
     <Compile Include="Models\Entity\QuaTrinhCongTac.cs" />
     <Compile Include="Models\Entity\QuyetDinhDiHoc.cs" />
     <Compile Include="Models\Entity\Role.cs" />
-    <Compile Include="Models\Entity\sysdiagram.cs" />
     <Compile Include="Models\Entity\ThanNhan.cs" />
     <Compile Include="Models\Entity\UserName.cs" />
     <Compile Include="Models\Entity\VePhep.cs" />
@@ -1292,7 +1291,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
- 
   <!--<Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
