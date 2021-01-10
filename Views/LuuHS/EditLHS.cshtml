@@ -1257,25 +1257,25 @@
                 //diaban
     var diaban = '@Model.IDDiaBan';
     if (diaban == undefined || diaban == null||diaban=='') {
-        diaban = '-1';
+        diaban = '0';
     }
     $('#Diaban option[value=' + diaban + ']').attr('selected', 'selected');
     //CSDaoTao
     var maCSDaoTao = '@Model.MaCSDaoTao';
     if (maCSDaoTao== undefined || maCSDaoTao==null||maCSDaoTao=='') {
-        maCSDaoTao = '-1';
+        maCSDaoTao = '0';
     }
     $('#CSDaoTao option[value=' + maCSDaoTao + ']').attr('selected', 'selected');
     //Khoa
     var khoa = '@Model.MaKhoa';
     if (khoa == undefined || khoa == null||khoa=='') {
-        khoa = '-1';
+        khoa = '0';
     }
     $('#Khoa option[value=' + khoa + ']').attr('selected', 'selected');
     //bomon
     var bomon = '@Model.MaDVBM';
     if (bomon == undefined || bomon == null||bomon=='') {
-        bomon = '-1';
+        bomon = '0';
     }
     $('#BoMon option[value=' + bomon + ']').attr('selected', 'selected');
 
@@ -1283,14 +1283,10 @@
 
         var iddiaban = $("#Diaban :selected").val();
         filterCombobox($("#CSDaoTao"), iddiaban, true);
-        var nganhdt = $("#CSDaoTao :selected").val();
-        filterCombobox($("#Khoa"), nganhdt, true);
+        var csdt = $("#CSDaoTao :selected").val();
+        filterCombobox($("#Khoa"), csdt, true);
         var KHOA = $("#Khoa :selected").val();
         filterCombobox($("#BoMon"), KHOA, true);
-
-
-
-
     })
 
     $('#Khoa').change(function(){
@@ -1312,7 +1308,11 @@
     $('#Diaban').change(function(){
         var iddiaban = $("#Diaban :selected").val();
         filterCombobox($("#CSDaoTao"), iddiaban, true);
-        
+        var CSDT = $("#CSDaoTao :selected").val();
+        filterCombobox($("#Khoa"), CSDT, true);
+
+        var KHOA = $("#Khoa :selected").val();
+        filterCombobox($("#BoMon"), KHOA, true);
 
 
     })
